@@ -5,6 +5,8 @@ declare(strict_types=1);
 return [
     // Header
     'get_consult' => 'Get Your Consult!',
+    'search_placeholder' => 'Search for anything',
+    'need_help' => 'Need help?',
 
     // Footer
     'support_247' => 'Support 24/7',

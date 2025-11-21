@@ -5,6 +5,8 @@ declare(strict_types=1);
 return [
     // Header
     'get_consult' => 'Danışmanlık Alın!',
+    'search_placeholder' => 'Herhangi bir şey arayın',
+    'need_help' => 'Yardıma mı ihtiyacınız var?',
 
     // Footer
     'support_247' => 'Destek 24/7',
