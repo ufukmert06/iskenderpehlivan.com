@@ -98,7 +98,7 @@ new class extends Component {
                     <div class="btn-get">
                         <a class="tf-btn style-default btn-color-secondary pd-40" href="book-appointment.html">
 <span>
-Get Your Consult!
+{{ __('common.get_consult') }}
 </span>
                         </a>
                     </div>

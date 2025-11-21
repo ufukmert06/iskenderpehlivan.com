@@ -43,10 +43,10 @@ new class extends Component {
                                     <li>{{ $settings->contact_address }}</li>
                                 @endif
                                 @if($settings?->contact_email)
-                                    <li>{{ __('Support 24/7') }}: <a href="mailto:{{ $settings->contact_email }}">{{ $settings->contact_email }}</a></li>
+                                    <li>{{ __('common.support_247') }}: <a href="mailto:{{ $settings->contact_email }}">{{ $settings->contact_email }}</a></li>
                                 @endif
                                 @if($settings?->contact_phone)
-                                    <li>{{ __('Call Us Now') }}: <a href="tel:{{ $settings->contact_phone }}">{{ $settings->contact_phone }}</a></li>
+                                    <li>{{ __('common.call_us_now') }}: <a href="tel:{{ $settings->contact_phone }}">{{ $settings->contact_phone }}</a></li>
                                 @endif
                             </ul>
                             <ul class="tf-social">
@@ -143,32 +143,32 @@ new class extends Component {
                         <div class="footer-right">
                             <div class="wrap-footer-menu-list">
                                 <div class="footer-menu-list footer-col-block">
-                                    <h6 class="title title-desktop">Our Therapists</h6>
-                                    <h6 class="title title-mobile">Our Therapists</h6>
+                                    <h6 class="title title-desktop">{{ __('common.our_therapists') }}</h6>
+                                    <h6 class="title title-mobile">{{ __('common.our_therapists') }}</h6>
                                     <ul class="tf-collapse-content">
-                                        <li><a href="therapists-details.html">Annette Black</a></li>
-                                        <li><a href="therapists-details.html">Jane Cooper</a></li>
-                                        <li><a href="therapists-details.html">Brooklyn Simmons</a></li>
+                                        <li><a href="therapists-details.html">{{ __('common.therapist_annette') }}</a></li>
+                                        <li><a href="therapists-details.html">{{ __('common.therapist_jane') }}</a></li>
+                                        <li><a href="therapists-details.html">{{ __('common.therapist_brooklyn') }}</a></li>
                                     </ul>
                                 </div>
                                 <div class="footer-menu-list footer-col-block">
-                                    <h6 class="title title-desktop">Our Services</h6>
-                                    <h6 class="title title-mobile">Our Services</h6>
+                                    <h6 class="title title-desktop">{{ __('common.our_services') }}</h6>
+                                    <h6 class="title title-mobile">{{ __('common.our_services') }}</h6>
                                     <ul class="tf-collapse-content">
-                                        <li><a href="service-details.html">Individual Counseling</a></li>
-                                        <li><a href="service-details.html">Family Therapy</a></li>
-                                        <li><a href="service-details.html">Couples Therapy</a></li>
-                                        <li><a href="service-details.html">Group Therapy</a></li>
+                                        <li><a href="service-details.html">{{ __('common.service_individual') }}</a></li>
+                                        <li><a href="service-details.html">{{ __('common.service_family') }}</a></li>
+                                        <li><a href="service-details.html">{{ __('common.service_couples') }}</a></li>
+                                        <li><a href="service-details.html">{{ __('common.service_group') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="wrap-form footer-col-block">
-                                <h6 class="title title-desktop">Subscribe Newsletter</h6>
-                                <h6 class="title title-mobile">Subscribe Newsletter</h6>
+                                <h6 class="title title-desktop">{{ __('common.subscribe_newsletter') }}</h6>
+                                <h6 class="title title-mobile">{{ __('common.subscribe_newsletter') }}</h6>
                                 <div class="tf-collapse-content">
                                     <form class="form-send-email">
                                         <fieldset>
-                                            <input type="email" placeholder="Your email address" name="text" aria-required="true" required>
+                                            <input type="email" placeholder="{{ __('common.email_placeholder') }}" name="text" aria-required="true" required>
                                         </fieldset>
                                         <div class="button-submit">
                                             <button type="submit">
@@ -176,9 +176,7 @@ new class extends Component {
                                             </button>
                                         </div>
                                     </form>
-                                    <p>Please sign up to follow the latest news and events from us, we promise not
-                                        to
-                                        spam your inbox.</p>
+                                    <p>{{ __('common.newsletter_description') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -187,11 +185,11 @@ new class extends Component {
                         @if($this->getTranslation()?->footer_text)
                             <p>{{ $this->getTranslation()->footer_text }}</p>
                         @else
-                            <p>© {{ date('Y') }} {{ $this->getTranslation()?->site_name ?? config('app.name') }}. {{ __('All rights reserved') }}.</p>
+                            <p>© {{ date('Y') }} {{ $this->getTranslation()?->site_name ?? config('app.name') }}. {{ __('common.all_rights_reserved') }}.</p>
                         @endif
                         <ul class="content-right">
-                            <li><a href="{{ route('home') }}">{{ __('Terms Of Services') }}</a></li>
-                            <li><a href="{{ route('home') }}">{{ __('Privacy Policy') }}</a></li>
+                            <li><a href="{{ route('home') }}">{{ __('common.terms_of_service') }}</a></li>
+                            <li><a href="{{ route('home') }}">{{ __('common.privacy_policy') }}</a></li>
                         </ul>
                     </div>
                 </div>

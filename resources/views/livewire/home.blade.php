@@ -4,7 +4,7 @@
 // Fetch data directly since it's static, non-reactive data
 $blogPosts = \App\Models\Post::where('type', 'blog')
     ->where('status', 'published')
-    ->with('translations')
+    ->with(['translations', 'categories.translations'])
     ->latest()
     ->limit(3)
     ->get();
@@ -21,22 +21,22 @@ $settings = \App\Models\Setting::with('translations')->first();
     <div class="page-title-homepage-2">
         <div class="content-inner">
             <div class="heading">
-                <h2 class="title animationtext rotate-1">Sağlıklı ve Dengeli Bir Yaşama Doğru İlk Adımı Atın
+                <h2 class="title animationtext rotate-1">{{ __('home.hero.title') }}
                     <span class="tf-text s1 cd-words-wrapper">
-<span class="item-text is-visible">Huzurlu</span>
-<span class="item-text is-hidden">Mutlu Bir Hayat</span>
+<span class="item-text is-visible">{{ __('home.hero.title_animated_1') }}</span>
+<span class="item-text is-hidden">{{ __('home.hero.title_animated_2') }}</span>
 </span>
                 </h2>
                 <p class="description">
-                    Kendinizde barış bulabileceğiniz güvenli bir alan sağlıyoruz. Uzman danışmanlarımız sizi kişiselleştirilmiş bakım ile ruh sağlığı zorlukları yaşamınızda üstesinden gelmenize rehberlik eder.
+                    {{ __('home.hero.description') }}
                 </p>
             </div>
             <a class="tf-btn style-default btn-color-secondary pd-28" href="#contact-section">
-                <span>Danışmanlık Randevusu Al <i class="icon-ArrowRight arr-1"></i></span>
+                <span>{{ __('home.hero.cta_button') }} <i class="icon-ArrowRight arr-1"></i></span>
             </a>
         </div>
         <div class="image-wrap">
-            <img class="lazyload" data-src="{{asset('images/firstphoto.png')}}" src="{{asset('images/firstphoto.png')}}" alt="Danışmanlık">
+            <img class="lazyload" data-src="{{asset('images/firstphoto.png')}}" src="{{asset('images/firstphoto.png')}}" alt="{{ __('home.image_alt.consulting') }}">
         </div>
     </div>
 
@@ -48,23 +48,22 @@ $settings = \App\Models\Setting::with('translations')->first();
                     <div class="row">
                         <div class="col-md-6">
                             <div class="image-wrap wow fadeInLeft effec-overlay" data-wow-duration="1000" data-wow-delay="0s">
-                                <img class="lazyload" data-src="{{asset('images/ekip.jpeg')}}" src="{{asset('images/ekip.jpeg')}}" alt="Hakkımızda">
+                                <img class="lazyload" data-src="{{asset('images/ekip.jpeg')}}" src="{{asset('images/ekip.jpeg')}}" alt="{{ __('home.image_alt.about_us') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="box-about">
                                 <div class="icon wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                    <img src="/assets/images/item/favicon.png" alt="Logo">
+                                    <img src="/assets/images/item/favicon.png" alt="{{ __('home.image_alt.logo') }}">
                                 </div>
                                 <div class="heading-section text-start wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                    <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Hakkımızda</p>
-                                    <h3>Ruh Sağlığınızla Bağlı Güvenilir Uzmanlar</h3>
-                                    <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Deneyimli terapistler ekibimiz ve ruh sağlığına kişiselleştirilmiş yaklaşım ile İskender Pehlivan Danışmanlık, hayatın zorlukları üstesinden gelmeniz ve ruh sağlığı iyiliğini sağlamak için gereken araçlar ve desteği
-                                        sunuyoruz. Her bireyin dengeli yaşama, iyileşme ve gelişme hakkına inanıyoruz.
+                                    <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.about.subtitle') }}</p>
+                                    <h3>{{ __('home.about.title') }}</h3>
+                                    <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.about.description') }}
                                     </p>
                                 </div>
                                 <a class="tf-btn style-default btn-color-white has-boder pd-26 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s" href="#about">
-                                    <span>Hakkımızda Daha Fazla Bilgi</span>
+                                    <span>{{ __('home.about.cta_button') }}</span>
                                 </a>
                             </div>
                         </div>
@@ -79,39 +78,39 @@ $settings = \App\Models\Setting::with('translations')->first();
                 <div class="row">
                     <div class="col-12">
                         <div class="heading-section">
-                            <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Avantajlar</p>
-                            <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Neden İskender Pehlivan Danışmanlık?</h3>
+                            <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.benefits.subtitle') }}</p>
+                            <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.benefits.title') }}</h3>
                             <p class="description text-1 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                Kanıtlanmış sonuçlar ve etkili terapi, sizin benzersiz ihtiyaçlarınızı karşılamak için tasarlanmıştır.
+                                {{ __('home.benefits.description') }}
                             </p>
                         </div>
                         <div class="grid-layout-3 gap-30">
                             <div class="icons-box effec-icon wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                 <div class="heading">
-                                    <h5><a href="#">Kişiselleştirilmiş<br>Bakım</a></h5>
+                                    <h5><a href="#">{{ __('home.benefits.card_1_title') }}</a></h5>
                                     <div class="icon">
                                         <i class="icon-HandHeart"></i>
                                     </div>
                                 </div>
-                                <p>Sizin benzersiz ihtiyaçlarınız ve hedefleriniz için özelleştirilmiş tedavi planları oluşturuyoruz ve iyileşme yolculuğunuza kişisel olarak uygun bir yaklaşım sağlıyoruz.</p>
+                                <p>{{ __('home.benefits.card_1_description') }}</p>
                             </div>
                             <div class="icons-box effec-icon wow fadeInUp" data-wow-duration="1000" data-wow-delay="0.1s">
                                 <div class="heading">
-                                    <h5><a href="#">Deneyimli<br>Uzmanlar</a></h5>
+                                    <h5><a href="#">{{ __('home.benefits.card_2_title') }}</a></h5>
                                     <div class="icon">
                                         <i class="icon-SketchLogo"></i>
                                     </div>
                                 </div>
-                                <p>Terapistlerimiz geniş eğitim, çeşitli uzmanlık ve etkili stratejiler sunar, sizin ihtiyaçlarınıza uygun yüksek kaliteli bakım ve sonuçlar sağlıyoruz.</p>
+                                <p>{{ __('home.benefits.card_2_description') }}</p>
                             </div>
                             <div class="icons-box effec-icon wow fadeInUp" data-wow-duration="1000" data-wow-delay="0.2s">
                                 <div class="heading">
-                                    <h5><a href="#">Destekleyici<br>Ortam</a></h5>
+                                    <h5><a href="#">{{ __('home.benefits.card_3_title') }}</a></h5>
                                     <div class="icon">
                                         <i class="icon-Lifebuoy"></i>
                                     </div>
                                 </div>
-                                <p>Iyileşme süreciniz boyunca rahat ve desteklenen hissedeceğiniz güvenli, şefkatli bir alan sunuyoruz ve olumlu, kalıcı değişim yaratırız.</p>
+                                <p>{{ __('home.benefits.card_3_description') }}</p>
                             </div>
                         </div>
                     </div>
@@ -125,16 +124,16 @@ $settings = \App\Models\Setting::with('translations')->first();
                 <div class="row">
                     <div class="col-12">
                         <div class="heading-section">
-                            <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Neler Sunuyoruz</p>
-                            <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Danışmanlık Hizmetlerimiz</h3>
-                            <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Bireyler, çiftler ve aileler için kişiselleştirilmiş danışmanlık seçenekleri sunarak, hayatın zorlukları üstesinden gelmenize ve ruh sağlığı iyiliğini sağlamanıza yardımcı oluyoruz.
+                            <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.services.subtitle') }}</p>
+                            <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.services.title') }}</h3>
+                            <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.services.description') }}
                             </p>
                         </div>
                         <div class="widget-tabs">
                             <ul class="widget-menu-tab overflow-x-auto">
                                 @foreach($services as $index => $service)
                                     <li class="item-title @if($index === 0) active @endif" wire:key="service-tab-{{ $service->id }}">
-                                        {{ $service->translation()?->name ?? 'Hizmet' }}
+                                        {{ $service->translation()?->name ?? __('home.services.default_service_name') }}
                                     </li>
                                 @endforeach
                             </ul>
@@ -144,17 +143,17 @@ $settings = \App\Models\Setting::with('translations')->first();
                                         <div class="box-service">
                                             <div class="image-wrap @if($index === 0) wow @endif fadeInLeft effec-overlay" data-wow-duration="1000" data-wow-delay="0s">
                                                 @if($service->featured_image)
-                                                    <img class="lazyload" data-src="{{ Storage::url($service->featured_image) }}" src="{{ Storage::url($service->featured_image) }}" alt="{{ $service->translation()?->name ?? 'Hizmet' }}">
+                                                    <img class="lazyload" data-src="{{ Storage::url($service->featured_image) }}" src="{{ Storage::url($service->featured_image) }}" alt="{{ $service->translation()?->name ?? __('home.services.default_service_name') }}">
                                                 @else
-                                                    <img class="lazyload" data-src="/assets/images/section/section-service.jpg" src="/assets/images/section/section-service.jpg" alt="{{ $service->translation()?->name ?? 'Hizmet' }}">
+                                                    <img class="lazyload" data-src="/assets/images/section/section-service.jpg" src="/assets/images/section/section-service.jpg" alt="{{ $service->translation()?->name ?? __('home.services.default_service_name') }}">
                                                 @endif
                                             </div>
                                             <div class="content">
                                                 <div class="heading-section text-start">
-                                                    <p class="text-2 sub @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ $service->translation()?->name ?? 'Hizmet' }}</p>
+                                                    <p class="text-2 sub @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ $service->translation()?->name ?? __('home.services.default_service_name') }}</p>
                                                     <h4 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                                         <a href="#service-{{ $service->slug_base }}">
-                                                            {{ $service->translation()?->name ?? 'Hizmet' }}
+                                                            {{ $service->translation()?->name ?? __('home.services.default_service_name') }}
                                                         </a>
                                                     </h4>
                                                     <p class="description text-1 lh-30 @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
@@ -162,7 +161,7 @@ $settings = \App\Models\Setting::with('translations')->first();
                                                     </p>
                                                 </div>
                                                 <a href="#service-{{ $service->slug_base }}" class="tf-btn-link z-5 @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                                    <span data-text="Daha Fazla Oku">Daha Fazla Oku</span>
+                                                    <span data-text="{{ __('home.services.read_more') }}">{{ __('home.services.read_more') }}</span>
                                                     <i class="icon-ArrowRight"></i>
                                                 </a>
                                             </div>
@@ -182,33 +181,49 @@ $settings = \App\Models\Setting::with('translations')->first();
                 <div class="row">
                     <div class="col-12">
                         <div class="heading-section">
-                            <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Popüler Konular</p>
-                            <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Blog & Kaynaklar</h3>
+                            <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.blog.subtitle') }}</p>
+                            <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.blog.title') }}</h3>
                             <p class="description text-1 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                Ruh sağlığı hakkında bilgi, araçlar ve tavsiyelerin kaynağı.
+                                {{ __('home.blog.description') }}
                             </p>
                         </div>
                         <div class="swiper-container slider-layout-3">
                             <div class="swiper-wrapper">
                                 @foreach($blogPosts as $post)
+                                    @php
+                                        $translation = $post->translation();
+                                        $publishedAt = $translation?->published_at ? \Carbon\Carbon::parse($translation->published_at) : $post->created_at;
+                                        $category = $post->categories->first();
+                                    @endphp
                                     <div class="swiper-slide" wire:key="blog-post-{{ $post->id }}">
                                         <div class="article-blog-item hover-img style-2 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                             <div class="image-wrap">
                                                 <a href="#blog-{{ $post->slug_base }}">
-                                                    <img class="lazyload" data-src="/assets/images/section/resources-2-1.jpg" src="/assets/images/section/resources-2-1.jpg" alt="{{ $post->translation()?->title ?? 'Blog Yazısı' }}">
+                                                    @if($post->featured_image)
+                                                        <img class="lazyload" data-src="{{ Storage::url($post->featured_image) }}" src="{{ Storage::url($post->featured_image) }}" alt="{{ $translation?->title ?? __('home.blog.default_post_title') }}">
+                                                    @else
+                                                        <img class="lazyload" data-src="/assets/images/section/resources-2-1.jpg" src="/assets/images/section/resources-2-1.jpg" alt="{{ $translation?->title ?? __('home.blog.default_post_title') }}">
+                                                    @endif
                                                 </a>
                                                 <div class="date-time">
                                                     <div class="content">
-                                                        <p class="entry-day">{{ $post->created_at->day }}</p>
-                                                        <p class="entry-month fw-book">{{ strtoupper($post->created_at->format('M')) }}</p>
+                                                        <p class="entry-day">{{ $publishedAt->day }}</p>
+                                                        <p class="entry-month fw-book">{{ strtoupper($publishedAt->format('M')) }}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="content">
-                                                <p class="sub"><a href="#">Blog</a></p>
+                                                @if($category)
+                                                    <p class="sub"><a href="#category-{{ $category->slug_base }}">{{ $category->translation()?->name ?? __('home.blog.blog_label') }}</a></p>
+                                                @else
+                                                    <p class="sub"><a href="#">{{ __('home.blog.blog_label') }}</a></p>
+                                                @endif
                                                 <h5 class="title"><a href="#blog-{{ $post->slug_base }}">
-                                                        {{ $post->translation()?->title ?? 'Blog Yazısı' }}
+                                                        {{ $translation?->title ?? __('home.blog.default_post_title') }}
                                                     </a></h5>
+                                                @if($translation?->excerpt)
+                                                    <p class="description">{{ Str::limit($translation->excerpt, 120) }}</p>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -230,9 +245,9 @@ $settings = \App\Models\Setting::with('translations')->first();
                             <div class="box-contact">
                                 <div class="heading-section text-start">
                                     <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                        Danışmanlık Al</p>
-                                    <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Ücretsiz Danışmanlık - İyileşme Yolculuğunuzu Başlatın</h3>
-                                    <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Bugün bağlantı kurun ve sağlıklı, daha mutlu bir yaşam yolculuğunun ilk adımını atın.
+                                        {{ __('home.contact.subtitle') }}</p>
+                                    <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.contact.title') }}</h3>
+                                    <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.contact.description') }}
                                     </p>
                                 </div>
                                 <ul class="list-info">
@@ -249,26 +264,26 @@ $settings = \App\Models\Setting::with('translations')->first();
                                     @endif
                                 </ul>
                                 <a href="#contact-section" class="tf-btn-link z-5 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                    <span data-text="İletişim">İletişim</span>
+                                    <span data-text="{{ __('home.contact.cta_button') }}">{{ __('home.contact.cta_button') }}</span>
                                     <i class="icon-ArrowRight"></i>
                                 </a>
                             </div>
                             <form class="form-consultation wow fadeInRight" data-wow-duration="1000" data-wow-delay="0s" method="post" id="contactform" action="{{ route('api.contact.store') }}">
                                 @csrf
-                                <h4 class="mb-20 text-center">Ücretsiz Danışmanlık Alın</h4>
+                                <h4 class="mb-20 text-center">{{ __('home.contact.form_title') }}</h4>
                                 <fieldset class="name">
-                                    <input type="text" name="name" class="tf-input style-1" placeholder="Adınız*" tabindex="2" aria-required="true" required>
+                                    <input type="text" name="name" class="tf-input style-1" placeholder="{{ __('home.contact.form_name_placeholder') }}" tabindex="2" aria-required="true" required>
                                 </fieldset>
                                 <fieldset class="phone">
-                                    <input type="email" name="email" class="tf-input style-1" placeholder="E-posta Adresiniz*" tabindex="2" aria-required="true" required>
+                                    <input type="email" name="email" class="tf-input style-1" placeholder="{{ __('home.contact.form_email_placeholder') }}" tabindex="2" aria-required="true" required>
                                 </fieldset>
                                 <fieldset class="message">
-                                    <textarea id="message" class="tf-input" name="message" rows="4" placeholder="Mesajınız" tabindex="4" aria-required="true" required></textarea>
+                                    <textarea id="message" class="tf-input" name="message" rows="4" placeholder="{{ __('home.contact.form_message_placeholder') }}" tabindex="4" aria-required="true" required></textarea>
                                 </fieldset>
                                 <button class="tf-btn style-default btn-color-secondary pd-40 boder-8 send-wrap" type="submit">
-                                    <span>Gönder</span>
+                                    <span>{{ __('home.contact.form_submit_button') }}</span>
                                 </button>
-                            </form>
+            </form>
                         </div>
                     </div>
                 </div>

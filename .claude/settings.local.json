@@ -18,7 +18,9 @@
       "Bash(vendor/bin/pint:*)",
       "mcp__laravel-boost__tinker",
       "mcp__laravel-boost__database-schema",
-      "mcp__laravel-boost__database-query"
+      "mcp__laravel-boost__database-query",
+      "Bash(test:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
