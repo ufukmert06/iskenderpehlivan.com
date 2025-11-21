@@ -12,8 +12,7 @@ $blogPosts = computed(function() {
 });
 
 $services = computed(function() {
-    return \App\Models\Category::where('type', 'service')
-        ->with('translations')
+    return \App\Models\Service::with('translations')
         ->orderBy('sort_order')
         ->get();
 });
