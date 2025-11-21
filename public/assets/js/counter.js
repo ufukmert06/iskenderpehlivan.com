@@ -1,4 +1,5 @@
 function isElementInViewport($el) {
+    if ($el.length === 0) return false;
     var top = $el.offset().top;
     var bottom = top + $el.outerHeight();
     var viewportTop = $(window).scrollTop();
