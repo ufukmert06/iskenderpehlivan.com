@@ -1,14 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "mcp__laravel-boost__application-info",
-      "Bash(php artisan make:migration:*)",
-      "Bash(php artisan make:resource:*)",
-      "Bash(vendor/bin/pint:*)",
-      "Bash(php artisan:*)",
-      "Bash(composer run-script:*)",
-      "Bash(.vendorbinpint.bat --dirty)"
-    ]
+      "Bash(git commit -m \"$(cat <<''EOF''\nFix Livewire Volt computed property and JavaScript errors on homepage\n\n- Fix ComputedMethod property access error by removing computed() wrapper from Settings\n- Settings is now fetched directly as it''s static, non-reactive data\n- Simplify template to access $settings model directly instead of through ComputedMethod\n- Add safety check in counter.js to prevent accessing properties on non-existent elements\n- Fixes: \"Undefined property: LivewireVoltMethodsComputedMethod::$contact_email\"\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
