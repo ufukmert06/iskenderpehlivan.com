@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git commit -m \"$(cat <<''EOF''\nFix Livewire Volt computed property and JavaScript errors on homepage\n\n- Fix ComputedMethod property access error by removing computed() wrapper from Settings\n- Settings is now fetched directly as it''s static, non-reactive data\n- Simplify template to access $settings model directly instead of through ComputedMethod\n- Add safety check in counter.js to prevent accessing properties on non-existent elements\n- Fixes: \"Undefined property: LivewireVoltMethodsComputedMethod::$contact_email\"\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(composer artisan:*)",
+      "Bash(powershell -Command \"php artisan make:migration add_professional_info_to_settings_table --no-interaction\")",
+      "Bash(powershell -Command \"php artisan make:model Service -mf --no-interaction\")",
+      "Bash(powershell:*)",
+      "Bash(where:*)",
+      "Bash(export PATH=\"/c/Users/Ufuk/.config/herd/bin:$PATH\")",
+      "Bash(sqlite3:*)"
     ],
     "deny": [],
     "ask": []

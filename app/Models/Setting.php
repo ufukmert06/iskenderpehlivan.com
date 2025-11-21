@@ -21,11 +21,18 @@ class Setting extends Model
         'contact_email',
         'contact_phone',
         'contact_address',
+        'whatsapp',
         'facebook',
         'twitter',
         'instagram',
         'linkedin',
         'youtube',
+        'rcc_number',
+        'professional_title',
+        'years_of_experience',
+        'rating',
+        'credentials',
+        'therapeutic_approach',
         'maintenance_mode',
     ];
 

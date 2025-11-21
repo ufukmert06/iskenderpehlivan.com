@@ -105,10 +105,49 @@ class ManageSettings extends Page
                             ->tel()
                             ->maxLength(20),
 
+                        Forms\Components\TextInput::make('whatsapp')
+                            ->label('WhatsApp')
+                            ->tel()
+                            ->maxLength(20),
+
                         Forms\Components\Textarea::make('contact_address')
                             ->label('Adres')
                             ->rows(3)
                             ->maxLength(500)
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2)
+                    ->collapsible(),
+
+                Forms\Components\Section::make('Profesyonel Bilgiler')
+                    ->schema([
+                        Forms\Components\TextInput::make('professional_title')
+                            ->label('Profesyonel Unvan')
+                            ->maxLength(255),
+
+                        Forms\Components\TextInput::make('rcc_number')
+                            ->label('RCC Numarası')
+                            ->maxLength(255),
+
+                        Forms\Components\TextInput::make('years_of_experience')
+                            ->label('Deneyim Yılı')
+                            ->numeric()
+                            ->minValue(0),
+
+                        Forms\Components\TextInput::make('rating')
+                            ->label('Puanlandırma')
+                            ->maxLength(10),
+
+                        Forms\Components\Textarea::make('credentials')
+                            ->label('Sertifika ve Yeterlilikler')
+                            ->rows(3)
+                            ->maxLength(1000)
+                            ->columnSpanFull(),
+
+                        Forms\Components\Textarea::make('therapeutic_approach')
+                            ->label('Terapi Yaklaşımı')
+                            ->rows(3)
+                            ->maxLength(1000)
                             ->columnSpanFull(),
                     ])
                     ->columns(2)
@@ -222,11 +261,18 @@ class ManageSettings extends Page
                 'contact_email' => $data['contact_email'] ?? null,
                 'contact_phone' => $data['contact_phone'] ?? null,
                 'contact_address' => $data['contact_address'] ?? null,
+                'whatsapp' => $data['whatsapp'] ?? null,
                 'facebook' => $data['facebook'] ?? null,
                 'twitter' => $data['twitter'] ?? null,
                 'instagram' => $data['instagram'] ?? null,
                 'linkedin' => $data['linkedin'] ?? null,
                 'youtube' => $data['youtube'] ?? null,
+                'professional_title' => $data['professional_title'] ?? null,
+                'rcc_number' => $data['rcc_number'] ?? null,
+                'years_of_experience' => $data['years_of_experience'] ?? null,
+                'rating' => $data['rating'] ?? null,
+                'credentials' => $data['credentials'] ?? null,
+                'therapeutic_approach' => $data['therapeutic_approach'] ?? null,
                 'maintenance_mode' => $data['maintenance_mode'] ?? false,
             ]);
         } else {
@@ -236,11 +282,18 @@ class ManageSettings extends Page
                 'contact_email' => $data['contact_email'] ?? null,
                 'contact_phone' => $data['contact_phone'] ?? null,
                 'contact_address' => $data['contact_address'] ?? null,
+                'whatsapp' => $data['whatsapp'] ?? null,
                 'facebook' => $data['facebook'] ?? null,
                 'twitter' => $data['twitter'] ?? null,
                 'instagram' => $data['instagram'] ?? null,
                 'linkedin' => $data['linkedin'] ?? null,
                 'youtube' => $data['youtube'] ?? null,
+                'professional_title' => $data['professional_title'] ?? null,
+                'rcc_number' => $data['rcc_number'] ?? null,
+                'years_of_experience' => $data['years_of_experience'] ?? null,
+                'rating' => $data['rating'] ?? null,
+                'credentials' => $data['credentials'] ?? null,
+                'therapeutic_approach' => $data['therapeutic_approach'] ?? null,
                 'maintenance_mode' => $data['maintenance_mode'] ?? false,
             ]);
         }
