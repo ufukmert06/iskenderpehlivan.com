@@ -57,6 +57,8 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+            ]) ->plugins([
+                \Biostate\FilamentMenuBuilder\FilamentMenuBuilderPlugin::make(), // Add this line
             ])
             ->authMiddleware([
                 Authenticate::class,

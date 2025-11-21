@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "amidesfahani/filament-tinyeditor": "^3.0",
+        "biostate/filament-menu-builder": "^1.0",
         "dedoc/scramble": "^0.13.2",
         "filament/filament": "3.3",
         "laravel-lang/common": "^6.7",
