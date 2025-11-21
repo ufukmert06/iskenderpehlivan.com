@@ -59,9 +59,12 @@ new class extends Component {
                     <div class="header-logo">
                         <a href="{{ url('/') }}" class="site-logo">
                             @if($settings && $settings->logo)
-                                <img id="logo_header" alt="{{ $settingTranslation?->site_name ?? config('app.name') }}" src="{{ Storage::url($settings->logo) }}">
+                               <div class="d-flex align-items-center gap-3">
+                                   <img style="height: 40px" src="{{ Storage::url($settings->favicon) }}" alt="{{ config('app.name') }}">
+                                   <img id="logo_header" style="height: 30px" alt="{{ $settingTranslation?->site_name ?? config('app.name') }}" src="{{ Storage::url($settings->logo) }}">
+                               </div>
                             @else
-                                <img id="logo_header" alt="{{ config('app.name') }}" src="images/logo/logo.png" data-retina="images/logo/logo@2x.png">
+                                <img src="{{ Storage::url($settings->favicon) }}" alt="{{ config('app.name') }}">
                             @endif
                         </a>
                     </div>

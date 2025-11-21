@@ -1,8 +1,9 @@
 @volt
 <?php
+
 use function Livewire\Volt\{computed};
 
-$blogPosts = computed(function() {
+$blogPosts = computed(function () {
     return \App\Models\Post::where('type', 'blog')
         ->where('status', 'published')
         ->with('translations')
@@ -11,7 +12,7 @@ $blogPosts = computed(function() {
         ->get();
 });
 
-$services = computed(function() {
+$services = computed(function () {
     return \App\Models\Service::with('translations')
         ->orderBy('sort_order')
         ->get();
@@ -41,7 +42,7 @@ $settings = \App\Models\Setting::with('translations')->first();
             </a>
         </div>
         <div class="image-wrap">
-            <img class="lazyload" data-src="/assets/images/page-title/page-title-home-2.jpg" src="/assets/images/page-title/page-title-home-2.jpg" alt="Danışmanlık">
+            <img class="lazyload" data-src="{{asset('images/firstphoto.png')}}" src="{{asset('images/firstphoto.png')}}" alt="Danışmanlık">
         </div>
     </div>
 
@@ -53,7 +54,7 @@ $settings = \App\Models\Setting::with('translations')->first();
                     <div class="row">
                         <div class="col-md-6">
                             <div class="image-wrap wow fadeInLeft effec-overlay" data-wow-duration="1000" data-wow-delay="0s">
-                                <img class="lazyload" data-src="/assets/images/section/section-about.jpg" src="/assets/images/section/section-about.jpg" alt="Hakkımızda">
+                                <img class="lazyload" data-src="{{asset('images/ekip.jpeg')}}" src="{{asset('images/ekip.jpeg')}}" alt="Hakkımızda">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -64,7 +65,8 @@ $settings = \App\Models\Setting::with('translations')->first();
                                 <div class="heading-section text-start wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                     <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Hakkımızda</p>
                                     <h3>Ruh Sağlığınızla Bağlı Güvenilir Uzmanlar</h3>
-                                    <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Deneyimli terapistler ekibimiz ve ruh sağlığına kişiselleştirilmiş yaklaşım ile İskender Pehlivan Danışmanlık, hayatın zorlukları üstesinden gelmeniz ve ruh sağlığı iyiliğini sağlamak için gereken araçlar ve desteği sunuyoruz. Her bireyin dengeli yaşama, iyileşme ve gelişme hakkına inanıyoruz.
+                                    <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">Deneyimli terapistler ekibimiz ve ruh sağlığına kişiselleştirilmiş yaklaşım ile İskender Pehlivan Danışmanlık, hayatın zorlukları üstesinden gelmeniz ve ruh sağlığı iyiliğini sağlamak için gereken araçlar ve desteği
+                                        sunuyoruz. Her bireyin dengeli yaşama, iyileşme ve gelişme hakkına inanıyoruz.
                                     </p>
                                 </div>
                                 <a class="tf-btn style-default btn-color-white has-boder pd-26 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s" href="#about">
@@ -137,37 +139,37 @@ $settings = \App\Models\Setting::with('translations')->first();
                         <div class="widget-tabs">
                             <ul class="widget-menu-tab overflow-x-auto">
                                 @foreach($services as $index => $service)
-                                <li class="item-title @if($index === 0) active @endif" wire:key="service-tab-{{ $service->id }}">
-                                    {{ $service->translation()?->name ?? 'Hizmet' }}
-                                </li>
+                                    <li class="item-title @if($index === 0) active @endif" wire:key="service-tab-{{ $service->id }}">
+                                        {{ $service->translation()?->name ?? 'Hizmet' }}
+                                    </li>
                                 @endforeach
                             </ul>
                             <div class="widget-content-tab">
                                 @foreach($services as $index => $service)
-                                <div class="widget-content-inner @if($index === 0) active @endif" wire:key="service-content-{{ $service->id }}">
-                                    <div class="box-service">
-                                        <div class="image-wrap wow fadeInLeft effec-overlay" data-wow-duration="1000" data-wow-delay="0s">
-                                            <img class="lazyload" data-src="/assets/images/section/section-service.jpg" src="/assets/images/section/section-service.jpg" alt="{{ $service->translation()?->name ?? 'Hizmet' }}">
-                                        </div>
-                                        <div class="content">
-                                            <div class="heading-section text-start">
-                                                <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ $service->translation()?->name ?? 'Hizmet' }}</p>
-                                                <h4 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                                    <a href="#service-{{ $service->slug_base }}">
-                                                        {{ $service->translation()?->name ?? 'Hizmet' }}
-                                                    </a>
-                                                </h4>
-                                                <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                                    {{ Str::limit($service->translation()?->description ?? '', 300) }}
-                                                </p>
+                                    <div class="widget-content-inner @if($index === 0) active @endif" wire:key="service-content-{{ $service->id }}">
+                                        <div class="box-service">
+                                            <div class="image-wrap wow fadeInLeft effec-overlay" data-wow-duration="1000" data-wow-delay="0s">
+                                                <img class="lazyload" data-src="/assets/images/section/section-service.jpg" src="/assets/images/section/section-service.jpg" alt="{{ $service->translation()?->name ?? 'Hizmet' }}">
                                             </div>
-                                            <a href="#service-{{ $service->slug_base }}" class="tf-btn-link z-5 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                                <span data-text="Daha Fazla Oku">Daha Fazla Oku</span>
-                                                <i class="icon-ArrowRight"></i>
-                                            </a>
+                                            <div class="content">
+                                                <div class="heading-section text-start">
+                                                    <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ $service->translation()?->name ?? 'Hizmet' }}</p>
+                                                    <h4 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
+                                                        <a href="#service-{{ $service->slug_base }}">
+                                                            {{ $service->translation()?->name ?? 'Hizmet' }}
+                                                        </a>
+                                                    </h4>
+                                                    <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
+                                                        {{ Str::limit($service->translation()?->description ?? '', 300) }}
+                                                    </p>
+                                                </div>
+                                                <a href="#service-{{ $service->slug_base }}" class="tf-btn-link z-5 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
+                                                    <span data-text="Daha Fazla Oku">Daha Fazla Oku</span>
+                                                    <i class="icon-ArrowRight"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -191,27 +193,27 @@ $settings = \App\Models\Setting::with('translations')->first();
                         <div class="swiper-container slider-layout-3">
                             <div class="swiper-wrapper">
                                 @foreach($blogPosts as $post)
-                                <div class="swiper-slide" wire:key="blog-post-{{ $post->id }}">
-                                    <div class="article-blog-item hover-img style-2 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                        <div class="image-wrap">
-                                            <a href="#blog-{{ $post->slug_base }}">
-                                                <img class="lazyload" data-src="/assets/images/section/resources-2-1.jpg" src="/assets/images/section/resources-2-1.jpg" alt="{{ $post->translation()?->title ?? 'Blog Yazısı' }}">
-                                            </a>
-                                            <div class="date-time">
-                                                <div class="content">
-                                                    <p class="entry-day">{{ $post->created_at->day }}</p>
-                                                    <p class="entry-month fw-book">{{ strtoupper($post->created_at->format('M')) }}</p>
+                                    <div class="swiper-slide" wire:key="blog-post-{{ $post->id }}">
+                                        <div class="article-blog-item hover-img style-2 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
+                                            <div class="image-wrap">
+                                                <a href="#blog-{{ $post->slug_base }}">
+                                                    <img class="lazyload" data-src="/assets/images/section/resources-2-1.jpg" src="/assets/images/section/resources-2-1.jpg" alt="{{ $post->translation()?->title ?? 'Blog Yazısı' }}">
+                                                </a>
+                                                <div class="date-time">
+                                                    <div class="content">
+                                                        <p class="entry-day">{{ $post->created_at->day }}</p>
+                                                        <p class="entry-month fw-book">{{ strtoupper($post->created_at->format('M')) }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="content">
-                                            <p class="sub"><a href="#">Blog</a></p>
-                                            <h5 class="title"><a href="#blog-{{ $post->slug_base }}">
-                                                {{ $post->translation()?->title ?? 'Blog Yazısı' }}
-                                            </a></h5>
+                                            <div class="content">
+                                                <p class="sub"><a href="#">Blog</a></p>
+                                                <h5 class="title"><a href="#blog-{{ $post->slug_base }}">
+                                                        {{ $post->translation()?->title ?? 'Blog Yazısı' }}
+                                                    </a></h5>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -237,15 +239,15 @@ $settings = \App\Models\Setting::with('translations')->first();
                                 </div>
                                 <ul class="list-info">
                                     @if($settings)
-                                    @if($settings->contact_email)
-                                    <li class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><i class="icon-Envelope"></i> <a href="mailto:{{ $settings->contact_email }}">{{ $settings->contact_email }}</a></li>
-                                    @endif
-                                    @if($settings->contact_phone)
-                                    <li class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><i class="icon-PhoneCall"></i>{{ $settings->contact_phone }}</li>
-                                    @endif
-                                    @if($settings->contact_address)
-                                    <li class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><i class="icon-MapPin"></i>{{ $settings->contact_address }}</li>
-                                    @endif
+                                        @if($settings->contact_email)
+                                            <li class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><i class="icon-Envelope"></i> <a href="mailto:{{ $settings->contact_email }}">{{ $settings->contact_email }}</a></li>
+                                        @endif
+                                        @if($settings->contact_phone)
+                                            <li class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><i class="icon-PhoneCall"></i>{{ $settings->contact_phone }}</li>
+                                        @endif
+                                        @if($settings->contact_address)
+                                            <li class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s"><i class="icon-MapPin"></i>{{ $settings->contact_address }}</li>
+                                        @endif
                                     @endif
                                 </ul>
                                 <a href="#contact-section" class="tf-btn-link z-5 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
@@ -266,7 +268,7 @@ $settings = \App\Models\Setting::with('translations')->first();
                                     <textarea id="message" class="tf-input" name="message" rows="4" placeholder="Mesajınız" tabindex="4" aria-required="true" required></textarea>
                                 </fieldset>
                                 <button class="tf-btn style-default btn-color-secondary pd-40 boder-8 send-wrap" type="submit">
-<span>Gönder</span>
+                                    <span>Gönder</span>
                                 </button>
                             </form>
                         </div>
