@@ -1,7 +1,7 @@
 @volt
 <?php
 
-use function Livewire\Volt\{state};
+use function Livewire\Volt\state;
 
 state(['settings', 'settingTranslation', 'menu', 'locale']);
 
@@ -14,7 +14,7 @@ if ($settings) {
         ->first();
 }
 
-$menuSlug = 'menu-' . $locale;
+$menuSlug = 'menu-'.$locale;
 $menu = \Biostate\FilamentMenuBuilder\Models\Menu::with(['items' => function ($query) {
     $query->whereNull('parent_id')->orderBy('_lft');
 }, 'items.children'])->where('slug', $menuSlug)->first();
@@ -28,9 +28,12 @@ $menu = \Biostate\FilamentMenuBuilder\Models\Menu::with(['items' => function ($q
             <div class="offcanvas-title">
                 <a href="{{ route('home') }}">
                     @if($settings && $settings->logo)
-                        <img style="height: 30px" src="{{ Storage::url($settings->logo) }}" alt="{{ $settingTranslation?->site_name ?? config('app.name') }}">
+                        <div class="d-flex align-items-center gap-2">
+                            <img class="mobile-menu-favicon" src="{{ Storage::url($settings->favicon) }}" alt="{{ config('app.name') }}">
+                            <img class="mobile-menu-logo" src="{{ Storage::url($settings->logo) }}" alt="{{ $settingTranslation?->site_name ?? config('app.name') }}">
+                        </div>
                     @else
-                        <img src="/images/logo/logo@2x.png" alt="{{ config('app.name') }}">
+                        <img class="mobile-menu-logo-fallback" src="/images/logo/logo@2x.png" alt="{{ config('app.name') }}">
                     @endif
                 </a>
             </div>
@@ -115,5 +118,46 @@ $menu = \Biostate\FilamentMenuBuilder\Models\Menu::with(['items' => function ($q
         </div>
     </div>
     <!-- /.open-search -->
+    <style>
+        /* Mobile menu logo boyutları */
+        .mobile-menu-favicon {
+            height: 30px;
+            width: 30px;
+            object-fit: contain;
+        }
+
+        .mobile-menu-logo {
+            max-height: 28px;
+            max-width: 120px;
+            object-fit: contain;
+        }
+
+        .mobile-menu-logo-fallback {
+            max-height: 30px;
+            max-width: 150px;
+            object-fit: contain;
+        }
+
+        /* Çok küçük ekranlar için (< 360px) */
+        @media (max-width: 360px) {
+            .mobile-menu-favicon {
+                height: 25px;
+                width: 25px;
+            }
+
+            .mobile-menu-logo {
+                max-height: 22px;
+                max-width: 100px;
+            }
+
+            .mobile-menu-logo-fallback {
+                max-height: 25px;
+                max-width: 120px;
+            }
+        }
+    </style>
+
 </div>
+
+
 @endvolt
