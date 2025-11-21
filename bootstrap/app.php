@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\SetApiLocale;
+use App\Http\Middleware\SetLocale;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -13,6 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Add locale middleware to web routes
+        $middleware->web(append: [
+            SetLocale::class,
+        ]);
+
         // Add locale middleware to API routes
         $middleware->api(append: [
             SetApiLocale::class,

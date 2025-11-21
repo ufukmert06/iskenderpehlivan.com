@@ -7,7 +7,16 @@
       "Bash(powershell:*)",
       "Bash(where:*)",
       "Bash(export PATH=\"/c/Users/Ufuk/.config/herd/bin:$PATH\")",
-      "Bash(sqlite3:*)"
+      "Bash(sqlite3:*)",
+      "mcp__laravel-boost__application-info",
+      "mcp__laravel-boost__search-docs",
+      "mcp__laravel-boost__get-config",
+      "Bash(vendorbinpint:*)",
+      "mcp__laravel-boost__list-routes",
+      "mcp__laravel-boost__browser-logs",
+      "mcp__laravel-boost__last-error",
+      "Bash(vendor/bin/pint:*)",
+      "mcp__laravel-boost__tinker"
     ],
     "deny": [],
     "ask": []
