@@ -4,7 +4,8 @@ use App\Models\Setting;
 use Biostate\FilamentMenuBuilder\Models\Menu;
 use Livewire\Volt\Component;
 
-new class extends Component {
+new class extends Component
+{
     public $settings;
 
     public $settingTranslation;
@@ -60,12 +61,12 @@ new class extends Component {
                         <div class="header-logo">
                             <a href="{{ url('/') }}" class="site-logo">
                                 @if($settings && $settings->logo)
-                                    <div class="d-flex align-items-center gap-3">
-                                        <img style="height: 40px" src="{{ Storage::url($settings->favicon) }}" alt="{{ config('app.name') }}">
-                                        <img id="logo_header" style="height: 30px" alt="{{ $settingTranslation?->site_name ?? config('app.name') }}" src="{{ Storage::url($settings->logo) }}">
+                                    <div class="d-flex align-items-center gap-3 logo-container">
+                                        <img class="logo-favicon" src="{{ Storage::url($settings->favicon) }}" alt="{{ config('app.name') }}">
+                                        <img id="logo_header" class="logo-main" alt="{{ $settingTranslation?->site_name ?? config('app.name') }}" src="{{ Storage::url($settings->logo) }}">
                                     </div>
                                 @else
-                                    <img src="{{ Storage::url($settings->favicon) }}" alt="{{ config('app.name') }}">
+                                    <img class="logo-fallback" src="{{ Storage::url($settings->favicon) }}" alt="{{ config('app.name') }}">
                                 @endif
                             </a>
                         </div>
@@ -117,4 +118,53 @@ new class extends Component {
         </header>
 
     </div>
+    <style>
+        /* Desktop - Logo boyutları */
+        .logo-container {
+            max-width: none;
+        }
+
+        .logo-favicon {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+        }
+
+        .logo-main {
+            height: 30px;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        .logo-fallback {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Mobile - Küçük ekranlar için */
+        @media (max-width: 991px) {
+            .logo-container {
+                max-width: 150px;
+                gap: 0.5rem !important;
+            }
+
+            .logo-favicon {
+                height: 30px;
+                width: 30px;
+            }
+
+            .logo-main {
+                max-height: 25px;
+                max-width: 110px;
+            }
+
+            .logo-fallback {
+                max-width: 150px;
+                height: auto;
+            }
+        }
+    </style>
+
 </div>
+
