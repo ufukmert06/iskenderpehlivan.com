@@ -1,9 +1,34 @@
 <?php
 
+use App\Models\Setting;
+use Biostate\FilamentMenuBuilder\Models\Menu;
 use Livewire\Volt\Component;
 
 new class extends Component {
-    //
+    public $settings;
+
+    public $settingTranslation;
+
+    public $menu;
+
+    public $locale;
+
+    public function mount(): void
+    {
+        $this->locale = app()->getLocale();
+        $this->settings = Setting::first();
+
+        if ($this->settings) {
+            $this->settingTranslation = $this->settings->translations()
+                ->where('locale', $this->locale)
+                ->first();
+        }
+
+        $menuSlug = 'menu-'.$this->locale;
+        $this->menu = Menu::with(['items' => function ($query) {
+            $query->whereNull('parent_id')->orderBy('_lft');
+        }, 'items.children'])->where('slug', $menuSlug)->first();
+    }
 }; ?>
 
 <div>
@@ -14,7 +39,11 @@ new class extends Component {
                     <div class="loader">
                     </div>
                     <div class="icon">
-                        <img src="images/logo/favicon.png" alt="">
+                        @if($settings && $settings->favicon)
+                            <img src="{{ Storage::url($settings->favicon) }}" alt="{{ config('app.name') }}">
+                        @else
+                            <img src="images/logo/favicon.png" alt="{{ config('app.name') }}">
+                        @endif
                     </div>
                 </div>
             </div>
@@ -28,211 +57,37 @@ new class extends Component {
                 </div>
                 <div class="header-left">
                     <div class="header-logo">
-                        <a href="index.html" class="site-logo">
-                            <img id="logo_header" alt="" src="images/logo/logo.png" data-retina="images/logo/logo@2x.png">
+                        <a href="{{ url('/') }}" class="site-logo">
+                            @if($settings && $settings->logo)
+                                <img id="logo_header" alt="{{ $settingTranslation?->site_name ?? config('app.name') }}" src="{{ Storage::url($settings->logo) }}">
+                            @else
+                                <img id="logo_header" alt="{{ config('app.name') }}" src="images/logo/logo.png" data-retina="images/logo/logo@2x.png">
+                            @endif
                         </a>
                     </div>
                     <nav class="main-menu">
                         <ul class="navigation">
-                            <li class="has-child relative current-menu-item">
-                                <a href="javascript:void(0)">Home</a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="index.html">Homepage 01</a>
+                            @if($menu && $menu->items)
+                                @foreach($menu->items as $item)
+                                    <li class="{{ $item->children->isNotEmpty() ? 'has-child relative' : '' }} {{ $item->wrapper_class }}">
+                                        <a href="{{ $item->link }}" target="{{ $item->target }}" class="{{ $item->link_class }}">
+                                            {{ $item->menu_name }}
+                                        </a>
+
+                                        @if($item->children->isNotEmpty())
+                                            <ul class="sub-menu">
+                                                @foreach($item->children as $child)
+                                                    <li class="{{ $child->wrapper_class }}">
+                                                        <a href="{{ $child->link }}" target="{{ $child->target }}" class="{{ $child->link_class }}">
+                                                            {{ $child->menu_name }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
                                     </li>
-                                    <li class="current-item">
-                                        <a href="home-02.html">Homepage 02</a>
-                                    </li>
-                                    <li>
-                                        <a href="home-03.html">Homepage 03</a>
-                                    </li>
-                                    <li>
-                                        <a href="home-04.html">Homepage 04</a>
-                                    </li>
-                                    <li>
-                                        <a href="home-silde-text-scroll.html">Home slide text scroll</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-child">
-                                <a href="our-service.html">Services</a>
-                                <div class="sub-menu service-link">
-                                    <div class="tf-container">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="wrap-cta">
-                                                    <div class="left">
-                                                        <h5 class="wg-title">Counseling & Therapy Services
-                                                        </h5>
-                                                        <div class="wrap-service">
-                                                            <div class="service-item-list">
-                                                                <h6><a href="service-details.html">Family
-                                                                        Therapy</a></h6>
-                                                                <p class="text-2">
-                                                                    Improve family relationships, resolve
-                                                                    conflicts, and build a healthy living
-                                                                    environment.
-                                                                </p>
-                                                            </div>
-                                                            <div class="service-item-list">
-                                                                <h6><a href="service-details.html">Child &
-                                                                        Adolescent
-                                                                        Therapy</a></h6>
-                                                                <p class="text-2">
-                                                                    Specialized support for children and
-                                                                    teens, helping them navigate emotional
-                                                                    challenges.
-                                                                </p>
-                                                            </div>
-                                                            <div class="service-item-list">
-                                                                <h6><a href="service-details.html">Group
-                                                                        Therapy</a>
-                                                                </h6>
-                                                                <p class="text-2">
-                                                                    Join others with similar challenges,
-                                                                    sharing experiences and support in a
-                                                                    guided group setting.
-                                                                </p>
-                                                            </div>
-                                                            <div class="service-item-list">
-                                                                <h6><a href="service-details.html">Couples
-                                                                        Therapy</a></h6>
-                                                                <p class="text-2">
-                                                                    Enhance understanding affection between
-                                                                    couples, helping to strengthen the
-                                                                    relationship.
-                                                                </p>
-                                                            </div>
-                                                            <div class="service-item-list">
-                                                                <h6><a href="service-details.html">Trauma
-                                                                        Counseling</a></h6>
-                                                                <p class="text-2">
-                                                                    Focused therapy to help you heal from
-                                                                    past trauma and regain control over your
-                                                                    life.
-                                                                </p>
-                                                            </div>
-                                                            <div class="service-item-list">
-                                                                <h6><a href="service-details.html">Individual
-                                                                        Counseling</a>
-                                                                </h6>
-                                                                <p class="text-2">
-                                                                    Personal psychological support to help
-                                                                    you overcome stress, anxiety, and regain
-                                                                    confidence.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="right">
-                                                        <h5 class="wg-title">
-                                                            What’s New
-                                                        </h5>
-                                                        <div class="wrap-list">
-                                                            <div class="box-listings">
-                                                                <div class="image-wrap">
-                                                                    <img src="images/blog/blog-details-list-1.jpg" alt="">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <ul class="meta">
-                                                                        <li class="text-2">Oct 17, 2024</li>
-                                                                    </ul>
-                                                                    <div class="title text-1 fw-5 line-clamp-2">
-                                                                        <a href="blog-details.html" class="line-clamp-2">How
-                                                                            Cognitive Behavioral
-                                                                            Therapy
-                                                                            Can Transform</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="box-listings">
-                                                                <div class="image-wrap">
-                                                                    <img src="images/blog/blog-details-list-2.jpg" alt="">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <ul class="meta">
-                                                                        <li class="text-2">Oct 19, 2024</li>
-                                                                    </ul>
-                                                                    <div class="title text-1 fw-5">
-                                                                        <a class="line-clamp-2" href="blog-details.html">Effective
-                                                                            Strategies
-                                                                            for
-                                                                            Managing Anxiety</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="box-listings">
-                                                                <div class="image-wrap">
-                                                                    <img src="images/blog/blog-details-list-4.jpg" alt="">
-                                                                </div>
-                                                                <div class="content">
-                                                                    <ul class="meta">
-                                                                        <li class="text-2">Oct 26, 2024</li>
-                                                                    </ul>
-                                                                    <div class="title text-1 fw-5">
-                                                                        <a class="line-clamp-2" href="blog-details.html">
-                                                                            Techniques for Everyday
-                                                                            Stress
-                                                                            Relief</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="has-child relative">
-                                <a href="javascript:void(0)">Pages</a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="about.html">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="our-therapists.html">Therapists</a>
-                                    </li>
-                                    <li>
-                                        <a href="book-appointment.html">Appointment</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-child relative">
-                                <a href="javascript:void(0)">Shop</a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="our-product.html">Our Product</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-cart.html">Shop Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-check-out.html">Check Out</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-details.html">Shop Details</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-child relative">
-                                <a href="javascript:void(0)">Blogs</a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="blog-grid.html">Blog Grid</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-details.html">Blog Details 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-details-2.html">Blog Details 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="contact-us.html">Contact</a>
-                            </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </nav>
                 </div>
