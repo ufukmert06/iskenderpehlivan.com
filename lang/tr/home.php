@@ -49,6 +49,7 @@ return [
         'description' => 'Ruh sağlığı hakkında bilgi, araçlar ve tavsiyelerin kaynağı.',
         'default_post_title' => 'Blog Yazısı',
         'blog_label' => 'Blog',
+        'read_more' => 'Devamını Oku',
     ],
 
     // Contact Section

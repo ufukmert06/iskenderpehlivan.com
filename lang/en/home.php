@@ -49,6 +49,7 @@ return [
         'description' => 'Your source for mental health information, tools, and advice.',
         'default_post_title' => 'Blog Post',
         'blog_label' => 'Blog',
+        'read_more' => 'Read More',
     ],
 
     // Contact Section
