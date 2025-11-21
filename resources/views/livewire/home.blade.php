@@ -1,24 +1,18 @@
 @volt
 <?php
 
-use function Livewire\Volt\{computed};
+// Fetch data directly since it's static, non-reactive data
+$blogPosts = \App\Models\Post::where('type', 'blog')
+    ->where('status', 'published')
+    ->with('translations')
+    ->latest()
+    ->limit(3)
+    ->get();
 
-$blogPosts = computed(function () {
-    return \App\Models\Post::where('type', 'blog')
-        ->where('status', 'published')
-        ->with('translations')
-        ->latest()
-        ->limit(3)
-        ->get();
-});
+$services = \App\Models\Service::with('translations')
+    ->orderBy('sort_order')
+    ->get();
 
-$services = computed(function () {
-    return \App\Models\Service::with('translations')
-        ->orderBy('sort_order')
-        ->get();
-});
-
-// Fetch settings directly since it's static, non-reactive data
 $settings = \App\Models\Setting::with('translations')->first();
 ?>
 
@@ -148,22 +142,26 @@ $settings = \App\Models\Setting::with('translations')->first();
                                 @foreach($services as $index => $service)
                                     <div class="widget-content-inner @if($index === 0) active @endif" wire:key="service-content-{{ $service->id }}">
                                         <div class="box-service">
-                                            <div class="image-wrap wow fadeInLeft effec-overlay" data-wow-duration="1000" data-wow-delay="0s">
-                                                <img class="lazyload" data-src="/assets/images/section/section-service.jpg" src="/assets/images/section/section-service.jpg" alt="{{ $service->translation()?->name ?? 'Hizmet' }}">
+                                            <div class="image-wrap @if($index === 0) wow @endif fadeInLeft effec-overlay" data-wow-duration="1000" data-wow-delay="0s">
+                                                @if($service->featured_image)
+                                                    <img class="lazyload" data-src="{{ Storage::url($service->featured_image) }}" src="{{ Storage::url($service->featured_image) }}" alt="{{ $service->translation()?->name ?? 'Hizmet' }}">
+                                                @else
+                                                    <img class="lazyload" data-src="/assets/images/section/section-service.jpg" src="/assets/images/section/section-service.jpg" alt="{{ $service->translation()?->name ?? 'Hizmet' }}">
+                                                @endif
                                             </div>
                                             <div class="content">
                                                 <div class="heading-section text-start">
-                                                    <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ $service->translation()?->name ?? 'Hizmet' }}</p>
+                                                    <p class="text-2 sub @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ $service->translation()?->name ?? 'Hizmet' }}</p>
                                                     <h4 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                                         <a href="#service-{{ $service->slug_base }}">
                                                             {{ $service->translation()?->name ?? 'Hizmet' }}
                                                         </a>
                                                     </h4>
-                                                    <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
+                                                    <p class="description text-1 lh-30 @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                                         {{ Str::limit($service->translation()?->description ?? '', 300) }}
                                                     </p>
                                                 </div>
-                                                <a href="#service-{{ $service->slug_base }}" class="tf-btn-link z-5 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
+                                                <a href="#service-{{ $service->slug_base }}" class="tf-btn-link z-5 @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                                     <span data-text="Daha Fazla Oku">Daha Fazla Oku</span>
                                                     <i class="icon-ArrowRight"></i>
                                                 </a>

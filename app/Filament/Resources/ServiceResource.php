@@ -24,6 +24,15 @@ class ServiceResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Hizmet Bilgileri')
                     ->schema([
+                        Forms\Components\FileUpload::make('featured_image')
+                            ->label('Öne Çıkan Görsel')
+                            ->image()
+                            ->directory('services')
+                            ->disk('public')
+                            ->maxSize(2048)
+                            ->imageEditor()
+                            ->helperText('Hizmet için öne çıkan görsel')
+                            ->columnSpanFull(),
                         Forms\Components\TextInput::make('icon')
                             ->label('İkon')
                             ->helperText('Font Awesome icon sınıfı veya emoji'),
@@ -66,6 +75,10 @@ class ServiceResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('featured_image')
+                    ->label('Görsel')
+                    ->disk('public')
+                    ->square(),
                 Tables\Columns\TextColumn::make('icon')
                     ->searchable()
                     ->label('İkon'),

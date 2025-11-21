@@ -18,6 +18,7 @@ class Service extends Model
      */
     protected $fillable = [
         'icon',
+        'featured_image',
         'sort_order',
     ];
 
