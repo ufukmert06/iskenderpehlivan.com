@@ -10,10 +10,13 @@ class EditService extends EditRecord
 {
     protected static string $resource = ServiceResource::class;
 
+    protected static ?string $title = 'Hizmeti Düzenle';
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->label('Sil'),
         ];
     }
 }

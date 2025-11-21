@@ -10,10 +10,13 @@ class ListServices extends ListRecords
 {
     protected static string $resource = ServiceResource::class;
 
+    protected static ?string $title = 'Hizmetler';
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Yeni Hizmet Ekle'),
         ];
     }
 }
