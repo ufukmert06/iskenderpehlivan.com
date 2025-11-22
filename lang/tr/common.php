@@ -35,5 +35,7 @@ return [
 
     // General
     'home' => 'Ana Sayfa',
+    'about' => 'Hakkımızda',
+    'contact' => 'İletişim',
     'services' => 'Hizmetler',
 ];

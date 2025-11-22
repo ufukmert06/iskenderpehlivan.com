@@ -99,12 +99,12 @@ $menu = \Biostate\FilamentMenuBuilder\Models\Menu::with(['items' => function ($q
             <div class="row">
                 <div class="col-12">
                     <div class="offcanvas-body">
-                        <form action="#" class="form-search-courses">
+                        <form action="{{ route($locale === 'tr' ? 'tr.search' : 'search') }}" method="GET" class="form-search-courses">
                             <div class="icon">
                                 <i class="icon-keyboard"></i>
                             </div>
                             <fieldset>
-                                <input class="" type="text" placeholder="{{ __('common.search_placeholder') }}" name="text" tabindex="2" value="" aria-required="true" required="">
+                                <input class="" type="text" placeholder="{{ __('common.search_placeholder') }}" name="q" tabindex="2" value="{{ request('q') }}" aria-required="true" required="">
                             </fieldset>
                             <div class="button-submit">
                                 <button class="" type="submit">

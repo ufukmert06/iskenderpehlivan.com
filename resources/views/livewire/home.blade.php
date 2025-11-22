@@ -178,73 +178,73 @@ $settings = \App\Models\Setting::with('translations')->first();
         </section>
 
         <!-- Blog Section -->
-<div wire:ignore>
-    <section class="section-news tf-spacing-1 style-pagination">
-        <div class="tf-container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="heading-section">
-                        <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.blog.subtitle') }}</p>
-                        <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.blog.title') }}</h3>
-                        <p class="description text-1 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                            {{ __('home.blog.description') }}
-                        </p>
-                    </div>
-                    <div class="swiper-container slider-layout-3">
-                        <div class="swiper-wrapper">
-                            @foreach($blogPosts as $index => $post)
-                                @php
-                                    $translation = $post->translation();
-                                    $publishedAt = $translation?->published_at ? \Carbon\Carbon::parse($translation->published_at) : $post->created_at;
-                                    $category = $post->categories->first();
-                                    $delay = $index * 0.1;
-                                @endphp
-                                <div class="swiper-slide" wire:key="blog-post-{{ $post->id }}">
-                                    <div class="article-blog-item hover-img wow fadeInUp" data-wow-duration="1000" data-wow-delay="{{ $delay }}s">
-                                        <div class="image-wrap">
-                                            <a href="#blog-{{ $post->slug_base }}">
-                                                @if($post->featured_image)
-                                                    <img class="lazyload" data-src="{{ Storage::url($post->featured_image) }}" src="{{ Storage::url($post->featured_image) }}" alt="{{ $translation?->title ?? __('home.blog.default_post_title') }}">
-                                                @else
-                                                    <img class="lazyload" data-src="/assets/images/section/resources-2-1.jpg" src="/assets/images/section/resources-2-1.jpg" alt="{{ $translation?->title ?? __('home.blog.default_post_title') }}">
-                                                @endif
-                                            </a>
-                                            <div class="date-time">
-                                                <div class="content">
-                                                    <p class="entry-day">{{ $publishedAt->day }}</p>
-                                                    <p class="entry-month fw-book">{{ strtoupper($publishedAt->format('M')) }}</p>
+        <div wire:ignore>
+            <section class="section-news tf-spacing-1 style-pagination">
+                <div class="tf-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="heading-section">
+                                <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.blog.subtitle') }}</p>
+                                <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.blog.title') }}</h3>
+                                <p class="description text-1 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
+                                    {{ __('home.blog.description') }}
+                                </p>
+                            </div>
+                            <div class="swiper-container slider-layout-3">
+                                <div class="swiper-wrapper">
+                                    @foreach($blogPosts as $index => $post)
+                                        @php
+                                            $translation = $post->translation();
+                                            $publishedAt = $translation?->published_at ? \Carbon\Carbon::parse($translation->published_at) : $post->created_at;
+                                            $category = $post->categories->first();
+                                            $delay = $index * 0.1;
+                                        @endphp
+                                        <div class="swiper-slide" wire:key="blog-post-{{ $post->id }}">
+                                            <div class="article-blog-item hover-img wow fadeInUp" data-wow-duration="1000" data-wow-delay="{{ $delay }}s">
+                                                <div class="image-wrap">
+                                                    <a href="#blog-{{ $post->slug_base }}">
+                                                        @if($post->featured_image)
+                                                            <img class="lazyload" data-src="{{ Storage::url($post->featured_image) }}" src="{{ Storage::url($post->featured_image) }}" alt="{{ $translation?->title ?? __('home.blog.default_post_title') }}">
+                                                        @else
+                                                            <img class="lazyload" data-src="/assets/images/section/resources-2-1.jpg" src="/assets/images/section/resources-2-1.jpg" alt="{{ $translation?->title ?? __('home.blog.default_post_title') }}">
+                                                        @endif
+                                                    </a>
+                                                    <div class="date-time">
+                                                        <div class="content">
+                                                            <p class="entry-day">{{ $publishedAt->day }}</p>
+                                                            <p class="entry-month fw-book">{{ strtoupper($publishedAt->format('M')) }}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                <div class="content">
+                                                    @if($category)
+                                                        <p class="sub"><a href="#category-{{ $category->slug_base }}">{{ $category->translation()?->name ?? __('home.blog.blog_label') }}</a></p>
+                                                    @else
+                                                        <p class="sub"><a href="#">{{ __('home.blog.blog_label') }}</a></p>
+                                                    @endif
+                                                    <h5 class="title"><a href="#blog-{{ $post->slug_base }}">
+                                                            {{ $translation?->title ?? __('home.blog.default_post_title') }}
+                                                        </a></h5>
+                                                    @if($translation?->excerpt)
+                                                        <p>{{ Str::limit($translation->excerpt, 120) }}</p>
+                                                    @endif
+                                                </div>
+                                                <a href="#blog-{{ $post->slug_base }}" class="tf-btn-link">
+                                                    <span data-text="{{ __('home.blog.read_more') }}">{{ __('home.blog.read_more') }}</span>
+                                                    <i class="icon-ArrowRight"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="content">
-                                            @if($category)
-                                                <p class="sub"><a href="#category-{{ $category->slug_base }}">{{ $category->translation()?->name ?? __('home.blog.blog_label') }}</a></p>
-                                            @else
-                                                <p class="sub"><a href="#">{{ __('home.blog.blog_label') }}</a></p>
-                                            @endif
-                                            <h5 class="title"><a href="#blog-{{ $post->slug_base }}">
-                                                    {{ $translation?->title ?? __('home.blog.default_post_title') }}
-                                                </a></h5>
-                                            @if($translation?->excerpt)
-                                                <p>{{ Str::limit($translation->excerpt, 120) }}</p>
-                                            @endif
-                                        </div>
-                                        <a href="#blog-{{ $post->slug_base }}" class="tf-btn-link">
-                                            <span data-text="{{ __('home.blog.read_more') }}">{{ __('home.blog.read_more') }}</span>
-                                            <i class="icon-ArrowRight"></i>
-                                        </a>
-                                    </div>
+                                    @endforeach
                                 </div>
-                            @endforeach
+                            </div>
+                            <div class="swiper-pagination pagination-layout"></div>
                         </div>
                     </div>
-                    <div class="swiper-pagination pagination-layout"></div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-</div>
+        </div>
         <!-- Contact Section -->
         <section class="section-contact home-page-2 bg-1 tf-spacing-1" id="contact-section">
             <div class="tf-container">
@@ -292,12 +292,8 @@ $settings = \App\Models\Setting::with('translations')->first();
                                 <button class="tf-btn style-default btn-color-secondary pd-40 boder-8 send-wrap" type="submit">
                                     <span>{{ __('home.contact.form_submit_button') }}</span>
                                 </button>
-                                <div class="text-center mt-20">
-                                    <a href="{{ route(app()->getLocale() === 'tr' ? 'tr.book-appointment' : 'book-appointment') }}" class="tf-btn style-default btn-color-secondary pd-40">
-                                        <span>{{ __('home.hero.cta_button') }}</span>
-                                    </a>
-                                </div>
-            </form>
+
+                            </form>
                         </div>
                     </div>
                 </div>
