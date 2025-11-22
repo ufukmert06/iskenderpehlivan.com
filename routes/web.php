@@ -11,6 +11,8 @@ Volt::route('/services', 'services')->name('services');
 Volt::route('/services/{slug}', 'service')->name('service.show');
 Volt::route('/book-appointment', 'book-appointment')->name('book-appointment');
 Volt::route('/search', 'search')->name('search');
+Volt::route('/terms-of-service', 'terms-of-service')->name('terms-of-service');
+Volt::route('/privacy-policy', 'privacy-policy')->name('privacy-policy');
 
 // Turkish language routes with /tr prefix
 Route::prefix('tr')->group(function (): void {
@@ -21,4 +23,6 @@ Route::prefix('tr')->group(function (): void {
     Volt::route('/hizmetler/{slug}', 'service')->name('tr.service.show');
     Volt::route('/randevu-al', 'book-appointment')->name('tr.book-appointment');
     Volt::route('/ara', 'search')->name('tr.search');
+    Volt::route('/kullanim-kosullari', 'terms-of-service')->name('tr.terms-of-service');
+    Volt::route('/gizlilik-politikasi', 'privacy-policy')->name('tr.privacy-policy');
 });

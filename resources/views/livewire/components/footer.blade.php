@@ -183,6 +183,8 @@ new class extends Component {
                                         <li><a href="{{ route($locale === 'tr' ? 'tr.about' : 'about') }}">{{ __('common.about') }}</a></li>
                                         <li><a href="{{ route($locale === 'tr' ? 'tr.services' : 'services') }}">{{ __('common.services') }}</a></li>
                                         <li><a href="{{ route($locale === 'tr' ? 'tr.contact' : 'contact') }}">{{ __('common.contact') }}</a></li>
+                                        <li><a href="{{ route($locale === 'tr' ? 'tr.terms-of-service' : 'terms-of-service') }}">{{ __('footer.terms_of_service') }}</a></li>
+                                        <li><a href="{{ route($locale === 'tr' ? 'tr.privacy-policy' : 'privacy-policy') }}">{{ __('footer.privacy_policy') }}</a></li>
                                     </ul>
                                 </div>
                                 <div class="footer-menu-list footer-col-block">
@@ -241,8 +243,8 @@ new class extends Component {
                             <p>© {{ date('Y') }} {{ $this->getTranslation()?->site_name ?? config('app.name') }}. {{ __('common.all_rights_reserved') }}.</p>
                         @endif
                         <ul class="content-right">
-                            <li><a href="{{ route('home') }}">{{ __('common.terms_of_service') }}</a></li>
-                            <li><a href="{{ route('home') }}">{{ __('common.privacy_policy') }}</a></li>
+                            <li><a href="{{ route($locale === 'tr' ? 'tr.terms-of-service' : 'terms-of-service') }}">{{ __('common.terms_of_service') }}</a></li>
+                            <li><a href="{{ route($locale === 'tr' ? 'tr.privacy-policy' : 'privacy-policy') }}">{{ __('common.privacy_policy') }}</a></li>
                         </ul>
                     </div>
                 </div>

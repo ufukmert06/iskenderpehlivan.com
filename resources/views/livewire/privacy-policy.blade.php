@@ -1,0 +1,154 @@
+@volt
+<?php
+
+use function Livewire\Volt\{mount, state};
+
+state(['page', 'translation', 'locale']);
+
+mount(function () {
+    $this->locale = app()->getLocale();
+
+    // Find the Privacy Policy page by slug_base
+    $this->page = \App\Models\Post::with('translations')
+        ->where('type', 'page')
+        ->where('slug_base', 'privacy-policy')
+        ->where('status', 'published')
+        ->firstOrFail();
+
+    $this->translation = $this->page->translation($this->locale);
+
+    if (!$this->translation) {
+        abort(404, 'Page translation not found');
+    }
+});
+
+?>
+
+<div>
+    <div class="page-title">
+        <div class="tf-container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="title">{{ $translation->title }}</h3>
+                    <ul class="breadcrumbs">
+                        <li><a href="{{ route($locale === 'tr' ? 'tr.home' : 'home') }}">{{ __('common.home') }}</a></li>
+                        <li>{{ $translation->title }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content-2">
+        <div class="section-box-about">
+            <div class="tf-container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="box-about">
+                            @if($translation->content)
+                                <div class="tinymce-content mb-5">
+                                    {!! $translation->content !!}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* TinyMCE Content Styling */
+        .tinymce-content {
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .tinymce-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .tinymce-content ul,
+        .tinymce-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            line-height: 1.8;
+        }
+
+        .tinymce-content ul {
+            list-style-type: disc;
+        }
+
+        .tinymce-content ol {
+            list-style-type: decimal;
+        }
+
+        .tinymce-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .tinymce-content h1,
+        .tinymce-content h2,
+        .tinymce-content h3,
+        .tinymce-content h4,
+        .tinymce-content h5,
+        .tinymce-content h6 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .tinymce-content h1 {
+            font-size: 2rem;
+        }
+
+        .tinymce-content h2 {
+            font-size: 1.75rem;
+        }
+
+        .tinymce-content h3 {
+            font-size: 1.5rem;
+        }
+
+        .tinymce-content h4 {
+            font-size: 1.25rem;
+        }
+
+        .tinymce-content h5 {
+            font-size: 1.1rem;
+        }
+
+        .tinymce-content h6 {
+            font-size: 1rem;
+        }
+
+        .tinymce-content strong,
+        .tinymce-content b {
+            font-weight: 700;
+        }
+
+        .tinymce-content em,
+        .tinymce-content i {
+            font-style: italic;
+        }
+
+        .tinymce-content a {
+            color: #667eea;
+            text-decoration: underline;
+        }
+
+        .tinymce-content a:hover {
+            color: #5568d3;
+        }
+
+        .tinymce-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+    </style>
+</div>
+@endvolt
