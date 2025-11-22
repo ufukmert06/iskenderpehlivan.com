@@ -22,6 +22,7 @@ class Post extends Model
         'slug_base',
         'status',
         'featured_image',
+        'icon',
         'user_id',
         'sort_order',
     ];

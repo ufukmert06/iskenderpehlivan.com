@@ -7,6 +7,8 @@ return [
     'get_consult' => 'Get Your Consult!',
     'search_placeholder' => 'Search for anything',
     'need_help' => 'Need help?',
+    'services_therapy_title' => 'Counseling & Therapy Services',
+    'whats_new' => 'What\'s New',
 
     // Footer
     'support_247' => 'Support 24/7',
@@ -30,4 +32,8 @@ return [
     'service_family' => 'Family Therapy',
     'service_couples' => 'Couples Therapy',
     'service_group' => 'Group Therapy',
+
+    // General
+    'home' => 'Home',
+    'services' => 'Services',
 ];

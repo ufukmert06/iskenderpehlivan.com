@@ -3,7 +3,9 @@
 use function Livewire\Volt\{computed};
 
 $services = computed(function() {
-    return \App\Models\Service::with('translations')
+    return \App\Models\Post::where('type', 'service')
+        ->where('status', 'published')
+        ->with('translations')
         ->orderBy('sort_order')
         ->get();
 });
@@ -39,10 +41,10 @@ $locale = app()->getLocale();
                             </div>
                         @endif
                         <h3 class="service-title">
-                            {{ $translation?->name ?? $service->id }}
+                            {{ $translation?->title ?? $service->id }}
                         </h3>
                         <p class="service-description">
-                            {{ $translation?->description }}
+                            {{ $translation?->excerpt }}
                         </p>
                     </div>
                 </div>

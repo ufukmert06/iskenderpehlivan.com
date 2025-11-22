@@ -13,10 +13,7 @@ class EditContact extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make()
-                ->label('Görüntüle'),
-            Actions\DeleteAction::make()
-                ->label('Sil'),
+            Actions\DeleteAction::make(),
         ];
     }
 }

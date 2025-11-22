@@ -17,8 +17,11 @@ class Contact extends Model
     protected $fillable = [
         'name',
         'email',
+        'service',
         'message',
         'status',
+        'ip_address',
+        'user_agent',
     ];
 
     /**

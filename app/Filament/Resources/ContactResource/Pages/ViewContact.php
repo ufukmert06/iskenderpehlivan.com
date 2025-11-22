@@ -13,18 +13,19 @@ class ViewContact extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\EditAction::make()
-                ->label('Düzenle'),
+            Actions\EditAction::make(),
+            Actions\DeleteAction::make(),
         ];
     }
 
-    protected function mutateFormDataBeforeFill(array $data): array
+    public function mount(int|string $record): void
     {
-        // Mark as read when viewing
+        parent::mount($record);
+
+        // Eğer mesaj okunmadı ise, otomatik olarak okundu yap
         if ($this->record->status === 'unread') {
             $this->record->update(['status' => 'read']);
+            $this->record->refresh();
         }
-
-        return $data;
     }
 }

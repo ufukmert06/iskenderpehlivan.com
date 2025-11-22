@@ -9,7 +9,9 @@ $blogPosts = \App\Models\Post::where('type', 'blog')
     ->limit(3)
     ->get();
 
-$services = \App\Models\Service::with('translations')
+$services = \App\Models\Post::where('type', 'service')
+    ->where('status', 'published')
+    ->with('translations')
     ->orderBy('sort_order')
     ->get();
 
@@ -133,7 +135,7 @@ $settings = \App\Models\Setting::with('translations')->first();
                             <ul class="widget-menu-tab overflow-x-auto">
                                 @foreach($services as $index => $service)
                                     <li class="item-title @if($index === 0) active @endif" wire:key="service-tab-{{ $service->id }}">
-                                        {{ $service->translation()?->name ?? __('home.services.default_service_name') }}
+                                        {{ $service->translation()?->title ?? __('home.services.default_service_name') }}
                                     </li>
                                 @endforeach
                             </ul>
@@ -143,24 +145,24 @@ $settings = \App\Models\Setting::with('translations')->first();
                                         <div class="box-service">
                                             <div class="image-wrap @if($index === 0) wow @endif fadeInLeft effec-overlay" data-wow-duration="1000" data-wow-delay="0s">
                                                 @if($service->featured_image)
-                                                    <img class="lazyload" data-src="{{ Storage::url($service->featured_image) }}" src="{{ Storage::url($service->featured_image) }}" alt="{{ $service->translation()?->name ?? __('home.services.default_service_name') }}">
+                                                    <img class="lazyload" data-src="{{ Storage::url($service->featured_image) }}" src="{{ Storage::url($service->featured_image) }}" alt="{{ $service->translation()?->title ?? __('home.services.default_service_name') }}">
                                                 @else
-                                                    <img class="lazyload" data-src="/assets/images/section/section-service.jpg" src="/assets/images/section/section-service.jpg" alt="{{ $service->translation()?->name ?? __('home.services.default_service_name') }}">
+                                                    <img class="lazyload" data-src="/assets/images/section/section-service.jpg" src="/assets/images/section/section-service.jpg" alt="{{ $service->translation()?->title ?? __('home.services.default_service_name') }}">
                                                 @endif
                                             </div>
                                             <div class="content">
                                                 <div class="heading-section text-start">
-                                                    <p class="text-2 sub @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ $service->translation()?->name ?? __('home.services.default_service_name') }}</p>
+                                                    <p class="text-2 sub @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ $service->translation()?->title ?? __('home.services.default_service_name') }}</p>
                                                     <h4 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                                        <a href="#service-{{ $service->slug_base }}">
-                                                            {{ $service->translation()?->name ?? __('home.services.default_service_name') }}
+                                                        <a href="{{ route(app()->getLocale() === 'tr' ? 'tr.service.show' : 'service.show', $service->slug_base) }}">
+                                                            {{ $service->translation()?->title ?? __('home.services.default_service_name') }}
                                                         </a>
                                                     </h4>
                                                     <p class="description text-1 lh-30 @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                                        {{ Str::limit($service->translation()?->description ?? '', 300) }}
+                                                        {{ Str::limit($service->translation()?->excerpt ?? '', 300) }}
                                                     </p>
                                                 </div>
-                                                <a href="#service-{{ $service->slug_base }}" class="tf-btn-link z-5 @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
+                                                <a href="{{ route(app()->getLocale() === 'tr' ? 'tr.service.show' : 'service.show', $service->slug_base) }}" class="tf-btn-link z-5 @if($index === 0) wow @endif fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                                     <span data-text="{{ __('home.services.read_more') }}">{{ __('home.services.read_more') }}</span>
                                                     <i class="icon-ArrowRight"></i>
                                                 </a>

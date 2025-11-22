@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreContactRequest;
 use App\Http\Resources\Api\ContactResource;
 use App\Models\Contact;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 /**
  * @tags Contacts
@@ -17,12 +15,13 @@ class ContactController extends Controller
     /**
      * Store a new contact message
      *
-     * Creates a new contact form submission with name, email, and message.
+     * Creates a new contact form submission with name, email, service, and message.
      *
      * @group Contacts
      *
      * @bodyParam name string required Full name of the sender. Example: Ahmet Yılmaz
      * @bodyParam email string required Email address of the sender. Example: ornek@sirket.com
+     * @bodyParam service string optional Type of service requested. Example: Individual Counseling
      * @bodyParam message string required The message content. Example: Size nasıl yardımcı olabiliriz?
      *
      * @response 201 {
@@ -30,13 +29,13 @@ class ContactController extends Controller
      *     "id": 1,
      *     "name": "Ahmet Yılmaz",
      *     "email": "ornek@sirket.com",
+     *     "service": "Individual Counseling",
      *     "message": "Size nasıl yardımcı olabiliriz?",
      *     "status": "unread",
      *     "created_at": "2025-11-08T10:00:00.000000Z",
      *     "updated_at": "2025-11-08T10:00:00.000000Z"
      *   }
      * }
-     *
      * @response 422 {
      *   "message": "Validation failed",
      *   "errors": {
@@ -46,34 +45,16 @@ class ContactController extends Controller
      *   }
      * }
      */
-    public function store(Request $request): ContactResource|JsonResponse
+    public function store(StoreContactRequest $request): ContactResource
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'message' => ['required', 'string', 'max:5000'],
-        ], [
-            'name.required' => 'Ad Soyad alanı zorunludur.',
-            'name.max' => 'Ad Soyad en fazla 255 karakter olabilir.',
-            'email.required' => 'E-posta alanı zorunludur.',
-            'email.email' => 'Geçerli bir e-posta adresi giriniz.',
-            'email.max' => 'E-posta en fazla 255 karakter olabilir.',
-            'message.required' => 'Mesaj alanı zorunludur.',
-            'message.max' => 'Mesaj en fazla 5000 karakter olabilir.',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'message' => 'Doğrulama başarısız',
-                'errors' => $validator->errors(),
-            ], 422);
-        }
-
         $contact = Contact::create([
             'name' => $request->name,
             'email' => $request->email,
+            'service' => $request->service,
             'message' => $request->message,
             'status' => 'unread',
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
         ]);
 
         return new ContactResource($contact);

@@ -2,21 +2,31 @@
 
 namespace App\Filament\Resources;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\Resources\ServiceResource\Pages;
-use App\Models\Service;
+use App\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 class ServiceResource extends Resource
 {
-    protected static ?string $model = Service::class;
+    protected static ?string $model = Post::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-star';
 
     protected static ?string $navigationLabel = 'Hizmetler';
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('type', 'service');
+    }
 
     public static function form(Form $form): Form
     {
@@ -24,6 +34,8 @@ class ServiceResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Hizmet Bilgileri')
                     ->schema([
+                        Forms\Components\Hidden::make('type')
+                            ->default('service'),
                         Forms\Components\FileUpload::make('featured_image')
                             ->label('Öne Çıkan Görsel')
                             ->image()
@@ -33,9 +45,33 @@ class ServiceResource extends Resource
                             ->imageEditor()
                             ->helperText('Hizmet için öne çıkan görsel')
                             ->columnSpanFull(),
+                        Forms\Components\TextInput::make('slug_base')
+                            ->label('Temel Slug')
+                            ->required()
+                            ->unique(ignoreRecord: true)
+                            ->maxLength(255)
+                            ->helperText('Dil bağımsız temel slug (ilk çeviriden otomatik üretilir)')
+                            ->dehydrated(),
                         Forms\Components\TextInput::make('icon')
                             ->label('İkon')
                             ->helperText('Font Awesome icon sınıfı veya emoji'),
+                        Forms\Components\Select::make('status')
+                            ->label('Durum')
+                            ->options([
+                                'draft' => 'Taslak',
+                                'published' => 'Yayınlandı',
+                                'archived' => 'Arşivlendi',
+                            ])
+                            ->required()
+                            ->default('published')
+                            ->native(false),
+                        Forms\Components\Select::make('user_id')
+                            ->label('Yazar')
+                            ->relationship('user', 'name')
+                            ->required()
+                            ->default(fn () => auth()->id())
+                            ->searchable()
+                            ->preload(),
                         Forms\Components\TextInput::make('sort_order')
                             ->required()
                             ->numeric()
@@ -54,19 +90,52 @@ class ServiceResource extends Resource
                                     ])
                                     ->required()
                                     ->distinct()
-                                    ->label('Dil'),
-                                Forms\Components\TextInput::make('name')
+                                    ->label('Dil')
+                                    ->native(false),
+                                Forms\Components\TextInput::make('title')
                                     ->required()
-                                    ->label('Hizmet Adı'),
-                                Forms\Components\Textarea::make('description')
-                                    ->label('Açıklama'),
+                                    ->label('Hizmet Adı')
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                                        if (($get('slug') ?? '') !== Str::slug($old ?? '')) {
+                                            return;
+                                        }
+
+                                        $set('slug', Str::slug($state));
+
+                                        // İlk çeviride slug_base'i de güncelle
+                                        if ($get('../../slug_base') === Str::slug($old ?? '') || empty($get('../../slug_base'))) {
+                                            $set('../../slug_base', Str::slug($state));
+                                        }
+                                    })
+                                    ->columnSpanFull(),
+                                Forms\Components\TextInput::make('slug')
+                                    ->label('Slug')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->helperText('Dile özel URL slug (otomatik üretilir, manuel düzenlenebilir)'),
+                                Forms\Components\Textarea::make('excerpt')
+                                    ->label('Kısa Açıklama')
+                                    ->rows(3)
+                                    ->columnSpanFull(),
+                                TinyEditor::make('content')
+                                    ->label('İçerik')
+                                    ->fileAttachmentsDisk('public')
+                                    ->fileAttachmentsDirectory('uploads')
+                                    ->profile('default')
+                                    ->columnSpanFull()
+                                    ->required(),
                             ])
                             ->itemLabel(fn (array $state): ?string => match ($state['locale'] ?? null) {
                                 'tr' => 'Türkçe',
                                 'en' => 'English',
                                 default => null,
                             })
-                            ->collapsible(),
+                            ->defaultItems(1)
+                            ->minItems(1)
+                            ->collapsible()
+                            ->reorderable(false)
+                            ->addActionLabel('Yeni Çeviri Ekle'),
                     ]),
             ]);
     }
@@ -79,12 +148,31 @@ class ServiceResource extends Resource
                     ->label('Görsel')
                     ->disk('public')
                     ->square(),
+                Tables\Columns\TextColumn::make('slug_base')
+                    ->label('Slug')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('icon')
                     ->searchable()
                     ->label('İkon'),
-                Tables\Columns\TextColumn::make('translations.0.name')
-                    ->label('Hizmet Adı (EN)')
+                Tables\Columns\TextColumn::make('translations.0.title')
+                    ->label('Hizmet Adı')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->label('Durum')
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'draft' => 'Taslak',
+                        'published' => 'Yayınlandı',
+                        'archived' => 'Arşivlendi',
+                        default => $state,
+                    })
+                    ->color(fn (string $state): string => match ($state) {
+                        'draft' => 'warning',
+                        'published' => 'success',
+                        'archived' => 'danger',
+                        default => 'gray',
+                    }),
                 Tables\Columns\TextColumn::make('sort_order')
                     ->numeric()
                     ->sortable()
@@ -107,7 +195,8 @@ class ServiceResource extends Resource
                     Tables\Actions\DeleteBulkAction::make()
                         ->label('Seçilenleri Sil'),
                 ]),
-            ]);
+            ])
+            ->defaultSort('sort_order');
     }
 
     public static function getRelations(): array

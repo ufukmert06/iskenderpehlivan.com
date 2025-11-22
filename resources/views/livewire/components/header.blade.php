@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Setting;
+use App\Models\Post;
 use Biostate\FilamentMenuBuilder\Models\Menu;
 use Livewire\Volt\Component;
 
@@ -13,6 +14,8 @@ new class extends Component
     public $menu;
 
     public $locale;
+
+    public $recentPosts;
 
     public function mount(): void
     {
@@ -29,6 +32,18 @@ new class extends Component
         $this->menu = Menu::with(['items' => function ($query) {
             $query->whereNull('parent_id')->orderBy('_lft');
         }, 'items.children'])->where('slug', $menuSlug)->first();
+
+        // Load recent blog posts for megamenu
+        $this->recentPosts = Post::with(['translations' => function ($query) {
+            $query->where('locale', $this->locale)
+                ->whereNotNull('published_at')
+                ->where('published_at', '<=', now());
+        }])
+            ->where('type', 'blog')
+            ->where('status', 'published')
+            ->orderBy('created_at', 'desc')
+            ->limit(3)
+            ->get();
     }
 }; ?>
 
@@ -74,12 +89,92 @@ new class extends Component
                             <ul class="navigation">
                                 @if($menu && $menu->items)
                                     @foreach($menu->items as $item)
-                                        <li class="{{ $item->children->isNotEmpty() ? 'has-child relative' : '' }} {{ $item->wrapper_class }}">
+                                        @php
+                                            $isMegaMenu = str_contains($item->wrapper_class ?? '', 'mega-menu');
+                                            $hasChildren = $item->children->isNotEmpty();
+                                            $classes = [];
+
+                                            if ($hasChildren || $isMegaMenu) {
+                                                $classes[] = 'has-child';
+                                            }
+
+                                            if ($hasChildren && !$isMegaMenu) {
+                                                $classes[] = 'relative';
+                                            }
+                                        @endphp
+
+                                        <li class="{{ implode(' ', $classes) }} {{ $item->wrapper_class }}">
                                             <a href="{{ $item->link }}" target="{{ $item->target }}" class="{{ $item->link_class }}">
                                                 {{ $item->menu_name }}
                                             </a>
 
-                                            @if($item->children->isNotEmpty())
+                                            @if($isMegaMenu && $item->children->isNotEmpty())
+                                                {{-- Megamenu --}}
+                                                <div class="sub-menu service-link">
+                                                    <div class="tf-container">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="wrap-cta">
+                                                                    <div class="left">
+                                                                        <h5 class="wg-title">{{ __('common.services_therapy_title') }}</h5>
+                                                                        <div class="wrap-service">
+                                                                            @foreach($item->children as $child)
+                                                                                <div class="service-item-list">
+                                                                                    <h6>
+                                                                                        <a href="{{ $child->link }}">
+                                                                                            {{ $child->menu_name }}
+                                                                                        </a>
+                                                                                    </h6>
+                                                                                    @if($child->parameters)
+                                                                                        @php
+                                                                                            $childParams = is_string($child->parameters) ? json_decode($child->parameters, true) : $child->parameters;
+                                                                                        @endphp
+                                                                                        @if(is_array($childParams) && isset($childParams['description']))
+                                                                                            <p class="text-2">
+                                                                                                {{ $childParams['description'] }}
+                                                                                            </p>
+                                                                                        @endif
+                                                                                    @endif
+                                                                                </div>
+                                                                            @endforeach
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="right">
+                                                                        <h5 class="wg-title">{{ __('common.whats_new') }}</h5>
+                                                                        <div class="wrap-list">
+                                                                            @foreach($recentPosts as $post)
+                                                                                @php
+                                                                                    $postTranslation = $post->translation($locale);
+                                                                                @endphp
+                                                                                @if($postTranslation)
+                                                                                    <div class="box-listings">
+                                                                                        @if($post->featured_image)
+                                                                                            <div class="image-wrap">
+                                                                                                <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $postTranslation->title }}">
+                                                                                            </div>
+                                                                                        @endif
+                                                                                        <div class="content">
+                                                                                            <ul class="meta">
+                                                                                                <li class="text-2">{{ $postTranslation->published_at?->format('M d, Y') ?? $post->created_at->format('M d, Y') }}</li>
+                                                                                            </ul>
+                                                                                            <div class="title text-1 fw-5">
+                                                                                                <a class="line-clamp-2" href="{{ url('/blog/' . $postTranslation->slug) }}">
+                                                                                                    {{ $postTranslation->title }}
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @elseif($item->children->isNotEmpty())
+                                                {{-- Regular submenu --}}
                                                 <ul class="sub-menu">
                                                     @foreach($item->children as $child)
                                                         <li class="{{ $child->wrapper_class }}">

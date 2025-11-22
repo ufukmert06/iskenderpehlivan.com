@@ -115,6 +115,12 @@ class ManageSettings extends Page
                             ->rows(3)
                             ->maxLength(500)
                             ->columnSpanFull(),
+
+                        Forms\Components\Textarea::make('google_maps_url')
+                            ->label('Google Maps Embed')
+                            ->rows(3)
+                            ->helperText('Google Maps\'ten alınan iframe kodunun TAMAMINI yapıştırın. Örnek: <iframe src="https://www.google.com/maps/embed?pb=..." ...></iframe>')
+                            ->columnSpanFull(),
                     ])
                     ->columns(2)
                     ->collapsible(),
@@ -261,6 +267,7 @@ class ManageSettings extends Page
                 'contact_email' => $data['contact_email'] ?? null,
                 'contact_phone' => $data['contact_phone'] ?? null,
                 'contact_address' => $data['contact_address'] ?? null,
+                'google_maps_url' => $data['google_maps_url'] ?? null,
                 'whatsapp' => $data['whatsapp'] ?? null,
                 'facebook' => $data['facebook'] ?? null,
                 'twitter' => $data['twitter'] ?? null,
@@ -282,6 +289,7 @@ class ManageSettings extends Page
                 'contact_email' => $data['contact_email'] ?? null,
                 'contact_phone' => $data['contact_phone'] ?? null,
                 'contact_address' => $data['contact_address'] ?? null,
+                'google_maps_url' => $data['google_maps_url'] ?? null,
                 'whatsapp' => $data['whatsapp'] ?? null,
                 'facebook' => $data['facebook'] ?? null,
                 'twitter' => $data['twitter'] ?? null,

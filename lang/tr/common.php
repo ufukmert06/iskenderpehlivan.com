@@ -7,6 +7,8 @@ return [
     'get_consult' => 'Danışmanlık Alın!',
     'search_placeholder' => 'Herhangi bir şey arayın',
     'need_help' => 'Yardıma mı ihtiyacınız var?',
+    'services_therapy_title' => 'Danışmanlık ve Terapi Hizmetleri',
+    'whats_new' => 'Yenilikler',
 
     // Footer
     'support_247' => 'Destek 24/7',
@@ -30,4 +32,8 @@ return [
     'service_family' => 'Aile Terapisi',
     'service_couples' => 'Çift Terapisi',
     'service_group' => 'Grup Terapisi',
+
+    // General
+    'home' => 'Ana Sayfa',
+    'services' => 'Hizmetler',
 ];

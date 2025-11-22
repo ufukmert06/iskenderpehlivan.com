@@ -21,6 +21,7 @@ class Setting extends Model
         'contact_email',
         'contact_phone',
         'contact_address',
+        'google_maps_url',
         'whatsapp',
         'facebook',
         'twitter',
