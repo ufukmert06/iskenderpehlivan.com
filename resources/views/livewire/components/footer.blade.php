@@ -1,14 +1,26 @@
 <?php
 
 use App\Models\Setting;
+use App\Models\Post;
 use Livewire\Volt\Component;
 
 new class extends Component {
     public ?Setting $settings = null;
+    public $services;
+    public $locale;
 
     public function mount(): void
     {
+        $this->locale = app()->getLocale();
         $this->settings = Setting::with('translations')->first();
+
+        // Load published services for footer
+        $this->services = Post::where('type', 'service')
+            ->where('status', 'published')
+            ->with('translations')
+            ->orderBy('sort_order')
+            ->limit(4)
+            ->get();
     }
 
     public function getTranslation(): mixed
@@ -143,22 +155,33 @@ new class extends Component {
                         <div class="footer-right">
                             <div class="wrap-footer-menu-list">
                                 <div class="footer-menu-list footer-col-block">
-                                    <h6 class="title title-desktop">{{ __('common.our_therapists') }}</h6>
-                                    <h6 class="title title-mobile">{{ __('common.our_therapists') }}</h6>
+                                    <h6 class="title title-desktop">{{ __('footer.quick_links') }}</h6>
+                                    <h6 class="title title-mobile">{{ __('footer.quick_links') }}</h6>
                                     <ul class="tf-collapse-content">
-                                        <li><a href="therapists-details.html">{{ __('common.therapist_annette') }}</a></li>
-                                        <li><a href="therapists-details.html">{{ __('common.therapist_jane') }}</a></li>
-                                        <li><a href="therapists-details.html">{{ __('common.therapist_brooklyn') }}</a></li>
+                                        <li><a href="{{ route($locale === 'tr' ? 'tr.home' : 'home') }}">{{ __('common.home') }}</a></li>
+                                        <li><a href="{{ route($locale === 'tr' ? 'tr.about' : 'about') }}">{{ __('common.about') }}</a></li>
+                                        <li><a href="{{ route($locale === 'tr' ? 'tr.services' : 'services') }}">{{ __('common.services') }}</a></li>
+                                        <li><a href="{{ route($locale === 'tr' ? 'tr.contact' : 'contact') }}">{{ __('common.contact') }}</a></li>
                                     </ul>
                                 </div>
                                 <div class="footer-menu-list footer-col-block">
                                     <h6 class="title title-desktop">{{ __('common.our_services') }}</h6>
                                     <h6 class="title title-mobile">{{ __('common.our_services') }}</h6>
                                     <ul class="tf-collapse-content">
-                                        <li><a href="service-details.html">{{ __('common.service_individual') }}</a></li>
-                                        <li><a href="service-details.html">{{ __('common.service_family') }}</a></li>
-                                        <li><a href="service-details.html">{{ __('common.service_couples') }}</a></li>
-                                        <li><a href="service-details.html">{{ __('common.service_group') }}</a></li>
+                                        @forelse($services as $service)
+                                            @php
+                                                $translation = $service->translation($locale);
+                                            @endphp
+                                            @if($translation)
+                                                <li>
+                                                    <a href="{{ route($locale === 'tr' ? 'tr.service.show' : 'service.show', $service->slug_base) }}">
+                                                        {{ $translation->title }}
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        @empty
+                                            <li><a href="{{ route($locale === 'tr' ? 'tr.services' : 'services') }}">{{ __('common.services') }}</a></li>
+                                        @endforelse
                                     </ul>
                                 </div>
                             </div>
