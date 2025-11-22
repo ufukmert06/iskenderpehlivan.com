@@ -112,7 +112,7 @@ mount(function () {
                                         <div class="counter-number">
                                             <div class="odometer style-1-1">{{ $settings?->years_of_experience ?? 0 }}
                                             </div>
-                                            <span class="sub">Years</span>
+                                            <span class="sub">+</span>
                                         </div>
                                         <p>{{ $settingTranslation?->counter_years_label ?? 'Years of Experience' }}</p>
                                     </div>
@@ -125,9 +125,9 @@ mount(function () {
                                         <div class="counter-number">
                                             <div class="odometer style-1-2">{{ $settings?->happy_customers ?? 0 }}
                                             </div>
-                                            <span class="sub">k</span>
+                                            <span class="sub">+</span>
                                         </div>
-                                        <p>{{ $settingTranslation?->counter_customers_label ?? 'Happy customers' }}</p>
+                                        <p>{{ $settingTranslation?->counter_customers_label ?? 'Happy Clients' }}</p>
                                     </div>
                                 </div>
                                 <div class="counter-item has-icon">
@@ -136,8 +136,9 @@ mount(function () {
                                     </div>
                                     <div class="count">
                                         <div class="counter-number">
-                                            <div class="odometer style-1-3">{{ $settings?->therapy_sessions ?? 10 }}
+                                            <div class="odometer style-1-3">{{ $settings?->therapy_sessions ?? 0 }}
                                             </div>
+                                            <span class="sub">+</span>
                                         </div>
                                         <p>{{ $settingTranslation?->counter_sessions_label ?? 'Therapy Sessions' }}</p>
                                     </div>
@@ -150,8 +151,9 @@ mount(function () {
                                         <div class="counter-number">
                                             <div class="odometer style-1-4">{{ $settings?->certifications_awards ?? 0 }}
                                             </div>
+                                            <span class="sub">+</span>
                                         </div>
-                                        <p>{{ $settingTranslation?->counter_certifications_label ?? 'Certifications/Awards' }}</p>
+                                        <p>{{ $settingTranslation?->counter_certifications_label ?? 'Certifications & Awards' }}</p>
                                     </div>
                                 </div>
                             </div>

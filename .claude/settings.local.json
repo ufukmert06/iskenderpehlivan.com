@@ -22,7 +22,8 @@
       "Bash(test:*)",
       "Bash(mkdir:*)",
       "Bash(php artisan:*)",
-      "WebFetch(domain:www.iskenderpehlivan.com)"
+      "WebFetch(domain:www.iskenderpehlivan.com)",
+      "Bash(php vendor/bin/pint:*)"
     ],
     "deny": [],
     "ask": []
