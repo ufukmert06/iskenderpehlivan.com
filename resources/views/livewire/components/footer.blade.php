@@ -2,12 +2,17 @@
 
 use App\Models\Setting;
 use App\Models\Post;
+use App\Models\Newsletter;
 use Livewire\Volt\Component;
+use Livewire\Attributes\Validate;
 
 new class extends Component {
     public ?Setting $settings = null;
     public $services;
     public $locale;
+
+    #[Validate('required|email|unique:newsletters,email')]
+    public $newsletter_email = '';
 
     public function mount(): void
     {
@@ -21,6 +26,22 @@ new class extends Component {
             ->orderBy('sort_order')
             ->limit(4)
             ->get();
+    }
+
+    public function subscribe(): void
+    {
+        $this->validate();
+
+        Newsletter::create([
+            'email' => $this->newsletter_email,
+            'status' => 'active',
+            'ip_address' => request()->ip(),
+            'subscribed_at' => now(),
+        ]);
+
+        session()->flash('newsletter_success', __('newsletter.subscribed_successfully'));
+
+        $this->newsletter_email = '';
     }
 
     public function getTranslation(): mixed
@@ -189,13 +210,22 @@ new class extends Component {
                                 <h6 class="title title-desktop">{{ __('common.subscribe_newsletter') }}</h6>
                                 <h6 class="title title-mobile">{{ __('common.subscribe_newsletter') }}</h6>
                                 <div class="tf-collapse-content">
-                                    <form class="form-send-email">
+                                    @if (session()->has('newsletter_success'))
+                                        <div class="alert alert-success mb-3" style="padding: 10px; background-color: #d4edda; color: #155724; border-radius: 4px;">
+                                            {{ session('newsletter_success') }}
+                                        </div>
+                                    @endif
+                                    <form class="form-send-email" wire:submit.prevent="subscribe">
                                         <fieldset>
-                                            <input type="email" placeholder="{{ __('common.email_placeholder') }}" name="text" aria-required="true" required>
+                                            <input type="email" wire:model="newsletter_email" placeholder="{{ __('common.email_placeholder') }}" aria-required="true" required>
+                                            @error('newsletter_email')
+                                                <span class="error text-red-500" style="color: #dc3545; font-size: 0.875rem;">{{ $message }}</span>
+                                            @enderror
                                         </fieldset>
                                         <div class="button-submit">
-                                            <button type="submit">
-                                                <i class="icon-PaperPlaneTilt"></i>
+                                            <button type="submit" wire:loading.attr="disabled">
+                                                <i class="icon-PaperPlaneTilt" wire:loading.remove wire:target="subscribe"></i>
+                                                <span wire:loading wire:target="subscribe">...</span>
                                             </button>
                                         </div>
                                     </form>
