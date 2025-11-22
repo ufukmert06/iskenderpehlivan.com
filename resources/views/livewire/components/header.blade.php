@@ -193,10 +193,10 @@ new class extends Component
                     </div>
                     <div class="header-right">
                         <div class="btn-get">
-                            <a class="tf-btn style-default btn-color-secondary pd-40" href="book-appointment.html">
-<span>
-{{ __('common.get_consult') }}
-</span>
+                            <a class="tf-btn style-default btn-color-secondary pd-40" href="{{ route($locale === 'tr' ? 'tr.book-appointment' : 'book-appointment') }}">
+                                <span>
+                                    {{ __('common.get_consult') }}
+                                </span>
                             </a>
                         </div>
                         <div class="group-btn">
