@@ -21,7 +21,8 @@
       "mcp__laravel-boost__database-query",
       "Bash(test:*)",
       "Bash(mkdir:*)",
-      "Bash(php artisan:*)"
+      "Bash(php artisan:*)",
+      "WebFetch(domain:www.iskenderpehlivan.com)"
     ],
     "deny": [],
     "ask": []

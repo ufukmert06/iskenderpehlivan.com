@@ -2,15 +2,55 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Key Technologies](#key-technologies)
+3. [Development Commands](#development-commands)
+   - [Initial Setup](#initial-setup)
+   - [Development Server](#development-server)
+   - [Testing](#testing)
+   - [Code Formatting](#code-formatting)
+   - [Frontend Build](#frontend-build)
+4. [CMS Architecture](#cms-architecture)
+   - [Content Models](#content-models)
+   - [Filament Resources](#filament-resources)
+   - [Filament Pages](#filament-pages)
+   - [Dashboard Widgets](#dashboard-widgets)
+5. [Public Frontend (Volt)](#public-frontend-volt)
+6. [Optional API Architecture](#optional-api-architecture)
+   - [API Endpoints](#api-endpoints-public---no-authentication)
+   - [API Features](#api-features)
+   - [API Components](#api-components)
+   - [API Documentation](#api-documentation)
+7. [Multi-Language Translation Pattern](#multi-language-translation-pattern)
+8. [Project Structure](#project-structure)
+9. [Filament Resource Creation](#filament-resource-creation)
+10. [Database & Queues](#database--queues)
+11. [Testing Conventions](#testing-conventions)
+12. [Common Patterns](#common-patterns)
+    - [Creating a Complete CRUD Feature](#creating-a-complete-crud-feature)
+    - [Creating a Translatable Model](#creating-a-translatable-model)
+    - [Creating a Custom Filament Page](#creating-a-custom-filament-page-with-form)
+13. [Important Notes](#important-notes)
+14. [Troubleshooting](#troubleshooting)
+
+---
+
 ## Project Overview
 
-This is a **Headless CMS** built with Filament 3 on Laravel 12 that provides a public readonly API for Next.js frontend applications. The admin panel is accessible at the root path ("/") for content management, while the API serves content at `/api/*` endpoints. Content (posts, pages, categories, tags, settings) is translatable across multiple locales using a custom translation pattern.
+This is a **Content Management System (CMS)** built with Filament 3 on Laravel 12. The system features a public-facing website powered by Livewire Volt and a comprehensive admin panel for content management. Content (posts, pages, services, categories, tags, settings) is fully translatable across multiple locales using a custom translation pattern.
 
 **Architecture:**
-- **Backend/Admin**: Filament 3 panel for content management (root path `/`)
-- **API**: Public readonly RESTful API for Next.js consumption (`/api/*`)
+- **Backend/Admin**: Filament 3 panel for content management (`/admin`)
+- **Public Frontend**: Livewire Volt pages for public-facing website (root path `/`)
+- **Multi-Language**: Supports Turkish (default) and English with URL-based locale switching
 - **Database**: SQLite (development) - content storage with translation support
-- **Frontend**: Next.js (separate project) - consumes the API
+- **Optional API**: Public readonly RESTful API available at `/api/*` for external integrations
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
 
 ## Key Technologies
 
@@ -20,6 +60,10 @@ This is a **Headless CMS** built with Filament 3 on Laravel 12 that provides a p
 - **Testing:** Pest 4
 - **Code Style:** Laravel Pint
 - **Database:** SQLite (default), with database-backed sessions, cache, and queue
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
 
 ## Development Commands
 
@@ -64,6 +108,10 @@ vendor/bin/pint          # Format all files
 npm run build  # Production build
 npm run dev    # Development mode with hot reload
 ```
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
 
 ## CMS Architecture
 
@@ -123,9 +171,74 @@ Located in `app/Filament/Widgets/` (auto-discovered):
 - **PostsByTypeChart**: Chart showing posts by type
 - **LatestPosts**: Table widget showing recent posts
 
-## Headless CMS API Architecture
+**[⬆ Back to Top](#table-of-contents)**
 
-This application serves as a headless CMS, providing a **readonly public API** for Next.js frontend applications.
+---
+
+## Public Frontend (Volt)
+
+The public-facing website is built using **Livewire Volt** (functional components) and supports multi-language routing.
+
+### Routes Structure
+
+Routes are defined in `routes/web.php`:
+
+**English Routes** (Default - no prefix):
+- `/` - Home page
+- `/contact` - Contact page
+- `/services` - Services listing
+- `/services/{slug}` - Individual service detail
+
+**Turkish Routes** (`/tr` prefix):
+- `/tr/` - Ana sayfa (Home)
+- `/tr/iletisim` - İletişim (Contact)
+- `/tr/hizmetler` - Hizmetler (Services)
+- `/tr/hizmetler/{slug}` - Hizmet detayı (Service detail)
+
+### Volt Components
+
+Volt components are located in `resources/views/livewire/`:
+- `home.blade.php` - Homepage with hero, about, services, blog, and contact sections
+- `contact.blade.php` - Contact page
+- `services.blade.php` - Services listing page
+- `service.blade.php` - Individual service detail page
+
+### Volt Component Pattern
+
+All public Volt components use the **functional** style:
+
+```php
+@volt
+<?php
+// Fetch data directly (non-reactive)
+$posts = \App\Models\Post::where('type', 'blog')
+    ->where('status', 'published')
+    ->with(['translations', 'categories.translations'])
+    ->latest()
+    ->limit(3)
+    ->get();
+?>
+
+<div>
+    <!-- Blade template here -->
+</div>
+@endvolt
+```
+
+### Language Switching
+
+- Language is determined by URL prefix (`/tr/*` for Turkish, no prefix for English)
+- Translation strings use Laravel's `__()` helper (e.g., `__('home.hero.title')`)
+- Translation files located in `lang/en/` and `lang/tr/`
+- Content models use `translation(?string $locale)` helper to get localized content
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
+
+## Optional API Architecture
+
+While this is primarily a traditional CMS with a public frontend, it also provides an optional **readonly public API** for external integrations or headless usage.
 
 ### API Endpoints (Public - No Authentication)
 
@@ -304,6 +417,10 @@ export async function generateStaticParams() {
 }
 ```
 
+**[⬆ Back to Top](#table-of-contents)**
+
+---
+
 ## Multi-Language Translation Pattern
 
 All content models use a custom translation pattern:
@@ -370,10 +487,14 @@ Forms\Components\Repeater::make('translations')
     ->collapsible()
 ```
 
+**[⬆ Back to Top](#table-of-contents)**
+
+---
+
 ## Project Structure
 
 ### Filament Configuration
-- **Panel Path:** `/` (root)
+- **Panel Path:** `/admin`
 - **Panel ID:** `admin`
 - **Primary Color:** Amber
 - **Max Content Width:** Full
@@ -394,6 +515,10 @@ Forms\Components\Repeater::make('translations')
 - No middleware files in `app/Http/Middleware/` - register in `bootstrap/app.php`
 - Commands auto-register from `app/Console/Commands/`
 - Model casts use `casts()` method instead of `$casts` property
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
 
 ## Filament Resource Creation
 
@@ -440,6 +565,10 @@ TinyEditor::make('content')
     ->required();
 ```
 
+**[⬆ Back to Top](#table-of-contents)**
+
+---
+
 ## Database & Queues
 
 - **Default Connection:** SQLite (`database/database.sqlite`)
@@ -448,6 +577,10 @@ TinyEditor::make('content')
 - **Session Driver:** Database
 
 For production, consider switching to MySQL/PostgreSQL and Redis for better performance.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
 
 ## Testing Conventions
 
@@ -479,6 +612,10 @@ it('can create record', function () {
     expect(Model::where('name', 'Test Name')->exists())->toBeTrue();
 });
 ```
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
 
 ## Common Patterns
 
@@ -572,9 +709,13 @@ public function save(): void
 }
 ```
 
+**[⬆ Back to Top](#table-of-contents)**
+
+---
+
 ## Important Notes
 
-- Filament panel is at root path ("/"), not "/admin"
+- Filament panel is at `/admin` path
 - Always run `vendor/bin/pint --dirty` before committing code
 - Use Laravel Boost MCP tools for documentation and debugging
 - Models should use `casts()` method for type casting (Laravel 12 convention)
@@ -582,6 +723,10 @@ public function save(): void
 - Session, cache, and queue use database driver by default
 - Translation pattern uses separate models for translatable content
 - Settings use singleton pattern with custom Filament page
+
+**[⬆ Back to Top](#table-of-contents)**
+
+---
 
 ## Troubleshooting
 
@@ -605,7 +750,9 @@ php artisan queue:listen
 composer run dev  # includes queue worker
 ```
 
-===
+**[⬆ Back to Top](#table-of-contents)**
+
+---
 
 <laravel-boost-guidelines>
 === foundation rules ===

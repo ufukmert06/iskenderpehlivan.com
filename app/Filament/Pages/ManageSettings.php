@@ -54,6 +54,16 @@ class ManageSettings extends Page
                 'site_name' => $translation->site_name,
                 'site_description' => $translation->site_description,
                 'footer_text' => $translation->footer_text,
+                'about_welcome_title' => $translation->about_welcome_title,
+                'about_welcome_description' => $translation->about_welcome_description,
+                'about_mission_title' => $translation->about_mission_title,
+                'about_mission_content' => $translation->about_mission_content,
+                'about_vision_title' => $translation->about_vision_title,
+                'about_vision_content' => $translation->about_vision_content,
+                'counter_years_label' => $translation->counter_years_label,
+                'counter_customers_label' => $translation->counter_customers_label,
+                'counter_sessions_label' => $translation->counter_sessions_label,
+                'counter_certifications_label' => $translation->counter_certifications_label,
             ];
         })->toArray();
 
@@ -159,6 +169,29 @@ class ManageSettings extends Page
                     ->columns(2)
                     ->collapsible(),
 
+                Forms\Components\Section::make('Hakkımızda Sayfa Sayaçları')
+                    ->schema([
+                        Forms\Components\TextInput::make('happy_customers')
+                            ->label('Mutlu Müşteri Sayısı')
+                            ->numeric()
+                            ->minValue(0)
+                            ->default(0),
+
+                        Forms\Components\TextInput::make('therapy_sessions')
+                            ->label('Terapi Seansı Sayısı')
+                            ->numeric()
+                            ->minValue(0)
+                            ->default(0),
+
+                        Forms\Components\TextInput::make('certifications_awards')
+                            ->label('Sertifika/Ödül Sayısı')
+                            ->numeric()
+                            ->minValue(0)
+                            ->default(0),
+                    ])
+                    ->columns(3)
+                    ->collapsible(),
+
                 Forms\Components\Section::make('Sosyal Medya')
                     ->schema([
                         Forms\Components\TextInput::make('facebook')
@@ -232,6 +265,55 @@ class ManageSettings extends Page
                                     ->maxLength(500)
                                     ->helperText('Site alt bilgi metni (copyright vb.)')
                                     ->columnSpanFull(),
+
+                                Forms\Components\Section::make('Hakkımızda Sayfa İçeriği')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('about_welcome_title')
+                                            ->label('Hoş Geldiniz Başlığı')
+                                            ->maxLength(255)
+                                            ->columnSpanFull(),
+
+                                        Forms\Components\Textarea::make('about_welcome_description')
+                                            ->label('Hoş Geldiniz Açıklaması')
+                                            ->rows(3)
+                                            ->columnSpanFull(),
+
+                                        Forms\Components\TextInput::make('about_mission_title')
+                                            ->label('Misyon Başlığı')
+                                            ->maxLength(255),
+
+                                        Forms\Components\TextInput::make('about_vision_title')
+                                            ->label('Vizyon Başlığı')
+                                            ->maxLength(255),
+
+                                        Forms\Components\Textarea::make('about_mission_content')
+                                            ->label('Misyon İçeriği')
+                                            ->rows(4)
+                                            ->columnSpanFull(),
+
+                                        Forms\Components\Textarea::make('about_vision_content')
+                                            ->label('Vizyon İçeriği')
+                                            ->rows(4)
+                                            ->columnSpanFull(),
+
+                                        Forms\Components\TextInput::make('counter_years_label')
+                                            ->label('Deneyim Yılı Etiketi')
+                                            ->maxLength(255),
+
+                                        Forms\Components\TextInput::make('counter_customers_label')
+                                            ->label('Mutlu Müşteri Etiketi')
+                                            ->maxLength(255),
+
+                                        Forms\Components\TextInput::make('counter_sessions_label')
+                                            ->label('Terapi Seansı Etiketi')
+                                            ->maxLength(255),
+
+                                        Forms\Components\TextInput::make('counter_certifications_label')
+                                            ->label('Sertifika/Ödül Etiketi')
+                                            ->maxLength(255),
+                                    ])
+                                    ->columns(2)
+                                    ->collapsible(),
                             ])
                             ->itemLabel(fn (array $state): ?string => $state['locale'] ?? null)
                             ->defaultItems(1)
@@ -281,6 +363,9 @@ class ManageSettings extends Page
                 'credentials' => $data['credentials'] ?? null,
                 'therapeutic_approach' => $data['therapeutic_approach'] ?? null,
                 'maintenance_mode' => $data['maintenance_mode'] ?? false,
+                'happy_customers' => $data['happy_customers'] ?? 0,
+                'therapy_sessions' => $data['therapy_sessions'] ?? 0,
+                'certifications_awards' => $data['certifications_awards'] ?? 0,
             ]);
         } else {
             $setting->update([
@@ -303,6 +388,9 @@ class ManageSettings extends Page
                 'credentials' => $data['credentials'] ?? null,
                 'therapeutic_approach' => $data['therapeutic_approach'] ?? null,
                 'maintenance_mode' => $data['maintenance_mode'] ?? false,
+                'happy_customers' => $data['happy_customers'] ?? 0,
+                'therapy_sessions' => $data['therapy_sessions'] ?? 0,
+                'certifications_awards' => $data['certifications_awards'] ?? 0,
             ]);
         }
 
@@ -316,6 +404,16 @@ class ManageSettings extends Page
                         'site_name' => $translationData['site_name'],
                         'site_description' => $translationData['site_description'] ?? null,
                         'footer_text' => $translationData['footer_text'] ?? null,
+                        'about_welcome_title' => $translationData['about_welcome_title'] ?? null,
+                        'about_welcome_description' => $translationData['about_welcome_description'] ?? null,
+                        'about_mission_title' => $translationData['about_mission_title'] ?? null,
+                        'about_mission_content' => $translationData['about_mission_content'] ?? null,
+                        'about_vision_title' => $translationData['about_vision_title'] ?? null,
+                        'about_vision_content' => $translationData['about_vision_content'] ?? null,
+                        'counter_years_label' => $translationData['counter_years_label'] ?? null,
+                        'counter_customers_label' => $translationData['counter_customers_label'] ?? null,
+                        'counter_sessions_label' => $translationData['counter_sessions_label'] ?? null,
+                        'counter_certifications_label' => $translationData['counter_certifications_label'] ?? null,
                     ]);
                 } else {
                     // Yeni çeviri oluştur
@@ -324,6 +422,16 @@ class ManageSettings extends Page
                         'site_name' => $translationData['site_name'],
                         'site_description' => $translationData['site_description'] ?? null,
                         'footer_text' => $translationData['footer_text'] ?? null,
+                        'about_welcome_title' => $translationData['about_welcome_title'] ?? null,
+                        'about_welcome_description' => $translationData['about_welcome_description'] ?? null,
+                        'about_mission_title' => $translationData['about_mission_title'] ?? null,
+                        'about_mission_content' => $translationData['about_mission_content'] ?? null,
+                        'about_vision_title' => $translationData['about_vision_title'] ?? null,
+                        'about_vision_content' => $translationData['about_vision_content'] ?? null,
+                        'counter_years_label' => $translationData['counter_years_label'] ?? null,
+                        'counter_customers_label' => $translationData['counter_customers_label'] ?? null,
+                        'counter_sessions_label' => $translationData['counter_sessions_label'] ?? null,
+                        'counter_certifications_label' => $translationData['counter_certifications_label'] ?? null,
                     ]);
                 }
             }

@@ -35,6 +35,9 @@ class Setting extends Model
         'credentials',
         'therapeutic_approach',
         'maintenance_mode',
+        'happy_customers',
+        'therapy_sessions',
+        'certifications_awards',
     ];
 
     /**
@@ -46,6 +49,10 @@ class Setting extends Model
     {
         return [
             'maintenance_mode' => 'boolean',
+            'years_of_experience' => 'integer',
+            'happy_customers' => 'integer',
+            'therapy_sessions' => 'integer',
+            'certifications_awards' => 'integer',
         ];
     }
 

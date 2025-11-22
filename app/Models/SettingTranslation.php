@@ -21,6 +21,16 @@ class SettingTranslation extends Model
         'site_name',
         'site_description',
         'footer_text',
+        'about_welcome_title',
+        'about_welcome_description',
+        'about_mission_title',
+        'about_mission_content',
+        'about_vision_title',
+        'about_vision_content',
+        'counter_years_label',
+        'counter_customers_label',
+        'counter_sessions_label',
+        'counter_certifications_label',
     ];
 
     /**

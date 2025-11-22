@@ -77,7 +77,7 @@ $submit = function () {
                     <h3 class="title">{{ $translation->title }}</h3>
                     <ul class="breadcrumbs">
                         <li><a href="{{ route($locale === 'tr' ? 'tr.home' : 'home') }}">{{ __('common.home') }}</a></li>
-                        <li>{{ __('common.services') }}</li>
+                        <li><a href="{{ route($locale === 'tr' ? 'tr.services' : 'services') }}">{{ __('common.services') }}</a></li>
                         <li>{{ $translation->title }}</li>
                     </ul>
                 </div>
@@ -102,7 +102,7 @@ $submit = function () {
                                 @endif
                             </div>
                             @if($translation->content)
-                                <div class="lh-30 mb-30">
+                                <div class="tinymce-content mb-30">
                                     {!! $translation->content !!}
                                 </div>
                             @endif
@@ -194,5 +194,145 @@ $submit = function () {
             </div>
         </section>
     </div>
+    <style>
+        /* TinyMCE Content Styling - Preserve editor formatting */
+        .tinymce-content {
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .tinymce-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .tinymce-content ul,
+        .tinymce-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            line-height: 1.8;
+        }
+
+        .tinymce-content ul {
+            list-style-type: disc;
+        }
+
+        .tinymce-content ol {
+            list-style-type: decimal;
+        }
+
+        .tinymce-content li {
+            margin-bottom: 0.5rem;
+            list-style: disc;
+        }
+
+        .tinymce-content ul ul,
+        .tinymce-content ol ul {
+            list-style-type: circle;
+        }
+
+        .tinymce-content ol ol,
+        .tinymce-content ul ol {
+            list-style-type: lower-alpha;
+        }
+
+        .tinymce-content h1,
+        .tinymce-content h2,
+        .tinymce-content h3,
+        .tinymce-content h4,
+        .tinymce-content h5,
+        .tinymce-content h6 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .tinymce-content h1 { font-size: 2rem; }
+        .tinymce-content h2 { font-size: 1.75rem; }
+        .tinymce-content h3 { font-size: 1.5rem; }
+        .tinymce-content h4 { font-size: 1.25rem; }
+        .tinymce-content h5 { font-size: 1.1rem; }
+        .tinymce-content h6 { font-size: 1rem; }
+
+        .tinymce-content strong,
+        .tinymce-content b {
+            font-weight: 700;
+        }
+
+        .tinymce-content em,
+        .tinymce-content i {
+            font-style: italic;
+        }
+
+        .tinymce-content a {
+            color: #667eea;
+            text-decoration: underline;
+        }
+
+        .tinymce-content a:hover {
+            color: #5568d3;
+        }
+
+        .tinymce-content blockquote {
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid #667eea;
+            background-color: #f8f9fa;
+            font-style: italic;
+        }
+
+        .tinymce-content code {
+            padding: 0.2rem 0.4rem;
+            background-color: #f8f9fa;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        .tinymce-content pre {
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .tinymce-content pre code {
+            padding: 0;
+            background-color: transparent;
+        }
+
+        .tinymce-content table {
+            width: 100%;
+            margin: 1.5rem 0;
+            border-collapse: collapse;
+        }
+
+        .tinymce-content table th,
+        .tinymce-content table td {
+            padding: 0.75rem;
+            border: 1px solid #dee2e6;
+        }
+
+        .tinymce-content table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .tinymce-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .tinymce-content hr {
+            margin: 2rem 0;
+            border: 0;
+            border-top: 2px solid #e9ecef;
+        }
+    </style>
+
 </div>
 @endvolt
