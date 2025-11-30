@@ -67,7 +67,7 @@ new class extends Component
     </div>
     <div wire:ignore>
         <header id="header-main" class="header style-1 no-boder">
-            <div class="header-inner">
+            <div class="header-inner container">
                 <div class="header-inner-wrap">
                     <div class="mobile-button" data-bs-toggle="offcanvas" data-bs-target="#menu-mobile" aria-controls="menu-mobile">
                         <i class="icon-menu"></i>
@@ -193,7 +193,7 @@ new class extends Component
                     </div>
                     <div class="header-right">
                         <div class="btn-get">
-                            <a class="tf-btn style-default btn-color-secondary pd-40" href="{{ route($locale === 'tr' ? 'tr.book-appointment' : 'book-appointment') }}">
+                            <a class="tf-btn style-default btn-color-secondary pd-40" href="https://iskenderpehlivan.janeapp.com/#staff_member/1" target="_blank">
                                 <span>
                                     {{ __('common.get_consult') }}
                                 </span>
@@ -235,6 +235,20 @@ new class extends Component
             height: 40px;
             width: auto;
             object-fit: contain;
+        }
+
+        /* 13" Laptop ekranları için scale - Zoom out effect */
+        @media only screen and (min-width: 1280px) and (max-width: 1440px) and (min-height: 700px) and (max-height: 900px) {
+            #wrapper {
+                transform: scale(0.88);
+                transform-origin: top center;
+                width: 113.64%; /* 100 / 0.88 = 113.64 */
+                margin: 0 auto;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
         }
 
         /* Mobile - Küçük ekranlar için */
