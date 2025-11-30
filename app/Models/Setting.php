@@ -17,6 +17,7 @@ class Setting extends Model
      */
     protected $fillable = [
         'logo',
+        'dark_logo',
         'favicon',
         'contact_email',
         'contact_phone',

@@ -64,7 +64,7 @@ new class extends Component {
                             @if($settings?->logo)
                                 <div class="footer-logo">
                                     <a href="{{ route('home') }}">
-                                        <img id="logo_footer" src="{{ Storage::url($settings->logo) }}" alt="{{ $this->getTranslation()?->site_name ?? config('app.name') }}">
+                                        <img id="logo_footer" src="{{ Storage::url($settings->dark_logo) }}" alt="{{ $this->getTranslation()?->site_name ?? config('app.name') }}">
                                     </a>
                                 </div>
                             @endif

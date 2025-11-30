@@ -83,6 +83,17 @@ class ManageSettings extends Page
                             ->disk('public')
                             ->maxSize(2048)
                             ->imageEditor()
+                            ->helperText('Normal (açık) tema için logo')
+                            ->columnSpanFull(),
+
+                        Forms\Components\FileUpload::make('dark_logo')
+                            ->label('Site Logosu (Dark)')
+                            ->image()
+                            ->directory('settings')
+                            ->disk('public')
+                            ->maxSize(2048)
+                            ->imageEditor()
+                            ->helperText('Koyu tema veya özel durumlar için alternatif logo')
                             ->columnSpanFull(),
 
                         Forms\Components\FileUpload::make('favicon')
@@ -345,6 +356,7 @@ class ManageSettings extends Page
         if (! $setting) {
             $setting = Setting::create([
                 'logo' => $data['logo'] ?? null,
+                'dark_logo' => $data['dark_logo'] ?? null,
                 'favicon' => $data['favicon'] ?? null,
                 'contact_email' => $data['contact_email'] ?? null,
                 'contact_phone' => $data['contact_phone'] ?? null,
@@ -370,6 +382,7 @@ class ManageSettings extends Page
         } else {
             $setting->update([
                 'logo' => $data['logo'] ?? null,
+                'dark_logo' => $data['dark_logo'] ?? null,
                 'favicon' => $data['favicon'] ?? null,
                 'contact_email' => $data['contact_email'] ?? null,
                 'contact_phone' => $data['contact_phone'] ?? null,

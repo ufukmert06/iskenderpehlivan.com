@@ -223,8 +223,8 @@ new class extends Component
         }
 
         .logo-main {
-            height: 30px;
-            max-width: 200px;
+            height: 100px;
+            /*max-width: 200px;*/
             object-fit: contain;
         }
 
