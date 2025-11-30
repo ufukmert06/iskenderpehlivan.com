@@ -20,7 +20,7 @@ new class extends Component {
                     'cta_link' => 'https://iskenderpehlivan.janeapp.com/#staff_member/1'
                 ],
                 [
-                    'image' => asset('images/ekip.jpeg'),
+                    'image' => asset('images/slide/slide2.jpeg'),
                     'title' => __('home.about.title'),
                     'animated_text' => [__('home.about.subtitle')],
                     'description' => __('home.about.description'),
@@ -28,7 +28,7 @@ new class extends Component {
                     'cta_link' => '#about'
                 ],
                 [
-                    'image' => asset('images/firstphoto.png'),
+                    'image' => asset('images/slide/slide3.jpeg'),
                     'title' => __('home.services.title'),
                     'animated_text' => [__('home.services.subtitle')],
                     'description' => __('home.services.description'),
@@ -75,8 +75,8 @@ new class extends Component {
                                      data-col="{{ $col }}"
                                      style="
                                          background-image: url('{{ $slide['image'] }}');
-                                         background-position: {{ $gridCols > 1 ? ($col / ($gridCols - 1)) * 100 : 50 }}% {{ $gridRows > 1 ? ($row / ($gridRows - 1)) * 100 : 50 }}%;
                                          background-size: {{ $gridCols * 100 }}% {{ $gridRows * 100 }}%;
+                                         background-position: {{ ($col / max(1, $gridCols - 1)) * 100 }}% {{ ($row / max(1, $gridRows - 1)) * 100 }}%;
                                      ">
                                 </div>
                             @endfor
@@ -345,6 +345,7 @@ new class extends Component {
         background-repeat: no-repeat;
         will-change: transform, opacity;
         backface-visibility: hidden;
+        overflow: hidden;
     }
 
     /* Content Overlay */
