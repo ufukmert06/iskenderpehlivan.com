@@ -13,6 +13,7 @@ new class extends Component {
             $slides = [
                 [
                     'image' => asset('images/slide/slide1.png'),
+                    'image_mobile' => asset('images/slide/slide1-mobile.jpeg'),
                     'title' => __('home.hero.title'),
                     'animated_text' => [__('home.hero.title_animated_1'), __('home.hero.title_animated_2')],
                     'description' => __('home.hero.description'),
@@ -21,6 +22,7 @@ new class extends Component {
                 ],
                 [
                     'image' => asset('images/slide/slide2.jpeg'),
+                    'image_mobile' => asset('images/slide/slide2-mobile.jpeg'),
                     'title' => __('home.about.title'),
                     'animated_text' => [__('home.about.subtitle')],
                     'description' => __('home.about.description'),
@@ -29,6 +31,7 @@ new class extends Component {
                 ],
                 [
                     'image' => asset('images/slide/slide3.jpeg'),
+                    'image_mobile' => asset('images/slide/slide3-mobile.jpeg'),
                     'title' => __('home.services.title'),
                     'animated_text' => [__('home.services.subtitle')],
                     'description' => __('home.services.description'),
@@ -66,8 +69,8 @@ new class extends Component {
                         </div>
                     </div>
 
-                    <!-- Grid Tiles -->
-                    <div class="grid-container" data-slide-index="{{ $index }}">
+                    <!-- Grid Tiles - Desktop -->
+                    <div class="grid-container grid-desktop" data-slide-index="{{ $index }}">
                         @for($row = 0; $row < $gridRows; $row++)
                             @for($col = 0; $col < $gridCols; $col++)
                                 <div class="grid-tile"
@@ -77,6 +80,27 @@ new class extends Component {
                                          background-image: url('{{ $slide['image'] }}');
                                          background-size: {{ $gridCols * 100 }}% {{ $gridRows * 100 }}%;
                                          background-position: {{ ($col / max(1, $gridCols - 1)) * 100 }}% {{ ($row / max(1, $gridRows - 1)) * 100 }}%;
+                                     ">
+                                </div>
+                            @endfor
+                        @endfor
+                    </div>
+
+                    <!-- Grid Tiles - Mobile -->
+                    @php
+                        $mobileGridRows = 3;
+                        $mobileGridCols = 4;
+                    @endphp
+                    <div class="grid-container grid-mobile" data-slide-index="{{ $index }}">
+                        @for($row = 0; $row < $mobileGridRows; $row++)
+                            @for($col = 0; $col < $mobileGridCols; $col++)
+                                <div class="grid-tile"
+                                     data-row="{{ $row }}"
+                                     data-col="{{ $col }}"
+                                     style="
+                                         background-image: url('{{ $slide['image_mobile'] }}');
+                                         background-size: {{ $mobileGridCols * 100 }}% {{ $mobileGridRows * 100 }}%;
+                                         background-position: {{ ($col / max(1, $mobileGridCols - 1)) * 100 }}% {{ ($row / max(1, $mobileGridRows - 1)) * 100 }}%;
                                      ">
                                 </div>
                             @endfor
@@ -175,7 +199,12 @@ new class extends Component {
 
                 if (!nextSlideEl) return;
 
-                const tiles = nextSlideEl.querySelectorAll('.grid-tile');
+                // Detect which grid to animate based on screen size
+                const isMobile = window.innerWidth <= 768;
+                const gridSelector = isMobile ? '.grid-mobile' : '.grid-desktop';
+                const gridDimensions = isMobile ? [3, 4] : [4, 6]; // [rows, cols]
+
+                const tiles = nextSlideEl.querySelectorAll(`${gridSelector} .grid-tile`);
                 const content = nextSlideEl.querySelector('.slide-content');
 
                 // Hide current slide if not init
@@ -217,7 +246,7 @@ new class extends Component {
                         stagger: {
                             amount: 1.0,
                             from: 'end', // Start from bottom-right (end of grid)
-                            grid: [4, 6],
+                            grid: gridDimensions,
                             each: 0.04 // Smooth diagonal flow
                         }
                     });
@@ -231,7 +260,7 @@ new class extends Component {
                         stagger: {
                             amount: 0.8,
                             from: 'end', // Always from bottom-right to top-left
-                            grid: [4, 6],
+                            grid: gridDimensions,
                             each: 0.035 // Smooth diagonal flow
                         }
                     });
@@ -323,9 +352,31 @@ new class extends Component {
         width: 100%;
         height: 100%;
         display: grid;
+        gap: 0;
+    }
+
+    /* Desktop Grid - 6 columns x 4 rows */
+    .grid-desktop {
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: repeat(4, 1fr);
-        gap: 0;
+    }
+
+    /* Mobile Grid - 4 columns x 3 rows */
+    .grid-mobile {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        display: none; /* Hidden by default on desktop */
+    }
+
+    /* Show/hide grids based on viewport */
+    @media (max-width: 768px) {
+        .grid-desktop {
+            display: none;
+        }
+
+        .grid-mobile {
+            display: grid;
+        }
     }
 
     .grid-tile {
@@ -550,11 +601,6 @@ new class extends Component {
 
         .next-btn {
             right: 1rem;
-        }
-
-        .grid-container {
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 1fr);
         }
     }
     </style>
