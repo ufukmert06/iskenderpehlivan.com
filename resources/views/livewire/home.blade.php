@@ -37,8 +37,30 @@ $settings = \App\Models\Setting::with('translations')->first();
                 <span>{{ __('home.hero.cta_button') }} <i class="icon-ArrowRight arr-1"></i></span>
             </a>
         </div>
-        <div class="image-wrap">
-            <img class="lazyload" data-src="{{asset('images/firstphoto.png')}}" src="{{asset('images/firstphoto.png')}}" alt="{{ __('home.image_alt.consulting') }}">
+        <div class="image-wrap" x-data="gridReveal()" x-init="initGridReveal()">
+            <!-- Hidden image for preloading -->
+            <img class="hidden" src="{{asset('images/firstphoto.png')}}" alt="{{ __('home.image_alt.consulting') }}" x-ref="sourceImage">
+
+            <!-- Grid container -->
+            <div class="grid-reveal-container" x-ref="gridContainer">
+                @php
+                    $rows = 4;
+                    $cols = 5;
+                @endphp
+                @for($row = 0; $row < $rows; $row++)
+                    @for($col = 0; $col < $cols; $col++)
+                        <div class="grid-tile"
+                             data-row="{{ $row }}"
+                             data-col="{{ $col }}"
+                             style="
+                                 background-image: url('{{asset('images/firstphoto.png')}}');
+                                 background-position: {{ ($col / ($cols - 1)) * 100 }}% {{ ($row / ($rows - 1)) * 100 }}%;
+                                 background-size: {{ $cols * 100 }}% {{ $rows * 100 }}%;
+                             ">
+                        </div>
+                    @endfor
+                @endfor
+            </div>
         </div>
     </div>
 
@@ -300,5 +322,72 @@ $settings = \App\Models\Setting::with('translations')->first();
             </div>
         </section>
     </div>
+
+    <script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('gridReveal', () => ({
+            initGridReveal() {
+                // Wait for GSAP to be available
+                const initAnimation = () => {
+                    if (typeof gsap === 'undefined') {
+                        setTimeout(initAnimation, 100);
+                        return;
+                    }
+
+                    const tiles = this.$refs.gridContainer.querySelectorAll('.grid-tile');
+
+                    // Set initial state for all tiles
+                    gsap.set(tiles, {
+                        opacity: 0,
+                        scale: 0.5,
+                        rotation: () => gsap.utils.random(-45, 45),
+                    });
+
+                    // Create the reveal animation
+                    gsap.to(tiles, {
+                        opacity: 1,
+                        scale: 1,
+                        rotation: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        stagger: {
+                            amount: 1.2,
+                            from: 'random',
+                            grid: [4, 5],
+                        },
+                        delay: 0.3,
+                    });
+                };
+
+                initAnimation();
+            }
+        }));
+    });
+    </script>
+
+    <style>
+    .grid-reveal-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 0;
+        overflow: hidden;
+    }
+
+    .grid-tile {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        will-change: transform, opacity;
+    }
+
+    /* Ensure the image-wrap maintains its aspect ratio */
+    .page-title-homepage-2 .image-wrap {
+        overflow: visible;
+    }
+    </style>
 </div>
 @endvolt
