@@ -53,7 +53,7 @@ new class extends Component {
                                     @if(count($slide['animated_text']) > 0)
                                         <span class="animated-text">
                                             @foreach($slide['animated_text'] as $textIndex => $text)
-                                                <span class="text-item" :class="{ 'visible': animatedTextIndex === {{ $textIndex }} }">{{ $text }}</span>
+                                                <span class="text-item">{{ $text }}</span>
                                             @endforeach
                                         </span>
                                     @endif
@@ -118,8 +118,6 @@ new class extends Component {
             totalSlides: 3,
             isAnimating: false,
             autoplayInterval: null,
-            animatedTextIndex: 0,
-            animatedTextInterval: null,
 
             initSlider() {
                 // Dynamically set slider height based on header height
@@ -144,9 +142,6 @@ new class extends Component {
                     setTimeout(() => {
                         this.startAutoplay();
                     }, 5000);
-
-                    // Start animated text rotation
-                    this.startAnimatedText();
                 };
 
                 init();
@@ -281,12 +276,6 @@ new class extends Component {
                     clearInterval(this.autoplayInterval);
                     this.startAutoplay();
                 }
-            },
-
-            startAnimatedText() {
-                this.animatedTextInterval = setInterval(() => {
-                    this.animatedTextIndex = (this.animatedTextIndex + 1) % 2;
-                }, 3000);
             }
         }));
     });
@@ -359,69 +348,76 @@ new class extends Component {
         align-items: center;
         justify-content: center;
         z-index: 10;
-        background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);
+        background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.5) 100%);
         padding: 2rem;
     }
 
     .slide-content .content-inner {
-        max-width: 800px;
+        max-width: 900px;
         text-align: center;
         color: #fff;
+        background: rgba(0,0,0,0.4);
+        padding: 3rem 2rem;
+        border-radius: 20px;
     }
 
     .slide-content .heading .title {
-        font-size: clamp(2rem, 5vw, 4rem);
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 800;
+        margin-bottom: 2rem;
+        line-height: 1.1;
+        text-shadow: 3px 3px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
+        color: #ffffff;
+        letter-spacing: -0.02em;
     }
 
     .slide-content .animated-text {
         display: inline-block;
-        position: relative;
-        min-width: 200px;
+        color: #ffd700;
+        font-weight: 900;
+        text-shadow:
+            2px 2px 0 rgba(0,0,0,0.3),
+            4px 4px 8px rgba(0,0,0,0.5),
+            0 0 15px rgba(255,215,0,0.3);
     }
 
     .slide-content .text-item {
-        position: absolute;
-        left: 0;
-        right: 0;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.5s ease;
-    }
-
-    .slide-content .text-item.visible {
-        position: relative;
+        display: inline;
         opacity: 1;
-        transform: translateY(0);
+        margin: 0 0.5rem;
     }
 
     .slide-content .description {
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        margin-bottom: 2rem;
-        line-height: 1.6;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
+        color: #f5f5f5;
+        font-weight: 400;
     }
 
     .slide-content .cta-button {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        padding: 1rem 2rem;
+        gap: 0.75rem;
+        padding: 1.25rem 2.5rem;
         background: #fff;
         color: #000;
         text-decoration: none;
-        font-weight: 600;
+        font-weight: 700;
+        font-size: 1.125rem;
         border-radius: 50px;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        border: 2px solid transparent;
     }
 
     .slide-content .cta-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        background: #000;
+        color: #fff;
+        border-color: #fff;
     }
 
     /* Navigation Controls */
@@ -517,13 +513,28 @@ new class extends Component {
 
         .slide-content {
             padding: 1rem;
+            background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 100%);
+        }
+
+        .slide-content .content-inner {
+            padding: 2rem 1.5rem;
+            background: rgba(0,0,0,0.4);
         }
 
         .slide-content .heading .title {
             font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
         }
 
         .slide-content .description {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+        }
+
+        .slide-content .cta-button {
+            padding: 1rem 2rem;
             font-size: 1rem;
         }
 
