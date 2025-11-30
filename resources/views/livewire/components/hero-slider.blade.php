@@ -213,31 +213,31 @@ new class extends Component {
                 });
 
                 if (direction === 'init') {
-                    // Initial load: vertical blinds effect
+                    // Initial load: diagonal from bottom-right to top-left
                     timeline.to(tiles, {
                         scaleY: 1,
                         opacity: 1,
                         duration: 0.8,
                         ease: 'power3.inOut',
                         stagger: {
-                            amount: 0.8,
-                            from: 'start',
+                            amount: 1.0,
+                            from: 'end', // Start from bottom-right (end of grid)
                             grid: [4, 6],
-                            axis: 'x'
+                            each: 0.04 // Smooth diagonal flow
                         }
                     });
                 } else {
-                    // Slide transitions: horizontal slide with stagger
+                    // Slide transitions: diagonal from bottom-right to top-left
                     timeline.to(tiles, {
                         x: 0,
                         opacity: 1,
                         duration: 0.7,
                         ease: 'power2.out',
                         stagger: {
-                            amount: 0.6,
-                            from: direction === 'next' ? 'start' : 'end',
+                            amount: 0.8,
+                            from: 'end', // Always from bottom-right to top-left
                             grid: [4, 6],
-                            axis: 'x'
+                            each: 0.035 // Smooth diagonal flow
                         }
                     });
                 }
@@ -426,17 +426,17 @@ new class extends Component {
     /* Navigation Controls */
     .slider-controls {
         position: absolute;
+        top: 0;
         bottom: 0;
         left: 0;
         right: 0;
         z-index: 20;
-        padding: 2rem;
-        pointer-events: none; /* Allow clicks to pass through to buttons */
+        pointer-events: none; /* Allow clicks to pass through to content */
     }
 
     .nav-btn {
-        position: fixed; /* Changed from absolute to fixed */
-        top: 50%; /* Vertically center on screen */
+        position: absolute;
+        top: 50%; /* Vertically center within slider */
         transform: translateY(-50%);
         background: rgba(255,255,255,0.2);
         backdrop-filter: blur(10px);
@@ -474,16 +474,16 @@ new class extends Component {
         display: inline-block;
     }
 
-    /* Pagination Dots - keep at bottom */
-    .pagination-dots {
-        pointer-events: all;
-    }
-
     /* Pagination Dots */
     .pagination-dots {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
         justify-content: center;
         gap: 1rem;
+        pointer-events: all;
     }
 
     .pagination-dots .dot {
