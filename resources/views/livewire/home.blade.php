@@ -33,7 +33,7 @@ $settings = \App\Models\Setting::with('translations')->first();
                     {{ __('home.hero.description') }}
                 </p>
             </div>
-            <a class="tf-btn style-default btn-color-secondary pd-28" href="{{ route(app()->getLocale() === 'tr' ? 'tr.book-appointment' : 'book-appointment') }}">
+            <a class="tf-btn style-default btn-color-secondary pd-28" href="https://iskenderpehlivan.janeapp.com/#staff_member/1">
                 <span>{{ __('home.hero.cta_button') }} <i class="icon-ArrowRight arr-1"></i></span>
             </a>
         </div>
@@ -272,7 +272,7 @@ $settings = \App\Models\Setting::with('translations')->first();
                                         @endif
                                     @endif
                                 </ul>
-                                <a href="{{ route(app()->getLocale() === 'tr' ? 'tr.book-appointment' : 'book-appointment') }}" class="tf-btn-link z-5 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
+                                <a href="https://iskenderpehlivan.janeapp.com/#staff_member/1" class="tf-btn-link z-5 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                     <span data-text="{{ __('home.contact.cta_button') }}">{{ __('home.contact.cta_button') }}</span>
                                     <i class="icon-ArrowRight"></i>
                                 </a>

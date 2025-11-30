@@ -130,11 +130,6 @@ $submit = function () {
                                     <span wire:loading.remove wire:target="submit">{{ __('contact.form_submit') }}</span>
                                     <span wire:loading.inline wire:target="submit" style="display: none;">{{ __('contact.form_sending') }}</span>
                                 </button>
-                                <div class="text-center mt-20">
-                                    <a href="{{ route(app()->getLocale() === 'tr' ? 'tr.book-appointment' : 'book-appointment') }}" class="tf-btn style-default btn-color-secondary pd-40">
-                                        <span>{{ __('home.hero.cta_button') }}</span>
-                                    </a>
-                                </div>
                             </form>
                         </div>
                     </div>
