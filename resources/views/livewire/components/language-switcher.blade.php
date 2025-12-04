@@ -2,8 +2,7 @@
 
 use Livewire\Volt\Component;
 
-new class extends Component
-{
+new class extends Component {
     public string $currentLocale;
 
     public string $nextLocale;
@@ -21,7 +20,7 @@ new class extends Component
     {
         $route = request()->route();
 
-        if (! $route) {
+        if (!$route) {
             // Default to Turkish home if switching from English
             return $this->nextLocale === 'tr' ? route('tr.home') : route('home');
         }
@@ -32,7 +31,7 @@ new class extends Component
         // Convert between English and Turkish route names
         if ($this->nextLocale === 'tr') {
             // Switching to Turkish: add 'tr.' prefix
-            $newRouteName = str_starts_with($routeName, 'tr.') ? $routeName : 'tr.'.$routeName;
+            $newRouteName = str_starts_with($routeName, 'tr.') ? $routeName : 'tr.' . $routeName;
         } else {
             // Switching to English: remove 'tr.' prefix
             $newRouteName = str_starts_with($routeName, 'tr.') ? substr($routeName, 3) : $routeName;
@@ -49,15 +48,14 @@ new class extends Component
 }; ?>
 
 <div>
-    <a
-        href="{{ $switchUrl }}"
-        class="btn-locale flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors hover:opacity-80"
-        title="{{ $nextLocale === 'tr' ? 'Türkçe' : 'English' }}"
-        wire:navigate
-    >
+    <a href="{{ $switchUrl }}"
+        class="btn-locale flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors hover:opacity-80 text-white"
+        title="{{ $nextLocale === 'tr' ? 'Türkçe' : 'English' }}" wire:navigate>
         <div class="icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/>
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                    fill="currentColor" />
             </svg>
         </div>
         <span class="uppercase font-semibold">{{ $nextLocale }}</span>

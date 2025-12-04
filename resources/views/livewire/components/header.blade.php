@@ -66,10 +66,10 @@ new class extends Component
         </div>
     </div>
     <div wire:ignore>
-        <header id="header-main" class="header style-1 no-boder">
-            <div class="header-inner container">
-                <div class="header-inner-wrap">
-                    <div class="mobile-button" data-bs-toggle="offcanvas" data-bs-target="#menu-mobile" aria-controls="menu-mobile">
+        <header id="header-main" class="header style-1 no-boder bg-[#3C5250]">
+            <div class="header-inner container !bg-transparent">
+                <div class="header-inner-wrap !bg-transparent">
+                    <div class="mobile-button text-white" data-bs-toggle="offcanvas" data-bs-target="#menu-mobile" aria-controls="menu-mobile">
                         <i class="icon-menu"></i>
                     </div>
                     <div class="header-left">
@@ -101,7 +101,7 @@ new class extends Component
                                         @endphp
 
                                         <li class="{{ implode(' ', $classes) }} {{ $item->wrapper_class }}">
-                                            <a href="{{ $item->link }}" target="{{ $item->target }}" class="{{ $item->link_class }}">
+                                            <a href="{{ $item->link }}" target="{{ $item->target }}" class="{{ $item->link_class }} text-white">
                                                 {{ $item->menu_name }}
                                             </a>
 
@@ -197,7 +197,7 @@ new class extends Component
                             </a>
                         </div>
                         <div class="group-btn">
-                            <a class="btn-find" href="#canvasSearch" data-bs-toggle="offcanvas">
+                            <a class="btn-find text-white" href="#canvasSearch" data-bs-toggle="offcanvas">
                                 <div class="icon">
                                     <i class="icon-MagnifyingGlass"></i>
                                 </div>

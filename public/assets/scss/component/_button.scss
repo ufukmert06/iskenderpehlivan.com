@@ -16,46 +16,58 @@
     overflow: hidden;
     border-radius: 40px;
     position: relative;
+
     &.btn-color-primary {
         background-color: var(--Primary);
+
         &:hover {
-        background-color: transparent !important;
+            background-color: transparent !important;
 
             &::after {
                 background-color: var(--Secondary);
             }
         }
     }
+
     &.btn-color-secondary {
         background-color: var(--Secondary);
     }
+
     &.btn-color-white {
         background-color: var(--White);
     }
+
     &.has-boder {
         border: 2px solid var(--Primary);
     }
+
     &.boder-8 {
         border-radius: 8px;
     }
+
     &.pd-23 {
         padding: 0 23px;
     }
+
     &.pd-26 {
         padding: 0 26px;
     }
+
     &.pd-28 {
         padding: 0 28px;
     }
+
     &.pd-40 {
         padding: 0 40px;
     }
+
     &.text-color-white {
-        > span {
+        >span {
             color: var(--White) !important;
         }
+
         &:hover {
-            > span {
+            >span {
                 color: var(--Primary) !important;
             }
         }
@@ -65,6 +77,7 @@
         position: relative;
         height: 52px;
         gap: 6px;
+
         &::after {
             content: "";
             width: 100%;
@@ -77,7 +90,8 @@
             z-index: 1;
             @include transition3();
         }
-        > span {
+
+        >span {
             display: inline-flex;
             align-items: center;
             position: relative;
@@ -87,14 +101,18 @@
             color: var(--Primary);
             @include transition3();
         }
+
         i {
             font-size: 19px;
         }
+
         &:hover {
             background-color: var(--Primary);
-            > span {
+
+            >span {
                 color: var(--White);
             }
+
             i {
                 color: var(--White);
             }
@@ -114,6 +132,7 @@
     align-items: center;
     color: var(--Primary) !important;
     max-width: max-content;
+
     span {
         margin: 0;
         position: relative;
@@ -121,6 +140,7 @@
         line-height: 24px;
         font-weight: 600;
         transition: 0.3s linear;
+
         &::after {
             position: absolute;
             content: "";
@@ -132,6 +152,7 @@
             @include transition3();
         }
     }
+
     i {
         color: var(--Primary);
         transition: 0.2s;
@@ -140,12 +161,14 @@
         transition-delay: 0.2s;
         font-size: 18px;
     }
+
     &:hover {
         span {
             &::after {
                 width: 100%;
             }
         }
+
         i {
             transform: translateX(4px);
         }
