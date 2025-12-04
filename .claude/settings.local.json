@@ -23,7 +23,8 @@
       "Bash(mkdir:*)",
       "Bash(php artisan:*)",
       "WebFetch(domain:www.iskenderpehlivan.com)",
-      "Bash(php vendor/bin/pint:*)"
+      "Bash(php vendor/bin/pint:*)",
+      "mcp__context7__resolve-library-id"
     ],
     "deny": [],
     "ask": []
