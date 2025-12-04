@@ -190,7 +190,7 @@ new class extends Component
                     </div>
                     <div class="header-right">
                         <div class="btn-get">
-                            <a class="tf-btn style-default btn-color-secondary pd-40" href="https://iskenderpehlivan.janeapp.com/#staff_member/1" target="_blank">
+                            <a class="tf-btn style-default btn-color-secondary pd-40 get-consult-btn" href="https://iskenderpehlivan.janeapp.com/#staff_member/1" target="_blank">
                                 <span>
                                     {{ __('common.get_consult') }}
                                 </span>
@@ -216,6 +216,11 @@ new class extends Component
             max-width: none;
         }
 
+        .header-logo {
+            padding-top: 10px !important;
+            padding-bottom: 0 !important;
+        }
+
         .logo-favicon {
             height: 40px;
             width: 40px;
@@ -223,8 +228,9 @@ new class extends Component
         }
 
         .logo-main {
-            height: 100px;
-            /*max-width: 200px;*/
+            height: 150px;
+            max-width: 100%;
+            width: auto;
             object-fit: contain;
         }
 
@@ -250,25 +256,82 @@ new class extends Component
 
         /* Mobile - Küçük ekranlar için */
         @media (max-width: 991px) {
+            .header-inner-wrap {
+                display: grid !important;
+                grid-template-columns: auto 1fr;
+                grid-template-areas:
+                    "logo logo"
+                    "menu right";
+                gap: 10px;
+                padding: 10px 0;
+            }
+
+            .header-left {
+                grid-area: logo;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 5px;
+            }
+
+            .header-logo {
+                width: 100%;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .site-logo {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .mobile-button {
+                grid-area: menu;
+                justify-self: start;
+                margin-left: 0;
+            }
+
+            .header-right {
+                grid-area: right;
+                justify-self: end;
+                width: 100%;
+                justify-content: flex-end;
+            }
+
             .logo-container {
-                max-width: 150px;
+                max-width: none;
                 gap: 0.5rem !important;
             }
 
             .logo-favicon {
-                height: 30px;
-                width: 30px;
+                height: 40px;
+                width: 40px;
             }
 
             .logo-main {
-                max-height: 25px;
-                max-width: 110px;
+                max-height: 100px !important;
+                max-width: 100% !important;
+                height: auto !important;
+                width: 100% !important;
+                object-fit: contain;
             }
 
             .logo-fallback {
-                max-width: 150px;
+                max-width: 200px;
                 height: auto;
             }
+        }
+
+        /* Get Consult Button Hover */
+        .get-consult-btn {
+            transition: border 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .get-consult-btn:hover {
+            border: 2px solid white !important;
         }
     </style>
 
