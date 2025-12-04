@@ -38,4 +38,5 @@ return [
     'about' => 'About',
     'contact' => 'Contact',
     'services' => 'Services',
+    'blog' => 'Blog',
 ];

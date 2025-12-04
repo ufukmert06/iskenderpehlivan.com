@@ -38,4 +38,5 @@ return [
     'about' => 'Hakkımızda',
     'contact' => 'İletişim',
     'services' => 'Hizmetler',
+    'blog' => 'Blog',
 ];
