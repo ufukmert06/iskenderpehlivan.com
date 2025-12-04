@@ -61,10 +61,10 @@ new class extends Component {
                 <div class="col-12">
                     <div class="footer-main">
                         <div class="footer-left">
-                            @if($settings?->logo)
+                            @if($settings?->dark_logo)
                                 <div class="footer-logo">
                                     <a href="{{ route('home') }}">
-                                        <img id="logo_footer" src="{{ Storage::url($settings->dark_logo) }}" alt="{{ $this->getTranslation()?->site_name ?? config('app.name') }}">
+                                        <img id="logo_footer" src="{{ Storage::url($settings->dark_logo) }}" data-retina="{{ Storage::url($settings->dark_logo) }}" alt="{{ $this->getTranslation()?->site_name ?? config('app.name') }}">
                                     </a>
                                 </div>
                             @endif

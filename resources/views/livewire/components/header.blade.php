@@ -67,7 +67,7 @@ new class extends Component
     </div>
     <div wire:ignore>
         <header id="header-main" class="header style-1 no-boder bg-[#3C5250]">
-            <div class="header-inner container !bg-transparent">
+            <div class="header-inner  !bg-transparent">
                 <div class="header-inner-wrap !bg-transparent">
                     <div class="mobile-button text-white" data-bs-toggle="offcanvas" data-bs-target="#menu-mobile" aria-controls="menu-mobile">
                         <i class="icon-menu"></i>

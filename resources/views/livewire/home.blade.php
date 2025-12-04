@@ -35,9 +35,6 @@ $settings = \App\Models\Setting::with('translations')->first();
                         </div>
                         <div class="col-md-6">
                             <div class="box-about">
-                                <div class="icon wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                    <img src="/assets/images/item/favicon.png" alt="{{ __('home.image_alt.logo') }}">
-                                </div>
                                 <div class="heading-section text-start wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
                                     <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.about.subtitle') }}</p>
                                     <h3>{{ __('home.about.title') }}</h3>
