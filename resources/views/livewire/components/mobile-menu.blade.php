@@ -54,7 +54,7 @@ $menu = \Biostate\FilamentMenuBuilder\Models\Menu::with([
                                         data-bs-toggle="collapse" aria-expanded="false" aria-controls="dropdown-menu-{{ $index }}">
                                         {{ $item->menu_name }}
                                     </a>
-                                    <div id="dropdown-menu-{{ $index }}" class="collapse" data-bs-parent="#menu-mobile-menu">
+                                    <div id="dropdown-menu-{{ $index }}" class="collapse">
                                         <ul class="sub-mobile">
                                             @foreach($item->children as $child)
                                                 <li class="menu-item {{ $child->wrapper_class }}">
@@ -195,6 +195,37 @@ $menu = \Biostate\FilamentMenuBuilder\Models\Menu::with([
             text-align: center;
             margin: 0;
             font-weight: 400;
+        }
+
+        /* Collapse animasyon düzeltmeleri */
+        .inner-mobile-nav .collapse {
+            transition: height 0.35s ease;
+        }
+
+        .inner-mobile-nav .collapse:not(.show) {
+            display: none;
+        }
+
+        .inner-mobile-nav .collapse.show {
+            display: block !important;
+            height: auto !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        .inner-mobile-nav .collapsing {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.35s ease;
+        }
+
+        .inner-mobile-nav .sub-mobile {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
     </style>
 
