@@ -23,8 +23,9 @@ return [
     // Benefits Section
     'benefits' => [
         'subtitle' => 'Avantajlar',
-        'title' => 'Neden İskender Pehlivan Danışmanlık?',
-        'description' => 'Kanıtlanmış sonuçlar ve etkili terapi, sizin benzersiz ihtiyaçlarınızı karşılamak için tasarlanmıştır.',
+        'title' => 'Neden  IST Counselling Inc. ?',
+        'description' => 'Gelişiminizi en az sizin kadar önemseyen ve düşseniz bile yeniden ayağa kalkmanızı sağlayacak kadar güçlü birini tanıyoruz. Size onu keşfetmeniz için eşlik etmekten mutluluk duyar ve bilmenizi isteriz ki o kişi sizin
+içinizde. ve IST Counselling Inc. kanıtlanmış sonuçlar ve etkili terapilerle, sizin benzersiz ihtiyaçlarınızı karşılamak için tasarlanmıştır.',
         'card_1_title' => 'Kişiselleştirilmiş Bakım',
         'card_1_description' => 'Sizin benzersiz ihtiyaçlarınız ve hedefleriniz için özelleştirilmiş tedavi planları oluşturuyoruz ve iyileşme yolculuğunuza kişisel olarak uygun bir yaklaşım sağlıyoruz.',
         'card_2_title' => 'Deneyimli Uzmanlar',

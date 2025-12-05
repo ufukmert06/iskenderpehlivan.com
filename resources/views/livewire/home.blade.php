@@ -67,35 +67,6 @@ $settings = \App\Models\Setting::with('translations')->first();
                                 {{ __('home.benefits.description') }}
                             </p>
                         </div>
-                        <div class="grid-layout-3 gap-30">
-                            <div class="icons-box effec-icon wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                <div class="heading">
-                                    <h5><a href="#">{{ __('home.benefits.card_1_title') }}</a></h5>
-                                    <div class="icon">
-                                        <i class="icon-HandHeart"></i>
-                                    </div>
-                                </div>
-                                <p>{{ __('home.benefits.card_1_description') }}</p>
-                            </div>
-                            <div class="icons-box effec-icon wow fadeInUp" data-wow-duration="1000" data-wow-delay="0.1s">
-                                <div class="heading">
-                                    <h5><a href="#">{{ __('home.benefits.card_2_title') }}</a></h5>
-                                    <div class="icon">
-                                        <i class="icon-SketchLogo"></i>
-                                    </div>
-                                </div>
-                                <p>{{ __('home.benefits.card_2_description') }}</p>
-                            </div>
-                            <div class="icons-box effec-icon wow fadeInUp" data-wow-duration="1000" data-wow-delay="0.2s">
-                                <div class="heading">
-                                    <h5><a href="#">{{ __('home.benefits.card_3_title') }}</a></h5>
-                                    <div class="icon">
-                                        <i class="icon-Lifebuoy"></i>
-                                    </div>
-                                </div>
-                                <p>{{ __('home.benefits.card_3_description') }}</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
