@@ -324,14 +324,86 @@ new class extends Component
             }
         }
 
-        /* Get Consult Button Hover */
+        /* Get Consult Button - Dalga Animasyonu */
         .get-consult-btn {
-            transition: border 0.3s ease;
+            position: relative;
             border: 2px solid transparent;
+            overflow: visible;
+            z-index: 1;
         }
 
+        /* ::after elementini tamamen kaldır */
+        .get-consult-btn::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        /* Transition'ı devre dışı bırak */
+        .get-consult-btn,
+        .get-consult-btn span,
+        .get-consult-btn i {
+            transition: none !important;
+        }
+
+        /* Metin rengi beyaz - hover dahil */
+        .get-consult-btn span,
+        .get-consult-btn:hover span {
+            color: #fff !important;
+        }
+
+        /* Background rengi sabit kal */
+        .get-consult-btn,
         .get-consult-btn:hover {
-            border: 2px solid white !important;
+            background-color: var(--Secondary) !important;
+        }
+
+        /* İkon rengi beyaz - hover dahil */
+        .get-consult-btn i,
+        .get-consult-btn:hover i {
+            color: #fff !important;
+        }
+
+        .get-consult-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 999px;
+            transform: translate(-50%, -50%);
+            animation: ripple 2s ease-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+            }
+            100% {
+                width: 140%;
+                height: 200%;
+                opacity: 0;
+            }
+        }
+
+        /* Mobile için animasyon ayarı */
+        @media (max-width: 991px) {
+            @keyframes ripple {
+                0% {
+                    width: 100%;
+                    height: 100%;
+                    opacity: 1;
+                }
+                100% {
+                    width: 130%;
+                    height: 180%;
+                    opacity: 0;
+                }
+            }
         }
     </style>
 
