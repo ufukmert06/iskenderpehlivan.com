@@ -1,7 +1,7 @@
 @volt
 <?php
 
-use function Livewire\Volt\{computed, mount, state};
+use function Livewire\Volt\{computed, mount, state, title};
 
 state(['page', 'translation', 'locale', 'settings', 'settingTranslation']);
 
@@ -25,6 +25,8 @@ mount(function () {
     $this->settings = \App\Models\Setting::with('translations')->first();
     $this->settingTranslation = $this->settings?->translation($this->locale);
 });
+
+title(fn () => ($this->translation?->title ?? __('common.about')) . ' - ' . config('app.name'));
 
 ?>
 

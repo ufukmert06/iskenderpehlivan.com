@@ -1,7 +1,7 @@
 @volt
 <?php
 
-use function Livewire\Volt\{mount, state};
+use function Livewire\Volt\{mount, state, title};
 
 state(['page', 'translation', 'locale']);
 
@@ -21,6 +21,8 @@ mount(function () {
         abort(404, 'Page translation not found');
     }
 });
+
+title(fn () => ($this->translation?->title ?? __('common.terms_of_service')) . ' - ' . config('app.name'));
 
 ?>
 

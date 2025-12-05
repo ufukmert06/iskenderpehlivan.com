@@ -1,7 +1,7 @@
 @volt
 <?php
 
-use function Livewire\Volt\{computed, mount, state, rules};
+use function Livewire\Volt\{computed, mount, state, rules, title};
 
 state(['settings', 'settingTranslation', 'name', 'phone', 'service_id', 'preferred_date', 'preferred_time', 'message', 'locale']);
 
@@ -25,6 +25,8 @@ mount(function () {
             ->first();
     }
 });
+
+title(__('appointment.title') . ' - ' . config('app.name'));
 
 $services = computed(function () {
     return \App\Models\Post::with('translations')

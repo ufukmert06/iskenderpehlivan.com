@@ -1,6 +1,10 @@
 @volt
 <?php
 
+use function Livewire\Volt\{title};
+
+title(__('common.home') . ' - ' . config('app.name'));
+
 // Fetch data directly since it's static, non-reactive data
 $blogPosts = \App\Models\Post::where('type', 'blog')
     ->where('status', 'published')

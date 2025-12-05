@@ -1,7 +1,7 @@
 @volt
 <?php
 
-use function Livewire\Volt\{computed, mount, state, rules};
+use function Livewire\Volt\{computed, mount, state, rules, title};
 
 state(['slug', 'service', 'translation', 'locale', 'name', 'phone', 'selected_service', 'message']);
 
@@ -31,6 +31,8 @@ mount(function () {
     // Pre-select the current service
     $this->selected_service = $this->translation->title;
 });
+
+title(fn () => ($this->translation?->title ?? __('common.services')) . ' - ' . config('app.name'));
 
 $settings = computed(fn () => \App\Models\Setting::first());
 

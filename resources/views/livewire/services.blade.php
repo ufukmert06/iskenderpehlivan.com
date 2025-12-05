@@ -1,7 +1,7 @@
 @volt
 <?php
 
-use function Livewire\Volt\{computed, state};
+use function Livewire\Volt\{computed, state, title};
 
 state(['locale']);
 
@@ -14,6 +14,8 @@ $services = computed(fn () => \App\Models\Post::where('type', 'service')
     ->get());
 
 $settings = computed(fn () => \App\Models\Setting::with('translations')->first());
+
+title(__('common.services') . ' - ' . config('app.name'));
 
 ?>
 

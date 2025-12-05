@@ -1,9 +1,7 @@
 @volt
 <?php
 
-use function Livewire\Volt\computed;
-use function Livewire\Volt\mount;
-use function Livewire\Volt\state;
+use function Livewire\Volt\{computed, mount, state, title};
 
 state(['slug', 'locale']);
 
@@ -40,6 +38,8 @@ $relatedBlogs = computed(function () {
 });
 
 $settings = computed(fn () => \App\Models\Setting::with('translations')->first());
+
+title(fn () => ($this->blog->translation($this->locale)?->title ?? __('blog.title')) . ' - ' . config('app.name'));
 
 ?>
 

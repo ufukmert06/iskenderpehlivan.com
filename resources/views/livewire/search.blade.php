@@ -1,7 +1,7 @@
 @volt
 <?php
 
-use function Livewire\Volt\{computed, mount, state};
+use function Livewire\Volt\{computed, mount, state, title};
 
 state(['locale', 'query' => '']);
 
@@ -9,6 +9,8 @@ mount(function () {
     $this->locale = app()->getLocale();
     $this->query = request('q', '');
 });
+
+title(fn () => ($this->query ? __('search.results_for') . ': ' . $this->query : __('search.title')) . ' - ' . config('app.name'));
 
 $results = computed(function () {
     if (empty($this->query) || strlen($this->query) < 2) {

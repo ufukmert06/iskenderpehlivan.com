@@ -24,7 +24,8 @@
       "Bash(php artisan:*)",
       "WebFetch(domain:www.iskenderpehlivan.com)",
       "Bash(php vendor/bin/pint:*)",
-      "mcp__context7__resolve-library-id"
+      "mcp__context7__resolve-library-id",
+      "mcp__laravel-boost__list-available-env-vars"
     ],
     "deny": [],
     "ask": []

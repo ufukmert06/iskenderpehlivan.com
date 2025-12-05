@@ -1,7 +1,7 @@
 @volt
 <?php
 
-use function Livewire\Volt\{state, rules};
+use function Livewire\Volt\{state, rules, title};
 
 state(['settings', 'settingTranslation', 'name', 'email', 'service', 'message']);
 
@@ -19,6 +19,8 @@ if ($settings) {
         ->where('locale', app()->getLocale())
         ->first();
 }
+
+title(__('contact.title') . ' - ' . config('app.name'));
 
 $submit = function () {
     $this->validate();
