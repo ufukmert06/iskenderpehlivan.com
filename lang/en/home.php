@@ -5,18 +5,18 @@ declare(strict_types=1);
 return [
     // Hero Section
     'hero' => [
-        'title' => 'Take the First Step Towards a Healthy and Balanced Life',
-        'title_animated_1' => 'Peaceful',
-        'title_animated_2' => 'Happy Life',
-        'description' => 'We provide a safe space where you can find peace within yourself. Our expert counselors guide you through life\'s mental health challenges with personalized care.',
+        'title' => 'With the right support and meaningful communication, healing often begins sooner and feels easier than most people expect.',
+        'title_animated_1' => '',
+        'title_animated_2' => '',
+        'description' => '',
         'cta_button' => 'Book a Consultation',
     ],
 
     // About Section
     'about' => [
-        'subtitle' => 'About Us',
-        'title' => 'Trusted Experts for Your Mental Health',
-        'description' => 'With our team of experienced therapists and a personalized approach to mental health, İskender Pehlivan Consulting provides the tools and support you need to overcome life\'s challenges and achieve mental well-being. We believe that every individual has the right to a balanced life, recovery, and growth.',
+        'subtitle' => '',
+        'title' => 'Providing supportive, evidence-based clinical care for ADHD, OCD, anxiety, emotional distress, andregulation, and childhood behavioral concerns.',
+        'description' => '',
         'cta_button' => 'Learn More About Us',
     ],
 
@@ -36,9 +36,8 @@ içinizde. ve IST Counselling Inc. kanıtlanmış sonuçlar ve etkili terapilerl
 
     // Services Section
     'services' => [
-        'subtitle' => 'individuals, couples, children, and
-families',
-        'title' => 'We provide evidence-based clinical support for ',
+        'subtitle' => '',
+        'title' => 'We provide evidence-based clinical support for individuals, couples, children, and families.',
         'description' => '',
         'read_more' => 'Read More',
         'default_service_name' => 'Service',

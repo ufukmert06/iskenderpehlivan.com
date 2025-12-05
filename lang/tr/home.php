@@ -5,18 +5,18 @@ declare(strict_types=1);
 return [
     // Hero Section
     'hero' => [
-        'title' => 'Sağlıklı ve Dengeli Bir Yaşama Doğru İlk Adımı Atın',
-        'title_animated_1' => 'Huzurlu',
-        'title_animated_2' => 'Mutlu Bir Hayat',
-        'description' => 'Kendinizde barış bulabileceğiniz güvenli bir alan sağlıyoruz. Uzman danışmanlarımız sizi kişiselleştirilmiş bakım ile ruh sağlığı zorlukları yaşamınızda üstesinden gelmenize rehberlik eder.',
+        'title' => 'Doğru iletişim ve destekle, düşündüğünüz kadar zor olmayabilir. ',
+        'title_animated_1' => '',
+        'title_animated_2' => '',
+        'description' => '',
         'cta_button' => 'Danışmanlık Randevusu Al',
     ],
 
     // About Section
     'about' => [
-        'subtitle' => 'Hakkımızda',
-        'title' => 'Ruh Sağlığınızla Bağlı Güvenilir Uzmanlar',
-        'description' => 'Deneyimli terapistler ekibimiz ve ruh sağlığına kişiselleştirilmiş yaklaşım ile İskender Pehlivan Danışmanlık, hayatın zorlukları üstesinden gelmeniz ve ruh sağlığı iyiliğini sağlamak için gereken araçlar ve desteği sunuyoruz. Her bireyin dengeli yaşama, iyileşme ve gelişme hakkına inanıyoruz.',
+        'subtitle' => '',
+        'title' => 'ADHD, OKB, anksiyete, duygusal düzenleme ve çocukluk davranış sorunları için bilimsel ve klinik destek.',
+        'description' => '',
         'cta_button' => 'Hakkımızda Daha Fazla Bilgi',
     ],
 
@@ -36,9 +36,9 @@ içinizde. ve IST Counselling Inc. kanıtlanmış sonuçlar ve etkili terapilerl
 
     // Services Section
     'services' => [
-        'subtitle' => 'Neler Sunuyoruz',
-        'title' => 'Danışmanlık Hizmetlerimiz',
-        'description' => 'Bireyler, çiftler ve aileler için kişiselleştirilmiş danışmanlık seçenekleri sunarak, hayatın zorlukları üstesinden gelmenize ve ruh sağlığı iyiliğini sağlamanıza yardımcı oluyoruz.',
+        'subtitle' => '',
+        'title' => 'Bireylere, çiftlere, çocuklara ve ailelere güvenli ve kanıta dayalı klinik destek sağlıyoruz',
+        'description' => '',
         'read_more' => 'Daha Fazla Oku',
         'default_service_name' => 'Hizmet',
     ],

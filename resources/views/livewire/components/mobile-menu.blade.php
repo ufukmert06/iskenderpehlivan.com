@@ -78,8 +78,7 @@ $menu = \Biostate\FilamentMenuBuilder\Models\Menu::with([
                 </ul>
                 <div class="mobile-quote-card">
                     <p class="quote-text">
-                        "Compassionate, evidence-based care for ADHD, OCD, anxiety, emotional dysregulation, and
-                        childhood behavioural challenges."
+                        "{{ __('common.mobile_menu_quote') }}"
                     </p>
                 </div>
             </div>

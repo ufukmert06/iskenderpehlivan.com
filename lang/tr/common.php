@@ -39,4 +39,5 @@ return [
     'contact' => 'İletişim',
     'services' => 'Hizmetler',
     'blog' => 'Blog',
+    'mobile_menu_quote' => 'ADHD, OKB, anksiyete, duygu düzenleme güçlükleri ve çocukluk davranış sorunlarına yönelik bilimsel temelli klinik destek.',
 ];

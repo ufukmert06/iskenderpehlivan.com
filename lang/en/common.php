@@ -39,4 +39,5 @@ return [
     'contact' => 'Contact',
     'services' => 'Services',
     'blog' => 'Blog',
+    'mobile_menu_quote' => 'Compassionate, evidence-based care for ADHD, OCD, anxiety, emotional dysregulation, and childhood behavioural challenges.',
 ];
