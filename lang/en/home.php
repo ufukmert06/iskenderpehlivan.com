@@ -35,9 +35,10 @@ return [
 
     // Services Section
     'services' => [
-        'subtitle' => 'What We Offer',
-        'title' => 'Our Counseling Services',
-        'description' => 'We offer personalized counseling options for individuals, couples, and families, helping you overcome life\'s challenges and achieve mental well-being.',
+        'subtitle' => 'individuals, couples, children, and
+families',
+        'title' => 'We provide evidence-based clinical support for ',
+        'description' => '',
         'read_more' => 'Read More',
         'default_service_name' => 'Service',
     ],
