@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 return [
     'subtitle' => 'Book Your Consultation',
-    'title' => 'Make an Appointment',
-    'description' => 'Connect with a dedicated specialist today and take first step towards a healthier, more fulfilling life.',
+    'title' => 'Book Your Consultation',
+    'description' => 'Coverage varies based on your insurance plan. Please contact your provider to confirm if your plan includes any of the listed designations.',
     'image_alt' => 'Appointment booking consultation',
 
     // Form

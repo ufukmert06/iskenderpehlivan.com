@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     // Header
-    'get_consult' => 'Get Your Consult!',
+    'get_consult' => 'Book Your Consultation',
     'search_placeholder' => 'Search for anything',
     'need_help' => 'Need help?',
     'services_therapy_title' => 'Counseling & Therapy Services',

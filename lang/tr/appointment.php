@@ -5,8 +5,8 @@ declare(strict_types=1);
 return [
     'subtitle' => 'Danışmanlık Randevusu Alın',
     'title' => 'Randevu Alın',
-    'description' => 'Bugün uzman bir danışmanla bağlantı kurun ve daha sağlıklı, daha tatmin edici bir yaşama doğru ilk adımı atın.',
-    'image_alt' => 'Randevu alma danışmanlık',
+    'description' => 'Kapsam, sigorta planınıza göre değişiklik gösterir. Lütfen planınızın listelenen unvanlardan herhangi birini kapsayıp kapsamadığını doğrulamak için sağlayıcınızla iletişime geçin.',
+    'image_alt' => 'Randevu alma danışmanlığı',
 
     // Form
     'form_title' => 'Randevu Alın',

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     // Header
-    'get_consult' => 'Danışmanlık Alın!',
+    'get_consult' => 'Seans Randevunuzu Oluşturun',
     'search_placeholder' => 'Herhangi bir şey arayın',
     'need_help' => 'Yardıma mı ihtiyacınız var?',
     'services_therapy_title' => 'Danışmanlık ve Terapi Hizmetleri',

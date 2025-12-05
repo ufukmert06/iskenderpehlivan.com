@@ -18,7 +18,7 @@ new class extends Component {
                     'animated_text' => [__('home.hero.title_animated_1'), __('home.hero.title_animated_2')],
                     'description' => __('home.hero.description'),
                     'cta_text' => __('home.hero.cta_button'),
-                    'cta_link' => 'https://iskenderpehlivan.janeapp.com/#staff_member/1'
+                    'cta_link' => route(__('home.hero.cta_link'))
                 ],
                 [
                     'image' => asset('images/slide/slide2.jpeg'),
@@ -27,7 +27,7 @@ new class extends Component {
                     'animated_text' => [__('home.about.subtitle')],
                     'description' => __('home.about.description'),
                     'cta_text' => __('home.about.cta_button'),
-                    'cta_link' => '#about'
+                    'cta_link' => route(__('home.about.cta_link'))
                 ],
                 [
                     'image' => asset('images/slide/slide3.jpeg'),
@@ -35,8 +35,8 @@ new class extends Component {
                     'title' => __('home.services.title'),
                     'animated_text' => [__('home.services.subtitle')],
                     'description' => __('home.services.description'),
-                    'cta_text' => __('home.services.read_more'),
-                    'cta_link' => '#services'
+                    'cta_text' => __('home.services.cta_button'),
+                    'cta_link' => route(__('home.services.cta_link'))
                 ],
             ];
             $gridRows = 4;

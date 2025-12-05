@@ -10,6 +10,7 @@ return [
         'title_animated_2' => '',
         'description' => '',
         'cta_button' => 'Danışmanlık Randevusu Al',
+        'cta_link' => 'tr.book-appointment',
     ],
 
     // About Section
@@ -18,6 +19,7 @@ return [
         'title' => 'ADHD, OKB, anksiyete, duygusal düzenleme ve çocukluk davranış sorunları için bilimsel ve klinik destek.',
         'description' => '',
         'cta_button' => 'Hakkımızda Daha Fazla Bilgi',
+        'cta_link' => 'tr.about',
     ],
 
     // Benefits Section
@@ -40,6 +42,8 @@ içinizde. ve IST Counselling Inc. kanıtlanmış sonuçlar ve etkili terapilerl
         'title' => 'Bireylere, çiftlere, çocuklara ve ailelere güvenli ve kanıta dayalı klinik destek sağlıyoruz',
         'description' => '',
         'read_more' => 'Daha Fazla Oku',
+        'cta_button' => 'Hizmetlerimizi Keşfedin',
+        'cta_link' => 'tr.services',
         'default_service_name' => 'Hizmet',
     ],
 

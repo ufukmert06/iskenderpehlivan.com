@@ -10,6 +10,7 @@ return [
         'title_animated_2' => '',
         'description' => '',
         'cta_button' => 'Book a Consultation',
+        'cta_link' => 'book-appointment',
     ],
 
     // About Section
@@ -18,6 +19,7 @@ return [
         'title' => 'Providing supportive, evidence-based clinical care for ADHD, OCD, anxiety, emotional distress, andregulation, and childhood behavioral concerns.',
         'description' => '',
         'cta_button' => 'Learn More About Us',
+        'cta_link' => 'about',
     ],
 
     // Benefits Section
@@ -40,6 +42,8 @@ içinizde. ve IST Counselling Inc. kanıtlanmış sonuçlar ve etkili terapilerl
         'title' => 'We provide evidence-based clinical support for individuals, couples, children, and families.',
         'description' => '',
         'read_more' => 'Read More',
+        'cta_button' => 'Explore Our Services',
+        'cta_link' => 'services',
         'default_service_name' => 'Service',
     ],
 
