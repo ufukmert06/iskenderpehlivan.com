@@ -20,9 +20,9 @@
         @endif
         <style>
             /* 14" Laptop ekranlar için viewport zoom */
-            @media (min-width: 1366px) and (max-width: 1440px) {
+            @media (min-width: 640px) and (max-width: 1800px) {
                 body {
-                    zoom: 0.8;
+                    zoom: 0.7;
                 }
             }
         </style>
