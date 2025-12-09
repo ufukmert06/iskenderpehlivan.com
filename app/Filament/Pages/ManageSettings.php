@@ -123,8 +123,7 @@ class ManageSettings extends Page
 
                         Forms\Components\TextInput::make('contact_phone')
                             ->label('Telefon')
-                            ->tel()
-                            ->maxLength(20),
+                            ->maxLength(50),
 
                         Forms\Components\TextInput::make('whatsapp')
                             ->label('WhatsApp')
