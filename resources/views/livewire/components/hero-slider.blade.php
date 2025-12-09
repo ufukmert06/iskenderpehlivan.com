@@ -414,7 +414,7 @@ new class extends Component {
 
     .slide-content .heading .title {
         font-size: clamp(1.85rem, 4.6vw, 3.6rem);
-        font-weight: 800;
+        font-weight: 700;
         margin-bottom: 2rem;
         line-height: 1.25;
         text-shadow: 3px 3px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
