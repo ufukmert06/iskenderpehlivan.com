@@ -17,18 +17,15 @@
     <title>{{ $title ?? 'Page Title' }}</title>
     <style>
         @media (min-width: 640px) and (max-width: 1800px) {
-            body {
-                zoom: 0.7;
-                -webkit-text-size-adjust: 100%;
+            html {
+                transform: scale(0.7);
+                transform-origin: top left;
+                width: 142.857%;
+                min-height: 142.857vh;
             }
 
-            /* Safari fallback */
-            @supports not (zoom: 0.7) {
-                body {
-                    transform: scale(0.7);
-                    transform-origin: top left;
-                    width: 142.857%;
-                }
+            body {
+                overflow-x: hidden;
             }
         }
     </style>
