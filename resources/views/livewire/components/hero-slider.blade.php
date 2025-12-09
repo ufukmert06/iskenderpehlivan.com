@@ -413,10 +413,10 @@ new class extends Component {
     }
 
     .slide-content .heading .title {
-        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-size: clamp(1.85rem, 4.6vw, 3.6rem);
         font-weight: 800;
         margin-bottom: 2rem;
-        line-height: 1.1;
+        line-height: 1.25;
         text-shadow: 3px 3px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
         color: #ffffff;
         letter-spacing: -0.02em;
@@ -439,9 +439,9 @@ new class extends Component {
     }
 
     .slide-content .description {
-        font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+        font-size: clamp(0.98rem, 2.1vw, 1.29rem);
         margin-bottom: 2.5rem;
-        line-height: 1.7;
+        line-height: 1.85;
         text-shadow: 2px 2px 6px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
         color: #f5f5f5;
         font-weight: 400;
@@ -456,7 +456,7 @@ new class extends Component {
         color: #000;
         text-decoration: none;
         font-weight: 700;
-        font-size: 1.125rem;
+        font-size: 1.03rem;
         border-radius: 50px;
         transition: all 0.3s ease;
         box-shadow: 0 6px 20px rgba(0,0,0,0.4);
@@ -573,20 +573,22 @@ new class extends Component {
         }
 
         .slide-content .heading .title {
-            font-size: 2rem;
+            font-size: 1.55rem;
             margin-bottom: 1.5rem;
+            line-height: 1.25;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
         }
 
         .slide-content .description {
-            font-size: 1.125rem;
+            font-size: 0.98rem;
             margin-bottom: 2rem;
+            line-height: 1.85;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
         }
 
         .slide-content .cta-button {
             padding: 1rem 2rem;
-            font-size: 1rem;
+            font-size: 0.93rem;
         }
 
         .nav-btn {

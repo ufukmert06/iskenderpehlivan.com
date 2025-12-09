@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     'subtitle' => 'İletişim',
-    'title' => 'Ücretsiz Danışmanlık - İyileşme Yolculuğunuza Başlayın',
+    'title' => 'Ücretsiz Danışmanlık - Gelişme Yolculuğunuza Başlayın',
     'description' => 'Bugün bir uzmanla bağlantı kurun ve daha sağlıklı, daha tatmin edici bir yaşama doğru ilk adımı atın.',
 
     'open_map' => 'Haritada Aç',
