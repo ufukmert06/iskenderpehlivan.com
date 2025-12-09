@@ -21,7 +21,7 @@ return [
 
     // Services
     'service_individual' => 'Bireysel Danışmanlık',
-    'service_family' => 'Aile Terapisi',
+    'service_family' => 'Çocuk ve Aile Terapisi',
     'service_couples' => 'Çift Terapisi',
     'service_group' => 'Grup Terapisi',
     'service_child' => 'Çocuk ve Ergen Terapisi',

@@ -114,11 +114,9 @@ $submit = function () {
                                     <select wire:model="service" id="service" data-default="">
                                         <option value="">{{ __('contact.form_service_placeholder') }}</option>
                                         <option value="Individual Counseling">{{ __('contact.service_individual') }}</option>
-                                        <option value="Family Therapy">{{ __('contact.service_family') }}</option>
                                         <option value="Couples Therapy">{{ __('contact.service_couples') }}</option>
+                                        <option value="Family Therapy">{{ __('contact.service_family') }}</option>
                                         <option value="Group Therapy">{{ __('contact.service_group') }}</option>
-                                        <option value="Child & Adolescent Therapy">{{ __('contact.service_child') }}</option>
-                                        <option value="Trauma Counseling">{{ __('contact.service_trauma') }}</option>
                                     </select>
                                     @error('service') <span class="error text-red-500">{{ $message }}</span> @enderror
                                 </div>
