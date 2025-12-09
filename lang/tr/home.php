@@ -29,7 +29,7 @@ return [
         'description' => 'Gelişiminizi en az sizin kadar önemseyen ve düşseniz bile yeniden ayağa kalkmanızı sağlayacak kadar güçlü birini tanıyoruz. Size onu keşfetmeniz için eşlik etmekten mutluluk duyar ve bilmenizi isteriz ki o kişi sizin
 içinizde. IST Counselling Inc. kanıtlanmış sonuçlar ve etkili terapilerle, sizin benzersiz ihtiyaçlarınızı karşılamak için tasarlanmıştır.',
         'card_1_title' => 'Kişiselleştirilmiş Bakım',
-        'card_1_description' => 'Sizin benzersiz ihtiyaçlarınız ve hedefleriniz için özelleştirilmiş tedavi planları oluşturuyoruz ve iyileşme yolculuğunuza kişisel olarak uygun bir yaklaşım sağlıyoruz.',
+        'card_1_description' => 'Sizin benzersiz ihtiyaçlarınız ve hedefleriniz için özelleştirilmiş tedavi planları oluşturuyoruz ve gelişme yolculuğunuza kişisel olarak uygun bir yaklaşım sağlıyoruz.',
         'card_2_title' => 'Deneyimli Uzmanlar',
         'card_2_description' => 'Terapistlerimiz geniş eğitim, çeşitli uzmanlık ve etkili stratejiler sunar, sizin ihtiyaçlarınıza uygun yüksek kaliteli bakım ve sonuçlar sağlıyoruz.',
         'card_3_title' => 'Destekleyici Ortam',
