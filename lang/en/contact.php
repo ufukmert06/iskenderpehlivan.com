@@ -20,10 +20,8 @@ return [
     'form_success' => 'Your message has been sent successfully! We will contact you as soon as possible.',
 
     // Services
-    'service_individual' => 'Individual Counseling',
-    'service_family' => 'Family Therapy',
-    'service_couples' => 'Couples Therapy',
-    'service_group' => 'Group Therapy',
-    'service_child' => 'Child & Adolescent Therapy',
-    'service_trauma' => 'Trauma Counseling',
+    'service_individual' => 'Individual Therapy',
+    'service_couples' => 'Couples Counseling',
+    'service_family' => 'Child and Family Therapy',
+    'service_migration' => 'Migration and Cultural Adaptation',
 ];

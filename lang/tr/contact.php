@@ -20,10 +20,8 @@ return [
     'form_success' => 'Mesajınız başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.',
 
     // Services
-    'service_individual' => 'Bireysel Danışmanlık',
+    'service_individual' => 'Bireysel Terapi',
+    'service_couples' => 'Çift Danışmanlığı',
     'service_family' => 'Çocuk ve Aile Terapisi',
-    'service_couples' => 'Çift Terapisi',
-    'service_group' => 'Grup Terapisi',
-    'service_child' => 'Çocuk ve Ergen Terapisi',
-    'service_trauma' => 'Travma Danışmanlığı',
+    'service_migration' => 'Göç ve Kültürel Uyum',
 ];

@@ -1,7 +1,9 @@
 @volt
 <?php
 
-use function Livewire\Volt\{state, rules, title};
+use function Livewire\Volt\rules;
+use function Livewire\Volt\state;
+use function Livewire\Volt\title;
 
 state(['settings', 'settingTranslation', 'name', 'email', 'service', 'message']);
 
@@ -20,7 +22,7 @@ if ($settings) {
         ->first();
 }
 
-title(__('contact.title') . ' - ' . config('app.name'));
+title(__('contact.title').' - '.config('app.name'));
 
 $submit = function () {
     $this->validate();
@@ -113,10 +115,10 @@ $submit = function () {
                                 <div class="select-custom mb-20">
                                     <select wire:model="service" id="service" data-default="">
                                         <option value="">{{ __('contact.form_service_placeholder') }}</option>
-                                        <option value="Individual Counseling">{{ __('contact.service_individual') }}</option>
-                                        <option value="Couples Therapy">{{ __('contact.service_couples') }}</option>
-                                        <option value="Family Therapy">{{ __('contact.service_family') }}</option>
-                                        <option value="Group Therapy">{{ __('contact.service_group') }}</option>
+                                        <option value="Individual Therapy">{{ __('contact.service_individual') }}</option>
+                                        <option value="Couples Counseling">{{ __('contact.service_couples') }}</option>
+                                        <option value="Child and Family Therapy">{{ __('contact.service_family') }}</option>
+                                        <option value="Migration and Cultural Adaptation">{{ __('contact.service_migration') }}</option>
                                     </select>
                                     @error('service') <span class="error text-red-500">{{ $message }}</span> @enderror
                                 </div>
