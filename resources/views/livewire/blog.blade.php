@@ -12,8 +12,13 @@ mount(function (string $slug) {
 
 $blog = computed(function () {
     $blog = \App\Models\Post::where('type', 'blog')
-        ->where('slug_base', $this->slug)
         ->where('status', 'published')
+        ->where(function ($query) {
+            $query->where('slug_base', $this->slug)
+                ->orWhereHas('translations', function ($q) {
+                    $q->where('slug', $this->slug);
+                });
+        })
         ->with(['translations', 'categories.translations', 'tags.translations', 'user'])
         ->first();
 

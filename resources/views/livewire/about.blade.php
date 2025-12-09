@@ -52,25 +52,18 @@ title(fn () => ($this->translation?->title ?? __('common.about')) . ' - ' . conf
                     <div class="col-12">
                         <div class="heading-section">
                             <h2 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                Welcome to IST Counselling Inc.
+                                {{ __('about.heading') }}
                             </h2>
                             <p class="description text-1 lh-30 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                IST Counselling Inc. is a trusted counselling and therapy center, staffed by experienced
-                                professionals dedicated to listening, supporting, and guiding you. We believe in
-                                everyone’s potential to grow with the right care and support.
+                                {{ __('about.description') }}
                             </p>
                         </div>
                         <div class="box-about">
-
-
-
                             @if($translation->content)
                                 <div class="tinymce-content mb-5">
                                     {!! $translation->content !!}
                                 </div>
                             @endif
-
-
                         </div>
                     </div>
                 </div>

@@ -15,11 +15,16 @@ rules([
 mount(function () {
     $this->locale = app()->getLocale();
 
-    // Find service by slug_base (from Post model where type='service')
+    // Find service by slug_base or translation slug
     $this->service = \App\Models\Post::with('translations')
         ->where('type', 'service')
-        ->where('slug_base', $this->slug)
         ->where('status', 'published')
+        ->where(function ($query) {
+            $query->where('slug_base', $this->slug)
+                ->orWhereHas('translations', function ($q) {
+                    $q->where('slug', $this->slug);
+                });
+        })
         ->firstOrFail();
 
     $this->translation = $this->service->translation($this->locale);
