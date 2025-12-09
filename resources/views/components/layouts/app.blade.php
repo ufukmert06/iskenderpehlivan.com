@@ -15,6 +15,14 @@
     <link rel="shortcut icon" href="/assets/images/logo/favicon.png"/>
     <link rel="apple-touch-icon-precomposed" href="/assets/images/logo/favicon.png"/>
     <title>{{ $title ?? 'Page Title' }}</title>
+    <style>
+        /* 14" Laptop ekranlar için viewport zoom */
+        @media (min-width: 1366px) and (max-width: 1440px) {
+            body {
+                zoom: 0.8;
+            }
+        }
+    </style>
 </head>
 <body>
 <div id="wrapper">

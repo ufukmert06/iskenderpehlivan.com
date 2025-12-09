@@ -39,7 +39,7 @@ içinizde. IST Counselling Inc. kanıtlanmış sonuçlar ve etkili terapilerle, 
     // Services Section
     'services' => [
         'subtitle' => '',
-        'title' => 'Bireylere, çiftlere, çocuklara ve ailelere güvenli ve kanıta dayalı klinik destek sağlıyoruz',
+        'title' => 'Bireylere, çiftlere, çocuklara ve ailelere güvenli ve kanıta dayalı klinik destek sağlıyoruz.',
         'description' => '',
         'read_more' => 'Daha Fazla Oku',
         'cta_button' => 'Hizmetlerimizi Keşfedin',
