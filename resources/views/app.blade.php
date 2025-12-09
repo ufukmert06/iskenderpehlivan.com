@@ -19,10 +19,19 @@
             </style>
         @endif
         <style>
-            /* 14" Laptop ekranlar için viewport zoom */
             @media (min-width: 640px) and (max-width: 1800px) {
                 body {
                     zoom: 0.7;
+                    -webkit-text-size-adjust: 100%;
+                }
+
+                /* Safari fallback */
+                @supports not (zoom: 0.7) {
+                    body {
+                        transform: scale(0.7);
+                        transform-origin: top left;
+                        width: 142.857%;
+                    }
                 }
             }
         </style>
