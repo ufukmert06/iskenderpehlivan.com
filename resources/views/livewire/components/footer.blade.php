@@ -116,7 +116,11 @@ new class extends Component
                                         <img src="/images/logo-psychology-today-blue.svg" alt="Psychology Today" style="height: 32px; width: auto;">
                                     </a>
                                 </li>
+							
                             </ul>
+							<a href="https://counsellingbc.com/listings/ipehlivan.htm" target="_blank" rel="noopener">
+                                                <img src="https://istcounselling.com/images/svgexport-2.png" alt="Verified by Psychology Today" style="width: 100%; height: auto; display: block;">
+                                            </a>
                         </div>
                         <div class="footer-right">
                             <div class="wrap-footer-menu-list">
@@ -161,20 +165,23 @@ new class extends Component
                                     <div class="accreditation-cards" style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
                                         {{-- Psychology Today Verified Badge --}}
                                         <div style="background: white; padding: 15px 20px; border-radius: 8px;">
+											
                                             <a href="https://www.psychologytoday.com/ca/therapists/iskender-pehlivan-burnaby-bc/1574577" target="_blank" rel="noopener">
                                                 <img src="/images/psychology_today.jpg" alt="Verified by Psychology Today" style="width: 100%; height: auto; display: block;">
                                             </a>
+											
                                         </div>
 
                                         {{-- RCC & BCACC Cards --}}
                                         <div style="display: flex; gap: 12px;">
                                             <div style="background: white; padding: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex: 1;">
+												
                                                 <a href="https://www.crpo.ca" target="_blank" rel="noopener">
                                                     <img src="/images/rcc.png" alt="Registered Clinical Counsellor" style="width: 65px; height: auto;">
                                                 </a>
                                             </div>
                                             <div style="background: white; padding: 20px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex: 1;">
-                                                <a href="https://bc-counsellors.org" target="_blank" rel="noopener">
+                                                <a href="https://bcacc.ca/counsellors/iskender-pehlivan/" target="_blank" rel="noopener">
                                                     <img src="/images/bcacc.png" alt="BC Association of Clinical Counsellors" style="width: 80px; height: auto;">
                                                 </a>
                                             </div>
