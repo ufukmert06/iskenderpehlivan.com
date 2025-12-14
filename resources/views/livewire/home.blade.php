@@ -24,7 +24,7 @@ $settings = \App\Models\Setting::with('translations')->first();
 
 <div>
     <!-- Hero Slider Component -->
-    <livewire:components.hero-slider />
+    <livewire:components.hero-slider/>
 
     <div class="main-content home-page-2">
         <!-- About Section -->
@@ -56,15 +56,15 @@ $settings = \App\Models\Setting::with('translations')->first();
         </div>
 
         <!-- Benefits Section -->
-        <div class="section-benefits page-home-2 tf-spacing-1">
+        <div class="section-benefits page-home-2 tf-spacing-1 mb-0 pb-0">
             <div class="tf-container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="heading-section">
+                        <div class="heading-section gap-0 m-0 p-0" style="margin-bottom: 0!important;">
                             <p class="text-2 sub wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.benefits.subtitle') }}</p>
                             <h3 class="wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">{{ __('home.benefits.title') }}</h3>
                             <p class="description text-1 wow fadeInUp" data-wow-duration="1000" data-wow-delay="0s">
-                                {{ __('home.benefits.description') }}
+                                {!!  __('home.benefits.description') !!}
                             </p>
                         </div>
                     </div>

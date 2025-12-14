@@ -15,20 +15,7 @@
     <link rel="shortcut icon" href="/assets/images/logo/favicon.png"/>
     <link rel="apple-touch-icon-precomposed" href="/assets/images/logo/favicon.png"/>
     <title>{{ $title ?? 'Page Title' }}</title>
-    <style>
-        @media (min-width: 640px) and (max-width: 1800px) {
-            html {
-                transform: scale(0.7);
-                transform-origin: top left;
-                width: 142.857%;
-                min-height: 142.857vh;
-            }
 
-            body {
-                overflow-x: hidden;
-            }
-        }
-    </style>
 </head>
 <body>
 <div id="wrapper">
