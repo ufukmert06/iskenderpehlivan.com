@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/animate.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/odometer.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/swiper-bundle.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/icons/icomoon/style.css"/>
+    @php($assetVersion = config('app.asset_version', '1.0'))
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css?v={{ $assetVersion }}"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/animate.min.css?v={{ $assetVersion }}"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/animate.css?v={{ $assetVersion }}"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/odometer.min.css?v={{ $assetVersion }}"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/swiper-bundle.min.css?v={{ $assetVersion }}"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ $assetVersion }}"/>
+    <link rel="stylesheet" type="text/css" href="/assets/icons/icomoon/style.css?v={{ $assetVersion }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="/assets/images/logo/favicon.png"/>
     <link rel="apple-touch-icon-precomposed" href="/assets/images/logo/favicon.png"/>
@@ -37,14 +38,14 @@
 </div><!-- /.prograss -->
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="/assets/js/lazysize.min.js"></script>
-<script type="text/javascript" src="/assets/js/wow.min.js"></script>
-<script type="text/javascript" src="/assets/js/odometer.min.js"></script>
-<script type="text/javascript" src="/assets/js/counter.js"></script>
-<script type="text/javascript" src="/assets/js/jquery-validate.js"></script>
-<script type="text/javascript" src="/assets/js/textanimation.js"></script>
-<script type="text/javascript" src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap.min.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/jquery.min.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/lazysize.min.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/wow.min.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/odometer.min.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/counter.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/jquery-validate.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/textanimation.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/main.js?v={{ $assetVersion }}"></script>
 </body>
 </html>

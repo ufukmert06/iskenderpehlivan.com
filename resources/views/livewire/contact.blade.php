@@ -1,18 +1,10 @@
 @volt
 <?php
 
-use function Livewire\Volt\rules;
 use function Livewire\Volt\state;
 use function Livewire\Volt\title;
 
-state(['settings', 'settingTranslation', 'name', 'email', 'service', 'message']);
-
-rules([
-    'name' => 'required|string|max:255',
-    'email' => 'required|email|max:255',
-    'service' => 'nullable|string|max:255',
-    'message' => 'required|string|max:5000',
-]);
+state(['settings', 'settingTranslation']);
 
 $settings = \App\Models\Setting::first();
 
@@ -23,24 +15,6 @@ if ($settings) {
 }
 
 title(__('contact.title').' - '.config('app.name'));
-
-$submit = function () {
-    $this->validate();
-
-    \App\Models\Contact::create([
-        'name' => $this->name,
-        'email' => $this->email,
-        'service' => $this->service,
-        'message' => $this->message,
-        'status' => 'unread',
-        'ip_address' => request()->ip(),
-        'user_agent' => request()->userAgent(),
-    ]);
-
-    $this->reset(['name', 'email', 'service', 'message']);
-
-    session()->flash('success', __('contact.form_success'));
-};
 
 ?>
 
@@ -93,46 +67,17 @@ $submit = function () {
                                 </ul>
 
                             </div>
-                            <form class="form-consultation" wire:submit="submit">
-                                <h4 class="mb-20 text-center">{{ __('contact.form_title') }}</h4>
-
-                                @if (session()->has('success'))
-                                    <div class="alert alert-success mb-20">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
-
-                                <fieldset class="name">
-                                    <input type="text" wire:model="name" class="tf-input style-1" placeholder="{{ __('contact.form_name') }}" tabindex="1" aria-required="true">
-                                    @error('name') <span class="error text-red-500">{{ $message }}</span> @enderror
-                                </fieldset>
-
-                                <fieldset class="email">
-                                    <input type="email" wire:model="email" class="tf-input style-1" placeholder="{{ __('contact.form_email') }}" tabindex="2" aria-required="true">
-                                    @error('email') <span class="error text-red-500">{{ $message }}</span> @enderror
-                                </fieldset>
-
-                                <div class="select-custom mb-20">
-                                    <select wire:model="service" id="service" data-default="">
-                                        <option value="">{{ __('contact.form_service_placeholder') }}</option>
-                                        <option value="Individual Therapy">{{ __('contact.service_individual') }}</option>
-                                        <option value="Couples Counseling">{{ __('contact.service_couples') }}</option>
-                                        <option value="Child and Family Therapy">{{ __('contact.service_family') }}</option>
-                                        <option value="Migration and Cultural Adaptation">{{ __('contact.service_migration') }}</option>
-                                    </select>
-                                    @error('service') <span class="error text-red-500">{{ $message }}</span> @enderror
+                            <div class="booking-cta-card">
+                                <div class="booking-cta-icon">
+                                    <i class="icon-CalendarBlank"></i>
                                 </div>
-
-                                <fieldset class="message">
-                                    <textarea wire:model="message" id="message" class="tf-input" rows="4" placeholder="{{ __('contact.form_message') }}" tabindex="4" aria-required="true"></textarea>
-                                    @error('message') <span class="error text-red-500">{{ $message }}</span> @enderror
-                                </fieldset>
-
-                                <button class="tf-btn style-default btn-color-secondary pd-40 boder-8 send-wrap" type="submit">
-                                    <span wire:loading.remove wire:target="submit">{{ __('contact.form_submit') }}</span>
-                                    <span wire:loading.inline wire:target="submit" style="display: none;">{{ __('contact.form_sending') }}</span>
-                                </button>
-                            </form>
+                                <h4 class="mb-12 text-center">{{ __('contact.booking_title') }}</h4>
+                                <p class="booking-cta-description text-center">{{ __('contact.booking_description') }}</p>
+                                <a href="https://iskenderpehlivan.janeapp.com/#staff_member/1" target="_blank" rel="noopener noreferrer" class="tf-btn style-default btn-color-secondary pd-40 boder-8 booking-cta-btn">
+                                    <span><i class="icon-CalendarBlank"></i> {{ __('contact.booking_button') }}</span>
+                                </a>
+                                <p class="booking-cta-badge"><i class="icon-CheckCircle"></i> {{ __('contact.booking_badge') }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

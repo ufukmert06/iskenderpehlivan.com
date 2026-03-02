@@ -15,8 +15,9 @@ return [
     'faq_title' => 'Frequently Asked Questions?',
     'expert_therapists' => 'Expert Therapists',
     'consultation_title' => 'Get A Free Consultation',
+    'booking_description' => 'Book your consultation online and take the first step towards healing.',
+    'booking_button' => 'Book Online Now',
+    'booking_badge' => 'Secure Online Booking',
     'information_title' => 'Information',
     'more_services' => 'More Services',
-    'form_phone' => 'Phone Number',
-    'form_choose_service' => 'Choose Services',
 ];

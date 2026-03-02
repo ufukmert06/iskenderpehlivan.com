@@ -15,8 +15,9 @@ return [
     'faq_title' => 'Sıkça Sorulan Sorular?',
     'expert_therapists' => 'Uzman Terapistler',
     'consultation_title' => 'Ücretsiz Danışmanlık Alın',
+    'booking_description' => 'Online randevu alın ve iyileşme yolculuğunuza ilk adımı atın.',
+    'booking_button' => 'Online Randevu Al',
+    'booking_badge' => 'Güvenli Online Randevu',
     'information_title' => 'Bilgi',
     'more_services' => 'Diğer Hizmetler',
-    'form_phone' => 'Telefon Numarası',
-    'form_choose_service' => 'Hizmet Seçin',
 ];

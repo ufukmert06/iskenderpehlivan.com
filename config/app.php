@@ -17,6 +17,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Asset Version (Cache Busting)
+    |--------------------------------------------------------------------------
+    |
+    | Increment this value when static assets (CSS/JS) in the public/assets
+    | directory are updated, so browsers fetch the latest version.
+    |
+    */
+
+    'asset_version' => env('ASSET_VERSION', '1.1'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |

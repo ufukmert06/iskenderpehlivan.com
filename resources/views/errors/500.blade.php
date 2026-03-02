@@ -4,10 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/icons/icomoon/style.css"/>
+    @php($assetVersion = config('app.asset_version', '1.0'))
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css?v={{ $assetVersion }}"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/animate.min.css?v={{ $assetVersion }}"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ $assetVersion }}"/>
+    <link rel="stylesheet" type="text/css" href="/assets/icons/icomoon/style.css?v={{ $assetVersion }}"/>
     <link rel="shortcut icon" href="/assets/images/logo/favicon.png"/>
     <title>{{ __('errors.500.title') }}</title>
 </head>
@@ -67,9 +68,9 @@
     <livewire:components.footer/>
 </div>
 
-<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="/assets/js/wow.min.js"></script>
-<script type="text/javascript" src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap.min.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/jquery.min.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/wow.min.js?v={{ $assetVersion }}"></script>
+<script type="text/javascript" src="/assets/js/main.js?v={{ $assetVersion }}"></script>
 </body>
 </html>

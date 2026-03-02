@@ -229,23 +229,17 @@ $settings = \App\Models\Setting::with('translations')->first();
                                     <i class="icon-ArrowRight"></i>
                                 </a>
                             </div>
-                            <form class="form-consultation wow fadeInRight" data-wow-duration="1000" data-wow-delay="0s" method="post" id="contactform" action="{{ route('api.contact.store') }}">
-                                @csrf
-                                <h4 class="mb-20 text-center">{{ __('home.contact.form_title') }}</h4>
-                                <fieldset class="name">
-                                    <input type="text" name="name" class="tf-input style-1" placeholder="{{ __('home.contact.form_name_placeholder') }}" tabindex="2" aria-required="true" required>
-                                </fieldset>
-                                <fieldset class="phone">
-                                    <input type="email" name="email" class="tf-input style-1" placeholder="{{ __('home.contact.form_email_placeholder') }}" tabindex="2" aria-required="true" required>
-                                </fieldset>
-                                <fieldset class="message">
-                                    <textarea id="message" class="tf-input" name="message" rows="4" placeholder="{{ __('home.contact.form_message_placeholder') }}" tabindex="4" aria-required="true" required></textarea>
-                                </fieldset>
-                                <button class="tf-btn style-default btn-color-secondary pd-40 boder-8 send-wrap" type="submit">
-                                    <span>{{ __('home.contact.form_submit_button') }}</span>
-                                </button>
-
-                            </form>
+                            <div class="booking-cta-card wow fadeInRight" data-wow-duration="1000" data-wow-delay="0s">
+                                <div class="booking-cta-icon">
+                                    <i class="icon-CalendarBlank"></i>
+                                </div>
+                                <h4 class="mb-12 text-center">{{ __('contact.booking_title') }}</h4>
+                                <p class="booking-cta-description text-center">{{ __('contact.booking_description') }}</p>
+                                <a href="https://iskenderpehlivan.janeapp.com/#staff_member/1" target="_blank" rel="noopener noreferrer" class="tf-btn style-default btn-color-secondary pd-40 boder-8 booking-cta-btn">
+                                    <span><i class="icon-CalendarBlank"></i> {{ __('contact.booking_button') }}</span>
+                                </a>
+                                <p class="booking-cta-badge"><i class="icon-CheckCircle"></i> {{ __('contact.booking_badge') }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

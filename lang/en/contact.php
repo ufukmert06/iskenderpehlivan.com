@@ -9,19 +9,9 @@ return [
 
     'open_map' => 'Open Map',
 
-    // Form
-    'form_title' => 'Get A Free Consultation',
-    'form_name' => 'Your Name*',
-    'form_email' => 'Your Email Address*',
-    'form_service_placeholder' => 'Choose Services',
-    'form_message' => 'Your Message',
-    'form_submit' => 'Submit',
-    'form_sending' => 'Sending...',
-    'form_success' => 'Your message has been sent successfully! We will contact you as soon as possible.',
-
-    // Services
-    'service_individual' => 'Individual Therapy',
-    'service_couples' => 'Couples Counseling',
-    'service_family' => 'Child and Family Therapy',
-    'service_migration' => 'Migration and Cultural Adaptation',
+    // Booking CTA
+    'booking_title' => 'Get A Free Consultation',
+    'booking_description' => 'Ready to take the first step? Book your consultation online and begin your journey towards healing and growth.',
+    'booking_button' => 'Book Online Now',
+    'booking_badge' => 'Secure Online Booking',
 ];

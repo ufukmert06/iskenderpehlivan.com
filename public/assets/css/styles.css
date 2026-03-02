@@ -9494,4 +9494,82 @@ input[value=theme-dark]+label {
   }
 }
 
+/* Booking CTA Card */
+.booking-cta-card {
+  background: linear-gradient(135deg, var(--White) 0%, var(--Color-1) 100%);
+  border: 1px solid var(--Outline);
+  border-radius: 16px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.booking-cta-card:hover {
+  box-shadow: 0 8px 32px rgba(60, 82, 80, 0.12);
+  transform: translateY(-2px);
+}
+
+.booking-cta-card--sidebar {
+  padding: 28px 20px;
+  border-radius: 12px;
+}
+
+.booking-cta-card--sidebar .booking-cta-description {
+  text-align: center;
+}
+
+.booking-cta-card--wide {
+  padding: 40px 40px;
+}
+
+.booking-cta-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--Primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.booking-cta-icon i {
+  font-size: 28px;
+  color: var(--White);
+}
+
+.booking-cta-description {
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--Color-3);
+  max-width: 320px;
+}
+
+.booking-cta-btn {
+  width: 100%;
+  text-decoration: none;
+  margin-top: 8px;
+}
+
+.booking-cta-btn span i {
+  margin-right: 8px;
+}
+
+.booking-cta-badge {
+  font-size: 13px;
+  color: var(--Secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.booking-cta-badge i {
+  font-size: 16px;
+  color: var(--Primary);
+}
+
 /*# sourceMappingURL=styles.css.map */
